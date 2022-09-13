@@ -1,0 +1,145 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Product {% endblock title %}
+{% block css %}
+<style>
+video {
+    width: 90%;
+    height: auto;
+}
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <section class="single-product">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="single-product-images">
+                        <div class="single-product-top">
+                            <img src="/media/{{product.image}}" class="img-fluid" alt="">
+                            {% comment %} <img src="./assets/images/model-silver-necklaces.jpg" class="img-fluid" alt=""> {% endcomment %}
+                            {% if product.video %}
+                            <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.video}}" data-caption="Product Zoom Image 2">
+                                <video max-width='10%' controls>
+                                    <source src="/media/{{product.video}}" type='video/mp4'>
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="single-product-bottom">
+                        {% for i in product.get_images %}
+                            <img src="/media/{{i.image}}" class="img-fluid" alt="">
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="single-product-details">
+                        <div class="single-product-top">
+                            <div class="single-product-title">
+                                <h1>{{product.name}}</h1>
+                                {% comment %} <p>STERLING SILVER</p> {% endcomment %}
+                            </div>
+                            <div class="wishlist-icon">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="single-product-price">
+                            <h5>$ {{product.price}}</h5>
+                            <div class="product-rate">
+                                <div class="rate-box">
+                                    <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#"><i class="fa-regular fa-star"></i></a>
+                                </div>
+                                <a class="total-rate" href="#">35</a>
+                            </div>
+                        </div>
+                        <div class="single-product-text">
+                            <ul>
+                                <li><span>Category  </span><p>{{product.category}}</p> </li>
+                                <li><span>Metal   </span><p>{{product.metal}}</p> </li>
+                                <li><span>Size    </span><p>{{product.size}}</p> </li>
+                                <li><span>Colour     </span><p>{{product.get_goldfilter.colour}}</p> </li>
+                                <li><span>Purity      </span><p>{{product.get_goldfilter.purity}}</p> </li>
+                                <li><span>Available       </span><p>{% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p> </li>
+                            </ul>
+                            <button class="btn-outline">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="product-slider-wrp">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="product-slider-main-image">
+                            <img src="{%  static 'assets/images/favourites-image.png' %}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 pe-0">
+                        <div class="slider-title">
+                            <h3>Sustainable Essentials</h3>
+                        </div>
+                        <div class="control-products">
+                            <a href="#">View All</a>
+
+                        </div>
+                        <div class="owl-carousel">
+                            {% for row in similar_prods %}
+                                <div class="owl-carousel-product">
+                                    <img src="/media/{{row.image}}" alt="">
+                                    <div class="slider-text">
+                                        <a href="/product/{{row.pk}}">{{row.name}}</a>
+                                        <span class="product-price">$ {{row.price}}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="product-benefits">
+        <div class="container-fluid">
+            <ul>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Free Shipping</h6>
+                        <p>We provide free shipping for all order over $200.00</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Fast Delivery</h6>
+                        <p>We always deliver our customers very quickly.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>
+                            24/7 Support</h6>
+                        <p>We provide support to our customers within 24 hours.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock body %}

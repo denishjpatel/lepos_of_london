@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Lepos London | Product {% endblock title %}
+
+{% block css %}
+<style>
+.out_of_stock{
+    color: red;
+}
+</style>
+
+{% endblock css %}
+
+{% block body %}
+
+<!-- Breadcrumb Area -->
+<div class="tm-breadcrumb-area tm-padding-section bg-grey" data-bgimage={% static 'images/breadcrumb-bg.jpg' %}>
+    <div class="container">
+        <div class="tm-breadcrumb">
+            <h2>Product Details</h2>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href={% url 'products' %}>Products</a></li>
+                <li>{{product}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--// Breadcrumb Area -->
+
+<!-- Page Content -->
+<main class="page-content">
+
+    <!-- Product Details Wrapper -->
+    <div class="tm-product-details-area tm-section tm-padding-section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Product Details -->
+                    <div class="tm-prodetails">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-10 col-12">
+                                <div class="tm-prodetails-images">
+                                    <div class="tm-prodetails-largeimages">
+                                        <div class="tm-prodetails-largeimage">
+                                            <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.image}}" data-caption="Product Zoom Image 1">
+                                                <img src="/media/{{product.image}}" alt="product image">
+                                            </a>
+                                            {% if product.video %}
+                                            <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.video}}" data-caption="Product Zoom Image 2">
+                                                <video max-width='100%' controls>
+                                                    <source src="/media/{{product.video}}" type='video/mp4'>
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                        {% for i in product.get_images %}
+                                        <div class="tm-prodetails-largeimage">
+                                            <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{i.image}}" data-caption="Product Zoom Image 2">
+                                                <img src="/media/{{i.image}}" alt="product image">
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="tm-prodetails-thumbnails">
+                                        <div class="tm-prodetails-thumbnail">
+                                            <img src="/media/{{product.image}}" alt="product image">
+                                        </div>
+                                        {% for i in product.get_images %}
+                                        <div class="tm-prodetails-thumbnail">
+                                            <img src="/media/{{i.image}}" alt="product image">
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7 col-md-6 col-12">
+                                <div class="tm-prodetails-content">
+                                    <h4 class="tm-prodetails-title">{{product.name}}</h4>
+                                    {% comment %} <del>$75.99</del> {% endcomment %}
+                                    <span class="tm-prodetails-price">&#x20b9;{{product.price}}</span>
+                                    <div class="tm-ratingbox">
+                                        <span class="is-active"><i class="ion-android-star-outline"></i></span>
+                                        <span class="is-active"><i class="ion-android-star-outline"></i></span>
+                                        <span class="is-active"><i class="ion-android-star-outline"></i></span>
+                                        <span class="is-active"><i class="ion-android-star-outline"></i></span>
+                                        <span><i class="ion-android-star-outline"></i></span>
+                                    </div>
+                                    <div class="tm-prodetails-infos">
+                                        {% comment %} <div class="tm-prodetails-singleinfo">
+                                            <b>Product ID : </b>010
+                                        </div> {% endcomment %}
+                                        <div id="one_line" class="tm-prodetails-singleinfo">
+                                            <b>Category : </b><a>{{product.category}}</a>
+                                        </div>
+                                        <div id="one_line" class="tm-prodetails-singleinfo tm-prodetails-tags">
+                                            <b>Metal : </b>
+                                            <ul>
+                                                <li><a>{{product.metal}}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div id="one_line" class="tm-prodetails-singleinfo">
+                                            <b>Size : </b><a>{{product.size}}</a>
+                                        </div>
+                                        {% comment %} <div id="one_line" class="tm-prodetails-singleinfo tm-prodetails-share">
+                                            <b>Share : </b>
+                                            <ul>
+                                                <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                                <li><a href="#"><i class="ion-social-instagram-outline"></i></a>
+                                                </li>
+                                                <li><a href="#"><i class="ion-social-skype-outline"></i></a>
+                                                </li>
+                                                <li><a href="#"><i class="ion-social-pinterest-outline"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div> {% endcomment %}
+                                        {% if product.get_goldfilter %}
+                                        <div id="one_line" class="tm-prodetails-singleinfo">
+                                            <b>Colour : </b><a>{{product.get_goldfilter.colour}}</a>
+                                        </div>
+                                        <div id="one_line" class="tm-prodetails-singleinfo">
+                                            <b>Purity : </b><a>{{product.get_goldfilter.purity}}</a>
+                                        </div>
+                                        {% endif %}
+                                        <div id="one_line" class="tm-prodetails-singleinfo">
+                                            <b>Available : </b>
+                                            <span {% if product.in_stock %}class="color-theme"{% else %}class="out_of_stock"{% endif %}>{% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</span>
+                                        </div>
+                                    </div>
+                                    {% comment %} <p>{{product.product_description}}</p> {% endcomment %}
+                                    <div class="tm-prodetails-quantitycart">
+                                        {% comment %} <h6>Quantity :</h6>
+                                        <div class="tm-quantitybox">
+                                            <input type="text" value="1">
+                                        </div> {% endcomment %}
+                                        <div class="addtocart">
+                                            <form action="{% url 'add_cart' product.pk %}" method="post">{% csrf_token %}
+                                                {% if product.in_stock %}
+                                                <button type="submit" class="tm-button tm-button-dark">Add To Cart</button>
+                                                {% endif %}
+                                                <!-- <a href={% url 'cart' %} class="tm-button tm-button-dark">Add To Cart</a> -->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--// Product Details -->
+
+                    <!-- Product Details Description & Review -->
+                    <div class="tm-prodetails-desreview tm-padding-section-sm-top">
+                        <ul class="nav tm-tabgroup2" id="prodetails" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="prodetails-area1-tab" data-toggle="tab" href="#prodetails-area1" role="tab" aria-controls="prodetails-area1" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="prodetails-area2-tab" data-toggle="tab" href="#prodetails-area2" role="tab" aria-controls="prodetails-area2" aria-selected="false">Reviews
+                                            ({{reviews|length}})</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="prodetails-content">
+                            <div class="tab-pane fade show active" id="prodetails-area1" role="tabpanel" aria-labelledby="prodetails-area1-tab">
+                                <div class="tm-prodetails-description">
+                                    {% comment %} <h4>Product Description</h4> {% endcomment %}
+                                    <p>{{product.product_description}}</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="prodetails-area2" role="tabpanel" aria-labelledby="prodetails-area2-tab">
+                                <div class="tm-prodetails-review">
+                                    {% comment %} <h5>1 Review For Stylist daimond ring</h5> {% endcomment %}
+
+                                    {% for row in reviews %}
+                                    {% if forloop.counter == 1 or forloop.counter == 2 %}                                
+                                    <div class="tm-comment-wrapper mb-50">
+                                        <!-- Comment Single -->
+                                        <div class="tm-comment">
+                                            <div class="tm-comment-thumb">
+                                                <img src= {% static 'images/author-image-1.jpg' %} alt="author image">
+                                            </div>
+                                            <div class="tm-comment-content">
+                                                <h6 class="tm-comment-authorname"><a href="#">Frida Bins</a>
+                                                </h6>
+                                                <span class="tm-comment-date">{{row.created_at}}</span>
+                                                <div class="tm-ratingbox">
+                                                    {% with ''|center:row.ratings as range %}
+                                                        {% for _ in range %}
+                                                        <span class="is-active"><i
+                                                                        class="ion-android-star-outline"></i></span>
+                                                        {% endfor %}
+                                                    {% endwith %}
+                                                </div>
+                                                <h6>{{row.title}}</h6>
+                                                <p>{{row.product_review}}</p>
+                                            </div>
+                                        </div>
+                                        <!--// Comment Single -->
+                                    </div>                           
+                                    {% else %}
+                                    {% endif %}  
+                                    {% endfor %}
+
+                                    {% if reviews|length > 2 %}
+                                        <h5><a href="#">All {{reviews|length}} reviews</a></h5>
+                                    {% endif %}
+
+
+                                    <h5>Add a review</h5>
+                                    <form action="" method="post" onsubmit="return check_ratings()" class="tm-form">{% csrf_token %}
+                                        <input type="hidden" id="ratings" name="ratings" value="">
+                                        <div class="tm-form-inner">
+                                            <div class="tm-form-field">
+                                                <div class="tm-ratingbox tm-ratingbox-input">
+                                                    <span  data-attr="1" id="rating-star"><i
+                                                                    class="ion-android-star-outline"></i></span>
+                                                    <span  data-attr="2" id="rating-star"><i
+                                                                    class="ion-android-star-outline"></i></span>
+                                                    <span  data-attr="3" id="rating-star"><i
+                                                                    class="ion-android-star-outline"></i></span>
+                                                    <span  data-attr="4" id="rating-star"><i
+                                                                    class="ion-android-star-outline"></i></span>
+                                                    <span  data-attr="5" id="rating-star"><i class="ion-android-star-outline"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="tm-form-field tm-form-fieldhalf">
+                                                <input type="text" name="name" placeholder="Your Name">
+                                            </div>
+                                            <div class="tm-form-field tm-form-fieldhalf">
+                                                <input type="text" name="title" placeholder="Your comment title">
+                                            </div>
+                                            <div class="tm-form-field">
+                                                <textarea name="product_review" cols="30" rows="5" placeholder="Your Review"></textarea>
+                                            </div>
+                                            <div class="tm-form-field">
+                                                <button type="submit" class="tm-button">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--// Product Details Description & Review -->
+
+                    <div class="tm-similliar-products tm-padding-section-sm-top">
+                        <h4 class="small-title">Similliar Products</h4>
+                        <div class="row tm-products-slider3">
+
+                            {% for row in similar_prods %}                            
+                            <!-- Single Product -->
+                            <div class="col-12">
+                                <div class="tm-product tm-scrollanim">
+                                    <div class="tm-product-topside">
+                                        <div class="tm-product-images">
+                                            <a href="/product/{{row.pk}}"><img src=/media/{{row.image}} alt="product image"></a>
+                                        </div>
+                                        <ul class="tm-product-actions">
+                                            {% comment %} <li><a href="#"><i class="ion-android-cart"></i>Add to cart</a>
+                                            </li>
+                                            <li><a href="/product/{{row.pk}}" ><i
+                                                                class="ion-eye"></i></a></li> {% endcomment %}
+                                            <li><button type="button" onclick="myFunction(this.id)" id="{{row.pk}}"><i class="ion-heart"></i></button></li>
+                                        </ul>
+                                        <div class="tm-product-badges">
+                                            <span class="tm-product-badges-new">New</span>
+                                            <span class="tm-product-badges-sale">Sale</span>
+                                        </div>
+                                    </div>
+                                    <div class="tm-product-bottomside">
+                                        <h6 class="tm-product-title"><a href="product-details.html">{{row.name}}</a></h6>
+                                        <div class="tm-ratingbox">
+                                            <span class="is-active"><i
+                                                            class="ion-android-star-outline"></i></span>
+                                            <span class="is-active"><i
+                                                            class="ion-android-star-outline"></i></span>
+                                            <span class="is-active"><i
+                                                            class="ion-android-star-outline"></i></span>
+                                            <span class="is-active"><i
+                                                            class="ion-android-star-outline"></i></span>
+                                            <span><i class="ion-android-star-outline"></i></span>
+                                        </div>
+                                        <span class="tm-product-price">&#x20b9;{{row.price}}</span>
+                                        {% comment %} <div class="tm-product-content">
+                                            <p>{{row.description}}</p>
+                                            <ul class="tm-product-actions">
+                                                <li><a href="#"><i class="ion-android-cart"></i>Add to cart</a>
+                                                </li>
+                                                <li><button data-fancybox data-src="#tm-product-quickview"><i
+                                                                    class="ion-eye"></i></button></li>
+                                                <li><a href="#">abcd<i class="ion-heart"></i></a></li>
+                                            </ul>
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// Single Product -->
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// Product Details Wrapper -->
+
+</main>
+<!--// Page Content -->
+
+{% endblock body %}
+
+{% block script %}
+    <script src="{% static 'js/wishlist.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).on('click',"#rating-star", function(e){
+            let value = $(this).data('attr');
+            $('#ratings').val(value)
+        });
+
+        function check_ratings(){
+            if($("#ratings").val() == ""){
+                alert("You have to select atleast 1 star!!!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+{% endblock script %}

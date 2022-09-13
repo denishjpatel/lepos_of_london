@@ -1,0 +1,175 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %} Lepos London | Cart {% endblock title %}
+
+{% block css %}
+<style>
+.nothing {
+    padding-top: 1%;
+    display: block;
+    text-align: center;
+}
+
+.nothing > a {
+    font-size: x-large;
+    color: #f2ba59;
+}
+
+.prod_quantity{
+    width: 100px;
+}
+</style>
+{% endblock css %}
+
+{% block body %}
+
+<!-- Breadcrumb Area -->
+<div class="tm-breadcrumb-area tm-padding-section bg-grey" data-bgimage={% static 'images/breadcrumb-bg.jpg' %}>
+    <div class="container">
+        <div class="tm-breadcrumb">
+            <h2>Shopping Cart</h2>
+            <ul>
+                <li><a href={% url 'index' %}>Home</a></li>
+                <li><a href={% url 'products' %}>Shop</a></li>
+                <li>Shopping Cart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--// Breadcrumb Area -->
+
+{% if cart_items %}
+
+<!-- Page Content -->
+<main class="page-content">
+    <!-- Shopping Cart Area -->
+    <div class="tm-section shopping-cart-area bg-white tm-padding-section">
+        <div class="container">
+            <!-- Shopping Cart Table -->
+            <div class="tm-cart-table table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th class="tm-cart-col-image" scope="col">Image</th>
+                            <th class="tm-cart-col-productname" scope="col">Product</th>
+                            <th class="tm-cart-col-zie" scope="col">Size</th>
+                            <th class="tm-cart-col-price" scope="col">Price</th>
+                            <th class="tm-cart-col-quantity" scope="col">Quantity</th>
+                            <th class="tm-cart-col-total" scope="col">Total</th>
+                            <th class="tm-cart-col-remove" scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in cart_items %}
+                            <tr>
+                                <td>
+                                    <a href="/media/{{row.product.image}}" class="tm-cart-productimage">
+                                        <img src='/media/{{row.product.image}}'
+                                            alt="product image">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/product/{{row.product.pk}}" class="tm-cart-productname">{{row.product.name}}</a>
+                                </td>
+                                <td class="tm-cart-size">{{row.product.size}}</td>
+                                <td class="tm-cart-price">&#x20b9;{{row.product.price}}</td>
+                                <td>
+                                    <div class="">
+                                        <input type="number" class="prod_quantity" id="qty_{{row.pk}}" value="{{row.quantity}}" min="1">
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">&#x20b9;{% widthratio row.product.price 1 row.quantity %}</span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'remove_cart_item' row.product.id row.id %}" class="tm-cart-removeproduct"><i class="ion-close"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!--// Shopping Cart Table -->
+            <!-- Shopping Cart Content -->
+            <div class="tm-cart-bottomarea">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="tm-buttongroup">
+                            <a href="{% url 'products' %}" class="tm-button">Continue Shopping</a>
+                            <a href="#" class="tm-button">Update Cart</a>
+                        </div>
+                        <form action="#" class="tm-cart-coupon">
+                            <label for="coupon-field">Have a coupon code?</label>
+                            <input type="text" id="coupon-field" placeholder="Enter coupon code"
+                                required="required">
+                            <button type="submit" class="tm-button">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="tm-cart-pricebox">
+                            <h2>Cart Totals</h2>
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr class="tm-cart-pricebox-subtotal">
+                                            <td>Cart Subtotal</td>
+                                            <td id="total">&#x20b9;{{total}}</td>
+                                        </tr>
+                                        <tr class="tm-cart-pricebox-shipping">
+                                            <td>(+) Shipping Charge</td>
+                                            <td>Free</td>
+                                        </tr>
+                                        <tr class="tm-cart-pricebox-total">
+                                            <td>Total</td>
+                                            <td id="grand_total">&#x20b9;{{grand_total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href={% url 'order' %} class="tm-button">Place Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Shopping Cart Content -->
+        </div>
+    </div>
+    <!--// Shopping Cart Area -->
+</main>
+<!--// Page Content -->
+
+{% else %}
+<main class="page-content">
+    <div class="nothing">
+        <p>Opps! Nothing to show here.</p>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'products' %}">Shop Items</a>
+        {% else %}
+        <a href="{% url 'loginview' %}">Login</a> 
+        <p>to show Your Cart</p>
+        {% endif %}
+    </div>
+</main>
+{% endif %}
+
+{% endblock body %}
+
+{% block script %}
+{% comment %} <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> {% endcomment %}
+<script>
+$(".prod_quantity").bind('keyup mouseup', function () {
+    var id =$(this).attr('id').slice(4,)
+    var qty = $(this).val()
+    $.ajax({url: "/cart/IncQuntity/"+qty+"/"+id+"/", success: function(result){
+        if(result.msg = "success"){
+            console.log(result)
+            $("#stotal_"+id).html(result.sub_total)
+            $("#total").html(result.total)
+            $("#grand_total").html(result.grand_total)
+            $("#cartCount").html(qty)
+        }
+    }});
+});
+</script>
+{% endblock script %}

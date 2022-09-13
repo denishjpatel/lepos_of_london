@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/plugins.min.css' %}">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.js" integrity="sha512-eOUPKZXJTfgptSYQqVilRmxUNYm0XVHwcRHD4mdtCLWf/fC9XWe98IT8H1xzBkLL4Mo9GL0xWMSJtgS5te9rQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" integrity="sha512-IXuoq1aFd2wXs4NqGskwX2Vb+I8UJ+tGJEu/Dc0zwLNKeQ7CW3Sr6v0yU3z5OQWe3eScVIkER4J9L7byrgR/fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block css %}
+    <style>
+        .alertify-notifier .ajs-message.ajs-success{
+            width: max-content !important;
+            color: white;
+            background-color : #5db812;
+        }
+        .alertify-notifier .ajs-message.ajs-error{
+            width: max-content !important;
+            color: white;
+            background-color : #fe5643;
+        }
+    </style>
+    {% endblock css %}
+</head>
+
+<body>
+    <div id="wrapper" class="wrapper">
+        <!-- Header -->
+        <div class="tm-header tm-header-sticky">
+
+            <!-- Header Top Area -->
+            <div class="tm-header-toparea bg-black">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-12">
+                            <ul class="tm-header-info">
+                                <li><a href="tel:18883456789"><i class="ion-ios-telephone"></i>1-888-345-6789</a></li>
+                                <li><a href="mailto:contact@example.com"><i
+                                            class="ion-android-mail"></i>contact@example.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <div class="tm-header-options">
+                                <div class="tm-dropdown tm-header-links">
+                                    <button>My Account</button>
+                                    <ul>
+                                        {% if request.user.is_authenticated %}
+                                        <li><a href="#">My Account</a></li>
+                                        {% else %}
+                                        <li><a href={% url 'loginview' %}>Login</a></li>
+                                        <li><a href={% url 'register' %}>Register</a></li>
+                                        {% endif %}
+                                        <li><a href={% url 'cart' %}>Shopping Cart</a></li>
+                                        <li><a href={% url 'wishlist' %}>Wishlist</a></li>
+                                        <li><a href={% url 'order' %}>Checkout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Header Top Area -->
+
+            <!-- Header Middle Area -->
+            <div class="tm-header-middlearea bg-white">
+                <div class="container">
+                    <div class="tm-mobilenav"></div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-6 order-1 order-lg-1">
+                            <a href={% url 'index' %} class="tm-header-logo">
+                                <img src={% static 'images/logo.png' %} alt="Lepos London">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-12 order-3 order-lg-2">
+                            <form class="tm-header-search">
+                                <input type="text" placeholder="Search product...">
+                                <button><i class="ion-android-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="col-lg-3 col-6 order-2 order-lg-3">
+                            <ul class="tm-header-icons">
+                                <li><a href={% url 'wishlist' %}><i
+                                                class="ion-android-favorite-outline"></i><span>{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li>
+                                <li><a href={% url 'cart' %}><i class="ion-bag"></i><span>{{cart_count}}</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Header Middle Area -->
+
+            <!-- Header Bottom Area -->
+            <div class="tm-header-bottomarea bg-white">
+                <div class="container">
+                    <nav class="tm-header-nav">
+                        <ul>
+                            <li><a href={% url 'index' %}>Home</a></li>
+                            <li class="tm-header-nav-dropdown"><a>Categories</a>
+                                <ul>
+                                    {% for row in categories %}
+                                    <li><a href="{% url 'products' %}?category={{row}}">{{row}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li><a href={% url 'products' %}>Shop</a></li>
+                            <li><a href={% url 'about' %}>About</a></li>
+                            <li><a href={% url 'contact_form' %}>Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--// Header Bottom Area -->
+
+        </div>
+        <!--// Header -->
+        {% block body %} {% endblock body %}
+        <!-- Footer -->
+        <div class="tm-footer">
+
+            <!-- Instagram Photos -->
+            <ul id="instafeed" class="tm-instaphotos"></ul>
+            <!--// Instagram Photos -->
+
+            <!-- Footer Top Area -->
+            <div class="tm-footer-toparea tm-padding-section">
+                <div class="container">
+                    <div class="widgets widgets-footer row">
+
+                        <!-- Single Widget -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-widget widget-info">
+                                <a class="widget-info-logo" href={% url 'index' %}><img src={% static 'images/logo.png' %} alt="logo"></a>
+                                <p>Lorem ipsum dolor sit amet, consect etur adipiscing elit.</p>
+                                <ul>
+                                    <li><b>Address :</b>2726 Avenue Papineau Montreal, QC, Canada</li>
+                                    <li><b>Phone :</b><a href="tel:+18009156270">1-800-915-6270</a></li>
+                                    <li><b>Email :</b><a href="mailto:info@example.com">info@example.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--// Single Widget -->
+
+                        <!-- Single Widget -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-widget widget-quicklinks">
+                                <h6 class="widget-title">Useful Link</h6>
+                                <ul>
+                                    <li><a href={% url 'about' %}>About Us</a></li>
+                                    <li><a href="#">Delivery Info</a></li>
+                                    <li><a href="#">Privacy & Policy</a></li>
+                                    <li><a href="#">Returns & Refunds</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href={% url 'contact_form' %}>Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--// Single Widget -->
+
+                        <!-- Single Widget -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-widget widget-quicklinks">
+                                <h6 class="widget-title">My Account</h6>
+                                <ul>
+                                    <li><a href="my-account.html">My account</a></li>
+                                    <li><a href={% url 'cart' %}>Cart</a></li>
+                                    <li><a href={% url 'wishlist' %}>Wishlist</a></li>
+                                    <li><a href="#">Newsletter</a></li>
+                                    <li><a href="#">Check out</a></li>
+                                    <li><a href="#">Frequently Questions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--// Single Widget -->
+
+                        <!-- Single Widget -->
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-widget widget-newsletter">
+                                <h6 class="widget-title">Join Our Newsletter</h6>
+                                <p>Get Business news, tip and solutions to your problems from our experts.</p>
+                                <form id="tm-mailchimp-form" class="widget-newsletter-form">
+                                    <input id="mc-email" type="text" placeholder="Enter email address">
+                                    <button id="mc-submit" type="submit" class="tm-button">Subscribe Now
+                                                <b></b></button>
+                                </form>
+                                <!-- Mailchimp Alerts -->
+                                <div class="tm-mailchimp-alerts">
+                                    <div class="tm-mailchimp-submitting"></div>
+                                    <div class="mailchimp-success"></div>
+                                    <div class="tm-mailchimp-error"></div>
+                                </div>
+                                <!--// Mailchimp Alerts -->
+                            </div>
+                        </div>
+                        <!--// Single Widget -->
+
+                    </div>
+                </div>
+            </div>
+            <!--// Footer Top Area -->
+
+            <!-- Footer Bottom Area -->
+            <div class="tm-footer-bottomarea">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <p class="tm-footer-copyright">© 2019. Designed by <a href="https://thememarch.com/">ThemeMarch</a></p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="tm-footer-payment">
+                                <img src={% static 'images/payment-methods.png' %} alt="payment methods">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--// Footer Bottom Area -->
+
+        </div>
+        <!--// Footer -->
+
+        <button id="back-top-top"><i class="ion-arrow-up-c"></i></button>
+    </div>
+
+    <script src="{% static 'js/vendors/plugins.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block script %} {% endblock script %}
+
+</body>
+
+</html>
