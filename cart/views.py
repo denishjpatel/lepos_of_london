@@ -40,7 +40,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'tax'       : tax,
         'grand_total': grand_total,
     }
-    return render(request, 'cart_display.html', context)
+    return render(request, 'cart.html', context)
 
 def add_cart(request,product_id):
     if request.method == "POST":

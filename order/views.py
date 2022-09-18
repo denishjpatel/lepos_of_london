@@ -34,6 +34,7 @@ def order(request):
         grand_total = 0
         
         if request.method=="POST":
+            print("inside payment")
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
@@ -51,7 +52,7 @@ def order(request):
             user_obj.contact_number = contact_number
             user_obj.save()
             
-            add_obj = Address.objects.get(user=user_obj)
+            add_obj = Address.objects.create(user=user_obj)
             add_obj.address = address
             add_obj.city = city
             add_obj.pincode = pincode
@@ -131,7 +132,7 @@ def order(request):
                 'grand_total':grand_total
             }
                 
-            return render(request, "order.html", context)
+            return render(request, "edge_order.html", context)
         
         else:
             return HttpResponse("Method Not Allowed!!!")
@@ -141,6 +142,7 @@ def order(request):
         grand_total = 0
         
         if request.method=="POST":
+            print("got it")
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
@@ -164,6 +166,7 @@ def order(request):
                 status = "Pending For Payment",
                 delivered_at = date.today() + timedelta(days=10)
             )
+            print("order object==>", order_obj)
             
             guest_user_obj = guest_user.objects.create(
                 first_name = first_name,
@@ -201,6 +204,7 @@ def order(request):
             return redirect('index')
         
         if request.method == "GET":
+            print("inside get")
             total = 0
             quantity = 0
             try:
@@ -219,7 +223,7 @@ def order(request):
             except ObjectDoesNotExist:
                 pass #just ignore
             
-            client = razorpay.Client(auth=("rzp_test_nGsms8YvPMJW4g", "DJqTA9Sr17mpAMg8ZiO28i8l"))
+            client = razorpay.Client(auth=("rzp_test_T15HUukxUCbpYR", "trw9b5ZJ8zXZIdpQgrBB42cE"))
             para = {
                 "amount": int(grand_total),
                 "currency": "INR"
@@ -240,7 +244,7 @@ def order(request):
                 "total":total,
                 'grand_total':grand_total
             }
-            return render(request,"order.html",context)
+            return render(request,"edge_order.html",context)
             
             
     # else:
@@ -248,6 +252,7 @@ def order(request):
     #     return redirect(reverse("loginview") + "?url=order" + f"?request_data={cart}")
     
 def pay_razorpay(request):
+    print("inside razorpay")
     # try:
     #     cart = Cart.objects.get(cart_id=_cart_id(request))
     # except:
@@ -390,20 +395,16 @@ def pay_razorpay(request):
     
 def my_orders(request):
     if request.user.is_authenticated:
-        temp_obj = OrderItem.objects.get(sub_total=100000)
-        print(type(temp_obj))
         order_obj = Order.objects.filter(user=request.user)
         orderitems = []
         for i in order_obj:
             orderitem_obj = OrderItem.objects.filter(order = i)
             for j in orderitem_obj:
-                print(type(j), "///////////////")
                 orderitems.append(j)
-        for i in orderitems:
-            print(type(i))
+
         context = {
             "order_data":order_obj,
-            "orderitem_data":orderitems,
+            "orderitem_data":reversed(orderitems),
         }
         return render(request, "my_orders.html", context)
     

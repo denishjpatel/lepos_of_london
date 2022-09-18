@@ -43,7 +43,7 @@
                             <h3>Sustainable Essentials</h3>
                         </div>
                         <div class="control-products">
-                            <a href="#">View All</a>
+                            <a href="{% url 'products' %}">View All</a>
 
                         </div>
                         <div class="owl-carousel">
@@ -97,8 +97,8 @@
     </section>
     <section class="image-text">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row box-row">
+                <div class="col-md-6 p-0 order-md-1 order-sm-2">
                     <div class="left-text-box">
                         <h1>The Future of Fine Jewellery</h1>
                         <p class="left-sub-text">We are a luxury jewellery brand with a simple mission: to create
@@ -123,9 +123,25 @@
                         <button class="btn-outline">READ OUR STORY</button>
                     </div>
                 </div>
-                <div class="col-md-6 p-0">
+                <div class="col-md-6 p-0 order-md-2 order-sm-1">
                     <div class="right-image-box">
-                        <img src="../static/assets/images/diamonds.png" class="img-fluid" alt="">
+                        <img src="{% static 'assets/images/diamonds.png' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 order-md-3 order-sm-3">
+                    <div class="left-image-box">
+                        <img src="{% static 'assets/images/Recycle.webp' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 order-md-4 order-sm-4">
+                    <div class="right-text-box">
+                        <h1>Re/Make Recycling
+                            Programme</h1>
+                        <p class="left-sub-text">Send your old sterling silver or solid gold jewellery to us. We get
+                            them recycled, and you get up to £30 credit to shop with us. Kind to the planet, nice to
+                            your wallet.</p>
+
+                        <button class="btn-light-outline">RECYCLE NOW</button>
                     </div>
                 </div>
             </div>
@@ -158,6 +174,95 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="image-gallary">
+        <div class="container-fluid">
+            <h1 class="collection-title">COLLECTIONS</h1>
+            <div class="collection-block">
+                <div class="card-left">
+                    <div class="collection-item ">
+                        <div class="collection-image">
+                            <img src="{% static 'assets/images/collection.jpg' %}" alt="">
+                        </div>
+                        <h1>NECKLACES</h1>
+                    </div>
+                    <div class="collection-item">
+                        <div class="collection-image">
+                            <img src="{% static 'assets/images/collecion_bracelet.webp' %}" alt="">
+                        </div>
+                        <h1>BRACELETES</h1>
+                    </div>
+                    
+                </div>
+                <div class="card-right">
+                    <div class="collection-item">
+                        <div class="collection-image">
+                            <img src="{% static 'assets/images/collection_earring.jpg' %}" alt="">
+                        </div>
+                        <h1>EARRINGS</h1>
+                    </div>
+                    <div class="collection-item">
+                        <div class="collection-image">
+                            <img src="{% static 'assets/images/collection_ring.webp' %}" alt="">
+                        </div>
+                        <h1>RINGS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="meet-our-team home-page">
+        <div class="container-fluid">
+            <div class="team-title">
+                <h1>Who’s Wearing <br>
+                    Edge of Ember</h1>
+                
+            </div>
+            <div class="team-members">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>Henry Todd</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>Henry Todd</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>Henry Todd</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>Henry Todd</h6>
+                            </div>
                         </div>
                     </div>
                 </div>

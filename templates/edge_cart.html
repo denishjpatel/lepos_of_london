@@ -1,0 +1,133 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Cart {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <section class="about-page">
+        <img src="../static/assets/images/about.jpg" class="img-fluid" alt="">
+        <div class="about-text">
+            Shopping Bag
+            <h5 class="my-3">2 ITEMS</h5>
+        </div>
+    </section>
+    <section class="cart-page">
+        <div class="container-fluid">
+            <div class="cart-box">
+                <div class="cart-item">
+                    <div class="cart-product-image-box">
+                        <img src="../static/assets/images/cart-product.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-product-detail">
+                            <div class="cart-product-left">
+                                <h4>Pearl Huggie Earrings</h4>
+                                <span>Size</span>
+                            </div>
+                            <div class="cart-product-close">
+                                <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart-product-count-price">
+                            <div class="cart-count">
+                                <button><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" name="" id="">
+                                <button><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="cart-price">
+                                <p>₹ 98,765</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="cart-product-image-box">
+                        <img src="../static/assets/images/cart-product.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-product-detail">
+                            <div class="cart-product-left">
+                                <h4>Pearl Huggie Earrings</h4>
+                                <span>Size</span>
+                            </div>
+                            <div class="cart-product-close">
+                                <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart-product-count-price">
+                            <div class="cart-count">
+                                <button><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" name="" id="">
+                                <button><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="cart-price">
+                                <p>₹ 98,765</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-total-box">
+                <div class="cart-total-top">
+                    <div class="cart-total-left">
+                        <p>Cart Subtotal</p>
+                        <p>(+) Shipping Charge</p>
+                        <h6>Total</h6>
+                    </div>
+                    <div class="cart-total-right">
+                        <p>₹98765.00</p>
+                        <p>Free</p>
+                        <h6>₹98765.00</h6>
+                    </div>
+                </div>
+                <div class="place-order-button-box">
+                    <button class="btn-outline btn-outline-light">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="coupon-code">
+        <h3>Have a coupon code?</h3>
+        <div class="coupon-code-box">
+            <input type="text" placeholder="Enter Coupon Code">
+            <button class="btn-outline">Apply Code</button>
+        </div>
+    </section>
+    <section class="product-benefits">
+        <div class="container-fluid">
+            <ul>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Free Shipping</h6>
+                        <p>We provide free shipping for all order over $200.00</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Fast Delivery</h6>
+                        <p>We always deliver our customers very quickly.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>
+                            24/7 Support</h6>
+                        <p>We provide support to our customers within 24 hours.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock body %}

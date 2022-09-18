@@ -1,0 +1,143 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Order {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <section class="order-page">
+
+        <div class="order-wrp">
+            <form class="order-form" method="post">{% csrf_token %}
+                <div class="order-left">
+                    <h2 class="logo">BILLING INFORMATION</h2>
+                        <p>Contact information</p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">First name</label>
+                                    <input name="first_name" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{user_data.first_name}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Last name</label>
+                                    <input name="last_name" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{user_data.last_name}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"
+                                        aria-describedby="emailHelp" value="{{user_data.email}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Phone</label>
+                                    <input name="contact_number" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{user_data.contact_number}}" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Address</label>
+                                    <input name="address" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{add_data.address}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">City</label>
+                                    <input name="city" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{add_data.city}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Zip / Postcode</label>
+                                    <input name="pincode" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{add_data.pincode}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">State</label>
+                                    <input name="state" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{add_data.state}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Country</label>
+                                    <input name="country" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{add_data.country}}">
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="order-right">
+                    <div class="product-bill-total">
+                        <ul>
+                            <li>
+                                <h3>PRODUCT</h3>
+                                <h3>TOTAL</h3>
+                            </li>
+                            {% for row in cartitem_data %}
+                            <li>
+                                <input type="hidden" id="ids" name="ids[]" value="{{row.product.id}}">
+                                <input type="hidden" id="qty" name="qty[]" value="{{row.quantity}}">
+                                <input type="hidden" id="unite_price" name="unit_price[]" value="{{row.quantity}}">
+                                
+                                <div class="product-items">
+                                    <p>{{row.product}} * {{row.quantity}}</p>
+                                    <p>$ {{row.unit_price}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            <input type="hidden" name="total_price" value="{{grand_total}}">
+                            <input type="hidden" name="sub_total" value="{{total}}">
+                            <input type="hidden" name="order_id" value="{{order_id.id}}">
+                            <li>
+                                <span>Cart Subtotal	</span>
+                                <span>$ {{total}}</span>
+                            </li>
+                            <li>
+                                <span>(+) Shipping Charge	</span>
+                                <span>Free</span>
+                            </li>
+                            <li>
+                                <h2>TOTAL</h2>
+                                <h2 class="price">$ {{grand_total}}</h2>
+                            </li>
+                        </ul>
+                        <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                        <div class="mb-3 form-check terms">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">I have read and agree to the website terms and conditions</label>
+                        </div>
+                        <div class="payment-button">
+                            <button type="submit" class="payment-btn">COD (Cash On Delivery)</button>
+                            <button type="button" name="razorpay" class="payment-btn razorpay">Razorpay</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+{% endblock body %}
+
+{% block script %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static 'js/pay.js' %}"></script>
+<script>
+$('.payment-btn').on('click', function() {
+    if ($('#exampleCheck1').is(':checked')) {
+        return true;
+    } else{
+        alert("Oops! You haven't agreed terms and conditions!");
+        return false;
+    }
+})
+</script>
+{% endblock script %}

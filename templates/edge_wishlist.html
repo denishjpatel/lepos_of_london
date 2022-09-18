@@ -1,0 +1,79 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Product {% endblock title %}
+{% block css %}
+<style>
+video {
+    width: 90%;
+    height: auto;
+}
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <section class="about-page">
+        <img src="./assets/images/about.jpg" class="img-fluid" alt="">
+        <div class="about-text">
+            My Wishlist 
+            <h5 class="my-3">2 ITEMS</h5>
+        </div>
+    </section>
+    <section class="wishlist-page">
+        <div class="container-fluid">
+            <div class="row">
+                {% for row in wishlist_data %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="/media/{{row.product.image}}" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{row.product.name}}</h5>
+                            <h5 class="tm-cart-price">$ {{row.product.price}}</h5>
+                          {% comment %} <button href="#" class="btn-add-bag">Add to Bag</button> {% endcomment %}
+                            <form action="{% url 'add_cart' row.product.pk %}" method="post">{% csrf_token %}
+                                {% if row.product.in_stock %}
+                                <button type="submit" class="btn-outline">ADD TO BAG</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                      </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+   
+    <section class="product-benefits">
+        <div class="container-fluid">
+            <ul>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Free Shipping</h6>
+                        <p>We provide free shipping for all order over $200.00</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Fast Delivery</h6>
+                        <p>We always deliver our customers very quickly.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>
+                            24/7 Support</h6>
+                        <p>We provide support to our customers within 24 hours.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock body %}

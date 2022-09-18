@@ -1,0 +1,177 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Cart {% endblock title %}
+{% block css %}
+<style>
+.total_class {
+    display: flex;
+}
+.grand_class {
+    display: flex;
+    font-family: 'Vidaloka', serif;
+    font-size: 28px;
+}
+.currency_sign{
+    font-family: 'Vidaloka', serif !important;
+    font-size: 28px !important;
+}
+.nothing {
+    padding-top: 1%;
+    display: block;
+    text-align: center;
+}
+
+.nothing > a {
+    font-size: x-large;
+    color: #f2ba59;
+}
+
+.prod_quantity{
+    width: 100px;
+}
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    
+    <section class="about-page">
+        <img src="{% static 'assets/images/about.jpg' %}" class="img-fluid" alt="">
+        <div class="about-text">
+            Shopping Bag
+            <h5 class="my-3">{{ cart_items|length }} ITEMS</h5>
+        </div>
+    </section>
+    {% if cart_items %}
+    <section class="cart-page">
+        <div class="container-fluid">
+            <div class="cart-box">
+            {% for row in cart_items %}
+                <div class="cart-item">
+                    <div class="cart-product-image-box">
+                        <img src="/media/{{row.product.image}}" class="img-fluid" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-product-detail">
+                            <div class="cart-product-left">
+                                <h4>{{row.product.name}}</h4>
+                                <span>Size {{row.product.size}}</span>
+                                <div class="tm-cart-price">$ {{row.product.price}}</div>
+                            </div>
+                            <div class="cart-product-close">
+                                <a href="{% url 'remove_cart_item' row.product.id row.id %}" class="tm-cart-removeproduct"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart-product-count-price">
+                            <div class="cart-count">
+                                {% comment %} <button><i class="fa-solid fa-minus"></i></button> {% endcomment %}
+                                <div class="">
+                                    <input type="number" class="prod_quantity" id="qty_{{row.pk}}" value="{{row.quantity}}" min="1">
+                                </div>
+                                {% comment %} <button><i class="fa-solid fa-plus"></i></button> {% endcomment %}
+                            </div>
+                            <td>
+                                <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">$ {% widthratio row.product.price 1 row.quantity %}</span>
+                            </td>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="cart-total-box">
+                <div class="cart-total-top">
+                    <div class="cart-total-left">
+                        <p>Cart Subtotal</p>
+                        <p>(+) Shipping Charge</p>
+                        <h6>Total</h6>
+                    </div>
+                    <div class="cart-total-right">
+                        <div class="total_class">
+                            <p>$ </p><p id="total">{{total}}</p>
+                        </div>
+                        <p>Free</p>
+                        <div class="grand_class">
+                            <h6 class="currency_sign">$ </h6><h6 id="grand_total">{{grand_total}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="place-order-button-box">
+                    {% comment %} <button class="btn-outline btn-outline-light">Place Order</button> {% endcomment %}
+                    <a class="btn-outline btn-outline-light" href={% url 'order' %} class="tm-button">Place Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="coupon-code">
+        <h3>Have a coupon code?</h3>
+        <div class="coupon-code-box">
+            <input type="text" placeholder="Enter Coupon Code">
+            <button class="btn-outline">Apply Code</button>
+        </div>
+    </section>
+    <section class="product-benefits">
+        <div class="container-fluid">
+            <ul>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Free Shipping</h6>
+                        <p>We provide free shipping for all order over $200.00</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>Fast Delivery</h6>
+                        <p>We always deliver our customers very quickly.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="benefits-left">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="benefits-right">
+                        <h6>
+                            24/7 Support</h6>
+                        <p>We provide support to our customers within 24 hours.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    {% else %}
+    <main class="page-content">
+        <div class="nothing">
+            <p>Opps! Nothing to show here.</p>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'products' %}">Shop Items</a>
+            {% else %}
+            <a href="{% url 'loginview' %}">Login</a> 
+            <p>to show Your Cart</p>
+            {% endif %}
+        </div>
+    </main>
+    {% endif %}
+{% endblock body %}
+
+{% block script %}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+$(".prod_quantity").bind('keyup mouseup', function () {
+    var id =$(this).attr('id').slice(4,)
+    var qty = $(this).val()
+    $.ajax({url: "/cart/IncQuntity/"+qty+"/"+id+"/", success: function(result){
+        if(result.msg = "success"){
+            console.log(result)
+            $("#stotal_"+id).html(result.sub_total)
+            $("#total").html(result.total)
+            $("#grand_total").html(result.grand_total)
+            $("#cartCount").html(qty)
+        }
+    }});
+});
+</script>
+{% endblock script %}

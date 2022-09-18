@@ -48,7 +48,7 @@ def about(request):
 def show_wishlist(request):
     if request.user.is_authenticated:
         wishlist_obj = wishlist.objects.filter(user=request.user)
-        return render(request,"wishlist.html", {"wishlist_data" : wishlist_obj})
+        return render(request,"edge_wishlist.html", {"wishlist_data" : wishlist_obj})
     else:
         return redirect("loginview")    
 
