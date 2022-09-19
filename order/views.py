@@ -406,7 +406,7 @@ def my_orders(request):
             "order_data":order_obj,
             "orderitem_data":reversed(orderitems),
         }
-        return render(request, "my_orders.html", context)
+        return render(request, "edge_my_orders.html", context)
     
     else:
         messages.info(request,"Please Make Login First to See Your Orders!")

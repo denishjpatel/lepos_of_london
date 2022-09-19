@@ -44,7 +44,7 @@ def loginview(request):
             else:
                 messages.error(request, "Username not found!!!")
                 return redirect('loginview')
-        return render(request, "login.html")
+        return render(request, "edge_login.html")
     else:
         return redirect("index")
 
@@ -75,7 +75,7 @@ def register(request):
                 messages.error(
                     request, "Confirm Password didn't matched with Password!!!")
                 return redirect('register')
-        return render(request, "register.html")
+        return render(request, "edge_register.html")
     else:
         return redirect("index")
 

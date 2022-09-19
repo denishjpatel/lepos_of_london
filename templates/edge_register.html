@@ -1,0 +1,67 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Cart {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <!-- Page Content -->
+    <main class="page-content">
+
+        <!-- Login Register Area -->
+        <div class="lr-section-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <form action="" class="tm-form tm-register-form" method="post">{% csrf_token %}
+                            <h4>Create an account</h4>
+                            <p>Welcome! Register for an account</p>
+                            <div class="tm-form-inner">
+                                <div class="mb-3">
+                                    <label class="form-label" for="register-username">Username</label>
+                                    <input class="form-control" type="text" id="register-username" name="username" required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="register-email">Email address</label>
+                                    <input class="form-control" type="email" id="register-email" name="email" required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="contact-no">Contact Number</label>
+                                    <input class="form-control" type="text" id="contact-no" name="contact" required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="register-password">Password</label>
+                                    <input class="form-control" type="password" id="register-password" name="password" name="register-pass"
+                                        required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="register-password">Confirm Password</label>
+                                    <input class="form-control" type="password" id="register-password" name="confirm_password" name="register-pass"
+                                        required="required">
+                                </div>
+                                <div class="mb-3">
+                                    {% comment %} <div>
+                                        <input type="checkbox" id="register-pass-show" name="register-pass-show">
+                                        <label for="register-pass-show">Show Password</label>
+                                    </div> {% endcomment %}
+                                    <div class="terms_conditions_box">
+                                        <input type="checkbox" id="register-terms" name="register-terms">
+                                        <label for="register-terms">I have read and agree to the website <a class="terms_conditions"
+                                                href="#">terms and
+                                                conditions</a></label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="register-button">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+
+{% endblock body %}

@@ -1,0 +1,57 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos of London | Cart {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
+{% block body %}
+    {% include "message.html" %}
+    <!-- Page Content -->
+    <main class="page-content">
+
+        <!-- Login Register Area -->
+        <div class="lr-section-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <form action="" class="tm-form tm-login-form" method="post">{% csrf_token %}
+                            <h4>Login</h4>
+                            <p>Become a part of our community!</p>
+                            <div class="tm-form-inner">
+                                <div class="mb-3">
+                                    <label class="form-label" for="login-email">Username*</label>
+                                    <input type="username" class="form-control" id="login-email" name="username" required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="login-password">Password*</label>
+                                    <input type="password" class="form-control" id="login-password" name="password" required="required">
+                                </div>
+                                <div class="mb-3 login-remember-box">
+                                    <div>
+                                        <input type="checkbox" name="login-remember" id="login-remember">
+                                    <label for="login-remember">Remember Me</label>
+                                    </div>
+                                    <p class="mb-0"><a href="#" class="forgot-pass">Forgot your password?</a></p>
+                                </div>
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <div class="mb-3">
+                                    <button type="submit" class="btn-login">Login</button>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="tm-form-sociallogin">
+                                        <h6>Or, Login with :</h6>
+                                        <ul>
+                                            <li><a href="#" class="facebook-btn"><i class="ion-social-facebook"></i></a></li>
+                                            <li><a href="#" class="google-btn"><i class="ion-social-google"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>    
+{% endblock body %}

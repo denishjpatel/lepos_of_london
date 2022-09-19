@@ -130,6 +130,7 @@ button.navbar-toggler {
 a.navbar-brand {
     color: #0b331f;
     font-weight: 600;
+    margin: 0;
 }
 
 .nav-down {
@@ -142,6 +143,8 @@ a.navbar-brand {
 
 .navbar-collapse {
     flex-grow: inherit;
+    width: 100%;
+    justify-content: space-between;
 }
 
 ul.navbar-nav {
@@ -996,6 +999,7 @@ h2.logo {
 
 .order-wrp {
     display: flex;
+    margin-top: 115px;
 }
 
 .order-left {
@@ -1164,7 +1168,101 @@ span.wishlist_count {
     color: #fff;
     text-align: center;
 }
+.tm-breadcrumb-area.tm-padding-section.bg-grey {
+    margin-top: 115px;
+}
+.tm-cart-table {
+    margin: 50px 0;
+}
+.tm-breadcrumb h2 {
+    text-align: center;
+    font-family: 'Vidaloka', serif;
+    color: #202020;
+    margin-bottom: 10px;
+}
+.tm-cart-table .table tr td a img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.tm-cart-table .table tr td input {
+    border: 1px solid #202020;
+    width: 80px;
+    padding-left: 8px;
+}
+.tm-cart-table .table thead th {
+    font-weight: 600;
+}
+.lr-section-section{
+    margin-top: 115px;
+}
+form.tm-form h4 {
+    font-family: 'Vidaloka', serif;
+    color: #202020;
+    margin-bottom: 10px;
+    text-align: center;
+}
+form.tm-form p{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.tm-form-inner .form-control {
+    border: 1px solid rgba(11,51,31,.1);
+    transition: all .35s ease;
+    border-radius: 0;
+}
+.login-remember-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.tm-form-inner .form-label {
+    color: #202020;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-login, .register-button{
+    background-color: #0b331f;
+    color: #fff;
+    letter-spacing: 1.5px;
+    font-size: 16px;
+    border: none;
+    padding: 4px 20px;
+    transition: all 0.2s ease-in-out;
+    min-width: 220px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.forgot-pass, .terms_conditions{
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: .25px;
+    font-weight: 300;
+    text-decoration: underline;
+    color: #202020;
+}
+.terms_conditions, .register-terms{
+    font-size: 16px;
+    font-weight: 500;
+}
+.terms_conditions_box{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.forgot-pass:hover{
+    color: #0b331f;
+}
+.tm-form-sociallogin {
+    text-align: center;
+    margin-top: 30px;
+}
+.lr-section-section {
+    margin-top: 115px;
+    padding: 100px 0;
+}
 @media (max-width: 1399px) {}
 
 @media (max-width: 1199px) {
