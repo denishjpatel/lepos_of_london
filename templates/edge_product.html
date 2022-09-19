@@ -1,6 +1,6 @@
 {% extends "edge_base.html" %}
 {% load static %}
-{% block title %} Lepos of London | Product {% endblock title %}
+{% block title %} Lepos London | Product {% endblock title %}
 {% block css %}
 <style>
 video {
@@ -28,11 +28,23 @@ video {
                             </a>
                             {% endif %}
                         </div>
+                        {% comment %} <div class="single-product-top">
+                            <img src="/media/{{product.image}}" class="img-fluid" alt="">
+                            
+                            {% if product.video %}
+                            <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.video}}" data-caption="Product Zoom Image 2">
+                                <video max-width='10%' controls>
+                                    <source src="/media/{{product.video}}" type='video/mp4'>
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a> 
+                            {% endif %}
+                        </div> {% endcomment %}
                         <div class="single-product-bottom">
                         {% for i in product.get_images %}
                             <img src="/media/{{i.image}}" class="img-fluid" alt="">
                         {% endfor %}
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="col-lg-5">

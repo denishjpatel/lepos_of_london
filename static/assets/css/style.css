@@ -128,7 +128,7 @@ button.navbar-toggler {
 }
 
 a.navbar-brand {
-    color: #0b331f;
+    color: #663419;
     font-weight: 600;
     margin: 0;
 }
@@ -168,14 +168,14 @@ ul.navbar-nav .nav-item:first-child {
 }
 
 .nav-item:hover .nav-link {
-    border-bottom: 1px solid #0b331f;
+    border-bottom: 1px solid #663419;
     transition: 0.5s ease-in-out all;
 }
 
 .navbar-nav .nav-link.active,
 .navbar-nav .show>.nav-link,
 .navbar-nav .nav-link {
-    color: #0b331f;
+    color: #663419;
     font-size: 12px;
 }
 
@@ -194,7 +194,7 @@ ul.navbar-nav .nav-item:first-child {
 }
 
 .right-icons ul li a i {
-    color: #0b331f;
+    color: #663419;
     font-size: 24px;
 }
 
@@ -226,7 +226,7 @@ ul.navbar-nav .nav-item:first-child {
 }
 
 .slider-title h3 {
-    color: #0b331f;
+    color: #663419;
     font-size: 64px;
     font-family: 'Vidaloka', serif;
     margin-bottom: 30px;
@@ -273,7 +273,7 @@ ul.navbar-nav .nav-item:first-child {
 }
 
 .owl-nav button span {
-    color: #0b331f;
+    color: #663419;
     margin-right: 20px;
 }
 
@@ -347,7 +347,7 @@ section.text-slider .tab-pane {
 }
 
 .right-text-box {
-    background-color: #0b331f;
+    background-color: #663419;
     color: #ede7da;
     height: 100%;
     padding: 100px;
@@ -355,7 +355,7 @@ section.text-slider .tab-pane {
 
 .left-text-box h1 {
     font-family: 'Vidaloka', serif;
-    color: #0b331f;
+    color: #663419;
     font-size: 64px;
 }
 
@@ -373,7 +373,7 @@ section.text-slider .tab-pane {
 
 .left-text-box p {
     font-size: 16px;
-    color: #0b331f;
+    color: #663419;
     margin: 10px 0;
 }
 
@@ -385,12 +385,12 @@ section.text-slider .tab-pane {
 }
 
 .left-text-box ul li i {
-    color: #0b331f;
+    color: #663419;
 }
 
 .btn-outline {
-    border: 1px solid #0b331f;
-    color: #0b331f;
+    border: 1px solid #663419;
+    color: #663419;
     letter-spacing: 1.5px;
     font-size: 16px;
     background-color: transparent;
@@ -409,7 +409,7 @@ section.text-slider .tab-pane {
 
 .footer {
     padding: 80px 65px;
-    background-color: #0b331f;
+    background-color: #663419;
     color: #ede7da;
     font-size: 12px;
 }
@@ -636,7 +636,7 @@ button.accordion-button:focus {
     text-align: center;
     font-family: 'Vidaloka', serif;
     font-size: 48px;
-    color: #0b331f;
+    color: #663419;
 }
 
 .about-details {
@@ -652,7 +652,7 @@ button.accordion-button:focus {
     font-family: 'Vidaloka', serif;
     font-size: 48px;
     margin-bottom: 20px;
-    color: #0b331f;
+    color: #663419;
 }
 
 .about-details-left p {
@@ -679,7 +679,7 @@ button.accordion-button:focus {
 .team-title h1 {
     font-family: 'Vidaloka', serif;
     font-size: 48px;
-    color: #0b331f;
+    color: #663419;
 }
 
 .member-image img {
@@ -884,7 +884,7 @@ section.product-benefits ul {
 .cart-total-box {
     padding: 25px 25px 13px;
     margin-top: auto;
-    background: #0b331f;
+    background: #663419;
     color: #fff;
 }
 
@@ -926,12 +926,12 @@ section.product-benefits ul {
 
 .coupon-code h3 {
     font-family: 'Vidaloka', serif;
-    color: #0b331f;
+    color: #663419;
     margin-bottom: 15px;
 }
 
 .coupon-code input {
-    border: 1px solid #0b331f;
+    border: 1px solid #663419;
     padding: 8px 10px;
     line-height: 2;
 }
@@ -980,7 +980,7 @@ section.product-benefits ul {
 }
 
 .wishlist-page .card .card-body button {
-    background-color: #0b331f;
+    background-color: #663419;
     border: none;
     color: #fff;
     text-transform: uppercase;
@@ -992,7 +992,7 @@ section.product-benefits ul {
 /* order-page */
 
 h2.logo {
-    color: #0b331f;
+    color: #663419;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -1004,7 +1004,7 @@ h2.logo {
 
 .order-left {
     background-color: #faf7f2;
-    height: 100vh;
+    min-height: 100vh;
     width: 50%;
     padding-left: 65px;
     padding-top: 50px;
@@ -1016,7 +1016,7 @@ h2.logo {
 }
 
 .order-right {
-    height: 100vh;
+    min-height: 100vh;
     width: 50%;
     padding-right: 65px;
     padding-top: 50px;
@@ -1081,7 +1081,7 @@ button.btn-light-outline {
 }
 
 button.payment-btn {
-    background-color: #0b331f;
+    background-color: #663419;
     color: #fff;
     font-size: 16px;
     padding: 9px 17px;
@@ -1089,9 +1089,9 @@ button.payment-btn {
 }
 
 button.payment-btn:hover {
-    border-color: #0b331f;
+    border-color: #663419;
     background-color: transparent;
-    color: #0b331f;
+    color: #663419;
 }
 
 .payment-button {
@@ -1106,13 +1106,13 @@ button.payment-btn:hover {
 }
 
 .meet-our-team.home-page {
-    background-color: #d36228;
+    background-color: #F0DFCB;
 }
 
 .collection-item h1 {
     font-size: 20px;
     margin: 10px 0;
-    color: #0b331f;
+    color: #663419;
 }
 
 .collection-image {
@@ -1147,7 +1147,7 @@ button.payment-btn:hover {
 .collection-title {
     text-align: center;
     margin: 20px 0;
-    color: #0b331f;
+    color: #663419;
     font-size: 48px;
     letter-spacing: 10px;
 }
@@ -1164,54 +1164,65 @@ span.wishlist_count {
     left: auto;
     right: -10px;
     font-size: 11px;
-    background: #0b331f;
+    background: #663419;
     color: #fff;
     text-align: center;
 }
+
 .tm-breadcrumb-area.tm-padding-section.bg-grey {
     margin-top: 115px;
 }
+
 .tm-cart-table {
     margin: 50px 0;
 }
+
 .tm-breadcrumb h2 {
     text-align: center;
     font-family: 'Vidaloka', serif;
     color: #202020;
     margin-bottom: 10px;
 }
+
 .tm-cart-table .table tr td a img {
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
+
 .tm-cart-table .table tr td input {
     border: 1px solid #202020;
     width: 80px;
     padding-left: 8px;
 }
+
 .tm-cart-table .table thead th {
     font-weight: 600;
 }
-.lr-section-section{
+
+.lr-section-section {
     margin-top: 115px;
 }
+
 form.tm-form h4 {
     font-family: 'Vidaloka', serif;
     color: #202020;
     margin-bottom: 10px;
     text-align: center;
 }
-form.tm-form p{
+
+form.tm-form p {
     text-align: center;
     margin-bottom: 50px;
 }
+
 .tm-form-inner .form-control {
-    border: 1px solid rgba(11,51,31,.1);
+    border: 1px solid rgba(11, 51, 31, .1);
     transition: all .35s ease;
     border-radius: 0;
 }
-.login-remember-box{
+
+.login-remember-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1222,8 +1233,10 @@ form.tm-form p{
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.btn-login, .register-button{
-    background-color: #0b331f;
+
+.btn-login,
+.register-button {
+    background-color: #663419;
     color: #fff;
     letter-spacing: 1.5px;
     font-size: 16px;
@@ -1235,7 +1248,9 @@ form.tm-form p{
     margin: 0 auto;
     margin-top: 20px;
 }
-.forgot-pass, .terms_conditions{
+
+.forgot-pass,
+.terms_conditions {
     font-size: 12px;
     text-transform: none;
     letter-spacing: .25px;
@@ -1243,26 +1258,56 @@ form.tm-form p{
     text-decoration: underline;
     color: #202020;
 }
-.terms_conditions, .register-terms{
+
+.terms_conditions,
+.register-terms {
     font-size: 16px;
     font-weight: 500;
 }
-.terms_conditions_box{
+
+.terms_conditions_box {
     display: flex;
     align-items: center;
     gap: 5px;
 }
-.forgot-pass:hover{
-    color: #0b331f;
+
+.forgot-pass:hover {
+    color: #663419;
 }
+
 .tm-form-sociallogin {
     text-align: center;
     margin-top: 30px;
 }
+
 .lr-section-section {
     margin-top: 115px;
     padding: 100px 0;
 }
+
+.single-product-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.single-product-bottom img {
+    width: 48%;
+    object-fit: cover;
+}
+
+.order-form {
+    display: flex;
+}
+
+main.page-content {
+    margin-top: 115px;
+}
+
+.navbar-expand-lg .navbar-collapse {
+    width: fit-content;
+}
+
 @media (max-width: 1399px) {}
 
 @media (max-width: 1199px) {
@@ -1273,6 +1318,12 @@ form.tm-form p{
 }
 
 @media (max-width: 991px) {
+    .carousel-item {
+        height: inherit;
+    }
+    main.page-content {
+        margin-top: 62px;
+    }
     .slider-title h3 {
         font-size: 28px;
         margin-bottom: 10px;
@@ -1286,6 +1337,9 @@ form.tm-form p{
     }
     .left-text-box {
         padding: 50px;
+    }
+    .order-wrp {
+        margin-top: 62px;
     }
     .footer {
         padding: 50px 65px;
@@ -1397,8 +1451,8 @@ form.tm-form p{
         margin: 0 auto;
         margin-bottom: 15px;
     }
-    .order-wrp {
-        display: inherit;
+    .order-form {
+        display: block;
     }
     .order-left {
         width: 100%;

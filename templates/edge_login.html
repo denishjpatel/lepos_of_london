@@ -1,6 +1,6 @@
 {% extends "edge_base.html" %}
 {% load static %}
-{% block title %} Lepos of London | Cart {% endblock title %}
+{% block title %} Lepos London | Cart {% endblock title %}
 {% block css %}
 <style>
 </style>
@@ -38,7 +38,7 @@
                                 <div class="mb-3">
                                     <button type="submit" class="btn-login">Login</button>
                                 </div>
-                                <div class="mb-3">
+                                {% comment %} <div class="mb-3">
                                     <div class="tm-form-sociallogin">
                                         <h6>Or, Login with :</h6>
                                         <ul>
@@ -46,7 +46,7 @@
                                             <li><a href="#" class="google-btn"><i class="ion-social-google"></i></a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </form>
                     </div>

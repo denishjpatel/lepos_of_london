@@ -1,24 +1,12 @@
-{% extends "edge_base.html" %} 
+{% extends "edge_base.html" %}
 {% load static %}
-
-{% block title %} Lepos London | My Orders {% endblock title %}
-
+{% block title %} Lepos London | Cart {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
 {% block body %}
-
-<!-- Breadcrumb Area -->
-<div class="tm-breadcrumb-area tm-padding-section bg-grey" data-bgimage={% static 'images/breadcrumb-bg.jpg' %}>
-    <div class="container">
-        <div class="tm-breadcrumb">
-            <h2>My Orders</h2>
-            <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li>My Orders</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--// Breadcrumb Area -->
-
+    {% include "message.html" %}
 <!-- Page Content -->
 <main class="page-content">
     <!-- Shopping Cart Area -->

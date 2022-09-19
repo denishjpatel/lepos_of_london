@@ -1,6 +1,6 @@
 {% extends "edge_base.html" %}
 {% load static %}
-{% block title %} Lepos of London | Home {% endblock title %}
+{% block title %} Lepos London | Home {% endblock title %}
 {% block body %}
     {% include "message.html" %}
 
@@ -189,13 +189,13 @@
                         <div class="collection-image">
                             <img src="{% static 'assets/images/collection.jpg' %}" alt="">
                         </div>
-                        <h1>NECKLACES</h1>
+                        <a href="{% url 'products' %}?category=Necklace"><h1>NECKLACES</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
                             <img src="{% static 'assets/images/collecion_bracelet.webp' %}" alt="">
                         </div>
-                        <h1>BRACELETES</h1>
+                        <a href="{% url 'products' %}?category=Bracelete"><h1>BRACELETES</h1></a>
                     </div>
                     
                 </div>
@@ -204,13 +204,13 @@
                         <div class="collection-image">
                             <img src="{% static 'assets/images/collection_earring.jpg' %}" alt="">
                         </div>
-                        <h1>EARRINGS</h1>
+                        <a href="{% url 'products' %}?category=Earring"><h1>EARRINGS</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
                             <img src="{% static 'assets/images/collection_ring.webp' %}" alt="">
                         </div>
-                        <h1>RINGS</h1>
+                        <a href="{% url 'products' %}?category=Ring"><h1>RINGS</h1></a>
                     </div>
                 </div>
             </div>
