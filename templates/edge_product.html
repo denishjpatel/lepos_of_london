@@ -19,14 +19,14 @@ video {
                         <div class="single-product-top">
                             <img src="/media/{{product.image}}" class="img-fluid" alt="">
                             {% comment %} <img src="./assets/images/model-silver-necklaces.jpg" class="img-fluid" alt=""> {% endcomment %}
-                            {% if product.video %}
+                            {% comment %} {% if product.video %}
                             <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.video}}" data-caption="Product Zoom Image 2">
                                 <video max-width='10%' controls>
                                     <source src="/media/{{product.video}}" type='video/mp4'>
                                     Your browser does not support the video tag.
                                 </video>
                             </a>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                         </div>
                         {% comment %} <div class="single-product-top">
                             <img src="/media/{{product.image}}" class="img-fluid" alt="">
@@ -40,7 +40,7 @@ video {
                             </a> 
                             {% endif %}
                         </div> {% endcomment %}
-                        <div class="single-product-bottom">
+                        <div class="single-product-bottom"> 
                         {% for i in product.get_images %}
                             <img src="/media/{{i.image}}" class="img-fluid" alt="">
                         {% endfor %}
@@ -59,7 +59,7 @@ video {
                             </div>
                         </div>
                         <div class="single-product-price">
-                            <h5>$ {{product.price}}</h5>
+                            <h5>£ {{product.price}}</h5>
                             <div class="product-rate">
                                 <div class="rate-box">
                                     <a href="#"><i class="fa-solid fa-star"></i></a>
@@ -75,7 +75,8 @@ video {
                             <ul>
                                 <li><span>Category  </span><p>{{product.category}}</p> </li>
                                 <li><span>Metal   </span><p>{{product.metal}}</p> </li>
-                                <li><span>Size    </span><p>{{product.size}}</p> </li>
+                                <li><span>Size    </span><p>{{product.size}} mm</p> </li>
+                                <li><span>Quantity    </span><p>{{product.quantity}}</p> </li>
                                 <li><span>Colour     </span><p>{{product.get_goldfilter.colour}}</p> </li>
                                 <li><span>Purity      </span><p>{{product.get_goldfilter.purity}}</p> </li>
                                 <li><span>Available       </span><p>{% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p> </li>
@@ -114,7 +115,7 @@ video {
                                     <img src="/media/{{row.image}}" alt="">
                                     <div class="slider-text">
                                         <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                        <span class="product-price">$ {{row.price}}</span>
+                                        <span class="product-price">£ {{row.price}}</span>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -133,7 +134,7 @@ video {
                     </div>
                     <div class="benefits-right">
                         <h6>Free Shipping</h6>
-                        <p>We provide free shipping for all order over $200.00</p>
+                        <p>We provide free shipping for all order over £200.00</p>
                     </div>
                 </li>
                 <li>

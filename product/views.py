@@ -10,10 +10,13 @@ def index(request):
     products = Product.objects.all()
     last_products = Product.objects.all().order_by('-created_at')[:3]
     first_products = Product.objects.all()[0:3]
-    print(last_products)
-    print(first_products)
     
-    return render(request,"edge_index.html",{"products":products,"last_products":last_products,"first_products":first_products})
+    website_users = LeposLondonUser.objects.all()
+    index_images = Index_image.objects.first()
+    # for i in index_images.get_slider_images():
+    #     print(i)
+    
+    return render(request,"edge_index.html",{"products":products,"last_products":last_products,"first_products":first_products, "website_users":website_users, "index_images":index_images})
 
 def products(request):
     if 'category' in request.GET:

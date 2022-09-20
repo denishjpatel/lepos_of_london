@@ -11,10 +11,14 @@
                     <div class="carousel-item active">
                         <img src="../static/assets/images/slide-1.jpg" class="d-block w-100" alt="...">
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-item active">
                         <img src="../static/assets/images/slide-2.jpg" class="d-block w-100" alt="...">
                     </div>
-
+                {% comment %} {% for row in index_images.get_slider_images %}
+                    <div class="carousel-item active">
+                        <img src="media/{{row.slider_image}}" class="d-block w-100" alt="...">
+                    </div>
+                {% endfor %} {% endcomment %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                     data-bs-slide="prev">
@@ -35,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="product-slider-main-image">
-                            <img src="../static/assets/images/favourites-image.png" class="img-fluid" alt="">
+                            <img src="media/{{index_images.sustainable_ssentials_image}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-md-8 pe-0">
@@ -52,7 +56,7 @@
                                 <img src=/media/{{row.image}} alt="product image">
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">$ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -125,12 +129,12 @@
                 </div>
                 <div class="col-md-6 p-0 order-md-2 order-sm-1">
                     <div class="right-image-box">
-                        <img src="{% static 'assets/images/diamonds.png' %}" class="img-fluid" alt="">
+                        <img src="media/{{index_images.future_image}}" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-3 order-sm-3">
                     <div class="left-image-box">
-                        <img src="{% static 'assets/images/Recycle.webp' %}" class="img-fluid" alt="">
+                        <img src="media/{{index_images.recycle_image}}" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-4 order-sm-4">
@@ -153,7 +157,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="product-slider-main-image">
-                            <img src="../static/assets/images/4._collection-rings_480x.png" class="img-fluid" alt="">
+                            <img src="media/{{index_images.low_carbon_image}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-md-8 pe-0">
@@ -170,7 +174,7 @@
                                 <img src=/media/{{row.image}} alt="product image">
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">$ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -187,13 +191,13 @@
                 <div class="card-left">
                     <div class="collection-item ">
                         <div class="collection-image">
-                            <img src="{% static 'assets/images/collection.jpg' %}" alt="">
+                            <img src="media/{{index_images.necklace_image}}" alt="">
                         </div>
                         <a href="{% url 'products' %}?category=Necklace"><h1>NECKLACES</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="{% static 'assets/images/collecion_bracelet.webp' %}" alt="">
+                            <img src="media/{{index_images.bracelete_image}}" alt="">
                         </div>
                         <a href="{% url 'products' %}?category=Bracelete"><h1>BRACELETES</h1></a>
                     </div>
@@ -202,13 +206,13 @@
                 <div class="card-right">
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="{% static 'assets/images/collection_earring.jpg' %}" alt="">
+                            <img src="media/{{index_images.earring_image}}" alt="">
                         </div>
                         <a href="{% url 'products' %}?category=Earring"><h1>EARRINGS</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="{% static 'assets/images/collection_ring.webp' %}" alt="">
+                            <img src="media/{{index_images.ring_image}}" alt="">
                         </div>
                         <a href="{% url 'products' %}?category=Ring"><h1>RINGS</h1></a>
                     </div>
@@ -219,52 +223,23 @@
     <section class="meet-our-team home-page">
         <div class="container-fluid">
             <div class="team-title">
-                <h1>Who’s Wearing <br>
-                    Edge of Ember</h1>
+                <h1>Who’s Wearing <br>Lepos London</h1>
                 
             </div>
             <div class="team-members">
                 <div class="row">
+                {% for row in website_users %}
                     <div class="col-sm-3">
                         <div class="member-box">
                             <div class="member-image">
-                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
+                                <img src="media/{{row.image}}" class="img-fluid" alt="">
                             </div>
                             <div class="team-member-details">
-                                <h6>Henry Todd</h6>
+                                <h6>{{row.name}}</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="member-box">
-                            <div class="member-image">
-                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                            <div class="team-member-details">
-                                <h6>Henry Todd</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="member-box">
-                            <div class="member-image">
-                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                            <div class="team-member-details">
-                                <h6>Henry Todd</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="member-box">
-                            <div class="member-image">
-                                <img src="{% static 'assets/images/team-member-1.jpg' %}" class="img-fluid" alt="">
-                            </div>
-                            <div class="team-member-details">
-                                <h6>Henry Todd</h6>
-                            </div>
-                        </div>
-                    </div>
+                {% endfor %}
                 </div>
             </div>
         </div>

@@ -26,6 +26,7 @@ class Product(models.Model):
     video = models.FileField(upload_to="product", null=True, blank=True)
     metal = models.CharField(choices=type_choice,max_length=9,null=True,blank=True, default=type_choice[1][1])
     size = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(4)],null=True,blank=True)
+    quantity = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(4)],null=True,blank=True)
     in_stock = models.BooleanField(default=True)
     product_description = models.TextField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -77,3 +78,29 @@ class GoldFilter(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True,blank=True)
     colour = models.CharField(choices=colour_choice,max_length=7,null=True,blank=True)
     purity = models.CharField(choices=purity_choice,max_length=3,null=True,blank=True)
+    
+class Index_image(models.Model):
+    sustainable_ssentials_image = models.ImageField(upload_to = 'product')
+    future_image = models.ImageField(upload_to = 'product')
+    recycle_image = models.ImageField(upload_to = 'product')
+    low_carbon_image = models.ImageField(upload_to = 'product')
+    necklace_image = models.ImageField(upload_to = 'product')
+    earring_image = models.ImageField(upload_to = 'product')
+    ring_image = models.ImageField(upload_to = 'product')
+    bracelete_image = models.ImageField(upload_to = 'product')
+
+    def save(self, *args, **kwargs):
+        if self.__class__.objects.count():
+            self.pk = self.__class__.objects.first().pk
+        super().save(*args, **kwargs)
+        
+    def get_slider_images(self):
+        return SliderImages.objects.filter(index_img=self)
+        
+class SliderImages(models.Model):
+    index_img = models.ForeignKey(Index_image,on_delete=models.CASCADE)
+    slider_image = models.ImageField(upload_to = 'product')
+
+class LeposLondonUser(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to = 'product')

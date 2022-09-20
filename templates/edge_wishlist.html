@@ -15,7 +15,7 @@ video {
         <img src="./assets/images/about.jpg" class="img-fluid" alt="">
         <div class="about-text">
             My Wishlist 
-            <h5 class="my-3">2 ITEMS</h5>
+            <h5 class="my-3">{{wishlist_data | length}} ITEMS</h5>
         </div>
     </section>
     <section class="wishlist-page">
@@ -27,7 +27,7 @@ video {
                         <img src="/media/{{row.product.image}}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{row.product.name}}</h5>
-                            <h5 class="tm-cart-price">$ {{row.product.price}}</h5>
+                            <h5 class="tm-cart-price">£ {{row.product.price}}</h5>
                           {% comment %} <button href="#" class="btn-add-bag">Add to Bag</button> {% endcomment %}
                             <form action="{% url 'add_cart' row.product.pk %}" method="post">{% csrf_token %}
                                 {% if row.product.in_stock %}
@@ -51,7 +51,7 @@ video {
                     </div>
                     <div class="benefits-right">
                         <h6>Free Shipping</h6>
-                        <p>We provide free shipping for all order over $200.00</p>
+                        <p>We provide free shipping for all order over £200.00</p>
                     </div>
                 </li>
                 <li>

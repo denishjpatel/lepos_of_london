@@ -54,8 +54,8 @@
                         <div class="cart-product-detail">
                             <div class="cart-product-left">
                                 <h4>{{row.product.name}}</h4>
-                                <span>Size {{row.product.size}}</span>
-                                <div class="tm-cart-price">$ {{row.product.price}}</div>
+                                <span>Size : {{row.product.size}} mm</span>
+                                <div class="tm-cart-price">Price : £ {{row.product.price}}</div>
                             </div>
                             <div class="cart-product-close">
                                 <a href="{% url 'remove_cart_item' row.product.id row.id %}" class="tm-cart-removeproduct"><i class="fa-solid fa-xmark"></i></a>
@@ -65,12 +65,12 @@
                             <div class="cart-count">
                                 {% comment %} <button><i class="fa-solid fa-minus"></i></button> {% endcomment %}
                                 <div class="">
-                                    <input type="number" class="prod_quantity" id="qty_{{row.pk}}" value="{{row.quantity}}" min="1">
+                                    Quantity : <input type="number" class="prod_quantity" id="qty_{{row.pk}}" value="{{row.quantity}}" min="1">
                                 </div>
                                 {% comment %} <button><i class="fa-solid fa-plus"></i></button> {% endcomment %}
                             </div>
                             <td>
-                                <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">$ {% widthratio row.product.price 1 row.quantity %}</span>
+                                <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">£ {% widthratio row.product.price 1 row.quantity %}</span>
                             </td>
                         </div>
                     </div>
@@ -86,11 +86,11 @@
                     </div>
                     <div class="cart-total-right">
                         <div class="total_class">
-                            <p>$ </p><p id="total">{{total}}</p>
+                            <p>£ </p><p id="total">{{total}}</p>
                         </div>
                         <p>Free</p>
                         <div class="grand_class">
-                            <h6 class="currency_sign">$ </h6><h6 id="grand_total">{{grand_total}}</h6>
+                            <h6 class="currency_sign">£ </h6><h6 id="grand_total">{{grand_total}}</h6>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="benefits-right">
                         <h6>Free Shipping</h6>
-                        <p>We provide free shipping for all order over $200.00</p>
+                        <p>We provide free shipping for all order over £200.00</p>
                     </div>
                 </li>
                 <li>
