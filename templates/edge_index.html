@@ -8,17 +8,17 @@
         <div class="container-fluid p-0">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    {% comment %} <div class="carousel-item active">
                         <img src="../static/assets/images/slide-1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item active">
                         <img src="../static/assets/images/slide-2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                {% comment %} {% for row in index_images.get_slider_images %}
+                    </div> {% endcomment %}
+                {% for row in index_images.get_slider_images %}
                     <div class="carousel-item active">
                         <img src="media/{{row.slider_image}}" class="d-block w-100" alt="...">
                     </div>
-                {% endfor %} {% endcomment %}
+                {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                     data-bs-slide="prev">
@@ -48,7 +48,6 @@
                         </div>
                         <div class="control-products">
                             <a href="{% url 'products' %}">View All</a>
-
                         </div>
                         <div class="owl-carousel">
                         {% for row in last_products %}

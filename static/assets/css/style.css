@@ -128,9 +128,10 @@ button.navbar-toggler {
 }
 
 a.navbar-brand {
-    color: #663419;
+    olor: #663419;
     font-weight: 600;
     margin: 0;
+    font-size: 35px;
 }
 
 .nav-down {
@@ -741,6 +742,7 @@ section.product-benefits ul {
 
 .single-product {
     margin-top: 115px;
+    margin-bottom: 100px;
 }
 
 .single-product-top {
@@ -751,7 +753,7 @@ section.product-benefits ul {
 }
 
 .single-product-top img {
-    width: 50%;
+    width: 48%;
 }
 
 .single-product-details {
@@ -815,7 +817,16 @@ section.product-benefits ul {
 .single-product-text .btn-outline {
     font-size: 18px;
 }
-
+.owl-carousel-mobile .owl-dots{
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin: 12px;
+}
+.owl-carousel-mobile button.owl-dot {display: block;width: 9px;height: 9px;border-radius: 50%;padding: 0;transition: all .35s ease;border: 1px solid currentColor !important;}
+button.owl-dot.active {
+    background-color: currentColor;
+}
 
 /* cart-page */
 
@@ -1308,6 +1319,71 @@ main.page-content {
     width: fit-content;
 }
 
+/* sliding text header */
+body {
+	margin: 0;
+}
+.animate-contain {
+	height: 27px;
+	overflow: hidden;
+	text-align: center;
+}
+.animated-text {
+	display: inline-block;
+	transition: 300ms all;
+	margin-top: 0;
+	animation: slide 4s infinite alternate ease-in-out;
+	 
+	color: #fff;
+}
+.animated-text span {
+	display: block;
+	font-size: 20px;
+	padding:8px 5px;
+    line-height: 1;
+}
+@keyframes slide{
+	0%{margin-top:0;}
+	20%{margin-top:0;}
+	40%{margin-top:-40px;}
+	60%{margin-top:-40px;}
+	80%{margin-top:-90px;}
+	100%{margin-top:-90px;}
+
+}
+.accordion.product-details {
+    margin-top: 20px;
+}
+
+.product-details .accordion-item {
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid #c1c1c1;
+}
+
+.product-details .accordion-item button {
+    padding: 10px;
+}
+.product-details .accordion-body ul {
+    list-style: disc;
+    padding-left: 35px;
+}
+.product-details .accordion-item:last-child{
+    border-bottom: 1px solid #c1c1c1;
+}
+.product-details .accordion-body{
+    padding: 10px;
+}
+.single-product-images {
+    margin-bottom: 20px;
+}
+.product-details .accordion-body ul li {
+    margin-bottom: 6px;
+}
+.owl-carousel.owl-carousel-mobile{
+    display: none;
+}
+
 @media (max-width: 1399px) {}
 
 @media (max-width: 1199px) {
@@ -1379,6 +1455,7 @@ main.page-content {
     }
     a.navbar-brand {
         margin: 0;
+        margin-right: -119px;
     }
     .top-area-right,
     .top-area-left {
@@ -1467,6 +1544,12 @@ main.page-content {
     }
     .collection-title {
         font-size: 38px;
+    }
+    .single-product-images{
+        display: none;
+    }
+    .owl-carousel.owl-carousel-mobile{
+        display: block;
     }
 }
 
