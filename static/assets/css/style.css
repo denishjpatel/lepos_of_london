@@ -132,6 +132,7 @@ a.navbar-brand {
     font-weight: 600;
     margin: 0;
     font-size: 35px;
+    font-size: 35px;
 }
 
 .nav-down {
@@ -742,6 +743,7 @@ section.product-benefits ul {
 
 .single-product {
     margin-top: 115px;
+    margin-bottom: 100px;
     margin-bottom: 100px;
 }
 
