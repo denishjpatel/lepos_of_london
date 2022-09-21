@@ -9,6 +9,29 @@ $(window).scroll(function(){
 
 // over header
 
+$('.owl-carousel.owl-carousel-mobile').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    autoplay: true,
+    dots: true,
+    nav: false,
+    responsive:{
+        0:{
+            items:1,
+            nav:false
+        },
+        600:{
+            items:1,
+            nav:false
+        },
+        1000:{
+            items:1,
+            nav:false,
+            loop:false
+        }
+    }
+})
 
 // // auto tab
 
@@ -58,3 +81,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+ 
+   

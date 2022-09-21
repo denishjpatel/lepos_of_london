@@ -8,17 +8,17 @@
         <div class="container-fluid p-0">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    {% comment %} <div class="carousel-item active">
                         <img src="../static/assets/images/slide-1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item active">
                         <img src="../static/assets/images/slide-2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                {% comment %} {% for row in index_images.get_slider_images %}
+                    </div> {% endcomment %}
+                {% for row in index_images.get_slider_images %}
                     <div class="carousel-item active">
                         <img src="media/{{row.slider_image}}" class="d-block w-100" alt="...">
                     </div>
-                {% endfor %} {% endcomment %}
+                {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                     data-bs-slide="prev">
@@ -48,7 +48,6 @@
                         </div>
                         <div class="control-products">
                             <a href="{% url 'products' %}">View All</a>
-
                         </div>
                         <div class="owl-carousel">
                         {% for row in last_products %}
@@ -86,7 +85,7 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        Edge of Ember is the ethical jewellery brand on every
+                        Lepos London is the ethical jewellery brand on every
                         fashion editor’s radar.
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -102,6 +101,11 @@
     <section class="image-text">
         <div class="container-fluid">
             <div class="row box-row">
+                <div class="col-md-6 p-0 order-md-2 order-sm-1">
+                    <div class="right-image-box">
+                        <img src="media/{{index_images.future_image}}" class="img-fluid" alt="">
+                    </div>
+                </div>
                 <div class="col-md-6 p-0 order-md-1 order-sm-2">
                     <div class="left-text-box">
                         <h1>The Future of Fine Jewellery</h1>
@@ -127,12 +131,8 @@
                         <button class="btn-outline">READ OUR STORY</button>
                     </div>
                 </div>
-                <div class="col-md-6 p-0 order-md-2 order-sm-1">
-                    <div class="right-image-box">
-                        <img src="media/{{index_images.future_image}}" class="img-fluid" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order-md-3 order-sm-3">
+                
+                {% comment %} <div class="col-md-6 p-0 order-md-3 order-sm-3">
                     <div class="left-image-box">
                         <img src="media/{{index_images.recycle_image}}" class="img-fluid" alt="">
                     </div>
@@ -147,7 +147,7 @@
 
                         <button class="btn-light-outline">RECYCLE NOW</button>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </section>
@@ -197,9 +197,9 @@
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="media/{{index_images.bracelete_image}}" alt="">
+                            <img src="media/{{index_images.bracelet_image}}" alt="">
                         </div>
-                        <a href="{% url 'products' %}?category=Bracelete"><h1>BRACELETES</h1></a>
+                        <a href="{% url 'products' %}?category=Bracelet"><h1>BRACELETES</h1></a>
                     </div>
                     
                 </div>
@@ -229,7 +229,7 @@
             <div class="team-members">
                 <div class="row">
                 {% for row in website_users %}
-                    <div class="col-sm-3">
+                    <div class="col-3">
                         <div class="member-box">
                             <div class="member-image">
                                 <img src="media/{{row.image}}" class="img-fluid" alt="">

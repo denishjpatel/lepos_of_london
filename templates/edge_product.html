@@ -18,6 +18,8 @@ video {
                     <div class="single-product-images">
                         <div class="single-product-top">
                             <img src="/media/{{product.image}}" class="img-fluid" alt="">
+                            <img src="/media/{{product.get_images.0.image}}" class="img-fluid" alt="">
+
                             {% comment %} <img src="./assets/images/model-silver-necklaces.jpg" class="img-fluid" alt=""> {% endcomment %}
                             {% comment %} {% if product.video %}
                             <a data-fancybox="tm-prodetails-imagegallery" href="/media/{{product.video}}" data-caption="Product Zoom Image 2">
@@ -42,9 +44,25 @@ video {
                         </div> {% endcomment %}
                         <div class="single-product-bottom"> 
                         {% for i in product.get_images %}
+                        {% if forloop.counter > 1 %}
                             <img src="/media/{{i.image}}" class="img-fluid" alt="">
+                        {% endif %}
                         {% endfor %}
                         </div> 
+                    </div>
+                    <div class="mobile-slider">
+                        <div class="owl-carousel owl-carousel-mobile">
+                            <div>
+                                <img src="/media/{{product.image}}" class="img-fluid" alt="">
+                            </div>
+                            {% for i in product.get_images %}
+
+                            <div>
+                                    <img src="/media/{{i.image}}" class="img-fluid" alt="">
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -58,8 +76,12 @@ video {
                                 <i onclick="myFunction(this.id)" id="{{product.pk}}" class="fa-regular fa-heart"></i>
                             </div>
                         </div>
+                        <div>
+                            <h6>{{product.sub_title}}</h6>
+
+                        </div>
                         <div class="single-product-price">
-                            <h5>£ {{product.price}}</h5>
+                            <h5>£ {{product.metal_14_price}}</h5>
                             <div class="product-rate">
                                 <div class="rate-box">
                                     <a href="#"><i class="fa-solid fa-star"></i></a>
@@ -73,12 +95,12 @@ video {
                         </div>
                         <div class="single-product-text">
                             <ul>
-                                <li><span>Category  </span><p>{{product.category}}</p> </li>
+                                {% comment %} <li><span>Category  </span><p>{{product.category}}</p> </li> {% endcomment %}
                                 <li><span>Metal   </span><p>{{product.metal}}</p> </li>
-                                <li><span>Size    </span><p>{{product.size}} mm</p> </li>
+                                {% comment %} <li><span>Size    </span><p>{{product.size}} mm</p> </li> {% endcomment %}
                                 <li><span>Quantity    </span><p>{{product.quantity}}</p> </li>
-                                <li><span>Colour     </span><p>{{product.get_goldfilter.colour}}</p> </li>
-                                <li><span>Purity      </span><p>{{product.get_goldfilter.purity}}</p> </li>
+                                {% comment %} <li><span>Colour     </span><p>{{product.get_goldfilter.colour}}</p> </li>
+                                <li><span>Purity      </span><p>{{product.get_goldfilter.purity}}</p> </li> {% endcomment %}
                                 <li><span>Available       </span><p>{% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p> </li>
                             </ul>
                             <form action="{% url 'add_cart' product.pk %}" method="post">{% csrf_token %}
@@ -87,6 +109,59 @@ video {
                                 {% endif %}
                             </form>
                         </div>
+                        <div class="accordion product-details" id="accordionExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    DESCRIPTION
+                                </button>
+                              </h2>
+                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <ul>
+                                    <p>{{product.product_description}}</p>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    FREE SHIPPING
+                                </button>
+                              </h2>
+                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>All duties & taxes are included in the price. No additional fees due on arrival.</li>
+
+                                        <li>Free UK shipping on orders £75 and above</li>
+
+                                        <li>Free US shipping on orders over $125</li>
+
+                                        <li>Click here for full shipping details.</li>
+                                        {% comment %} <li>18K gold plated, recycled sterling silver</li>
+                                        <li>18K gold plated, recycled sterling silver</li>
+                                        <li>18K gold plated, recycled sterling silver</li> {% endcomment %}
+                                    </ul>
+                                </div>
+                              </div>
+                            </div>
+                            {% comment %} <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    1 YEAR WARRANTY
+                                </button>
+                              </h2>
+                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>All products come with a full one-year warranty.</li>
+                                    </ul>
+                                </div>
+                              </div>
+                            </div> {% endcomment %}
+                          </div>
                     </div>
                 </div>
             </div>
