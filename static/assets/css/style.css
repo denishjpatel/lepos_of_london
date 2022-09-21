@@ -1455,7 +1455,8 @@ body {
     }
     a.navbar-brand {
         margin: 0;
-        margin-right: -119px;
+	margin-right: -35px;
+	font-size: 20px;
     }
     .top-area-right,
     .top-area-left {
