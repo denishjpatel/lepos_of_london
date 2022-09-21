@@ -1394,6 +1394,9 @@ body {
 }
 
 @media (max-width: 991px) {
+    .hero-slider{
+	margin-top: 97px;
+    }
     .carousel-item {
         height: inherit;
     }
