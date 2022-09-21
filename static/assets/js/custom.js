@@ -15,6 +15,7 @@ $('.owl-carousel.owl-carousel-mobile').owlCarousel({
     responsiveClass:true,
     autoplay: true,
     dots: true,
+    nav: false,
     responsive:{
         0:{
             items:1,
