@@ -116,7 +116,9 @@
                             </ul>
                         
                         </div>
+                        <div>
                          <a class="navbar-brand" href="{% url 'index' %}">LEPOS LONDON</a>
+                        </div>
                         <div class="right-icons">
                             <ul>
                                 <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -125,11 +127,28 @@
                                     <a href="#">
                                         <i class="fa-regular fa-user"></i>
                                     </a>
+                                    <ul class="small-dropdown">
+                                                    
+                                        <li class="flex f-a-center f-j-center">
+                                            <a href="/account/register">Sign up</a>
+                                            <span>/</span>
+                                            <a href="/account/login">Login</a>
+                                        </li>
+
+                                        <li class="icon-link">
+                                            <a href="#swym-wishlist" class="swym-wishlist flex f-a-center " data-swym-loaded="true">
+                                            <img src="//cdn.shopify.com/s/files/1/2623/8028/t/238/assets/icon-wishlist.svg?v=152471278608009952351662978219" alt="Wishlist" width="23" height="23">
+                                            <span>Wishlist</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
                                 </li>
+                                
                                 <li><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i><span class="cart_count">{{cart_count}}</span></a>
                                 </li>
-                                <li><a href={% url 'wishlist' %}><i
-                                                class="fa fa-heart-o"></i><span class="wishlist_count">{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li>
+                                {% comment %} <li><a href={% url 'wishlist' %}><i
+                                                class="fa fa-heart-o"></i><span class="wishlist_count">{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li> {% endcomment %}
                             </ul>
                         </div>
                     </div>

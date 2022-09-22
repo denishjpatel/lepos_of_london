@@ -96,7 +96,15 @@ video {
                         <div class="single-product-text">
                             <ul>
                                 {% comment %} <li><span>Category  </span><p>{{product.category}}</p> </li> {% endcomment %}
-                                <li><span>Metal   </span><p>{{product.metal}}</p> </li>
+                                <li><span>Metal   </span>
+                                <p>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>14</option>
+                                    <option value="1">16</option>
+                                    <option value="2">18</option>
+                                </select>
+                                </p> 
+                                </li>
                                 {% comment %} <li><span>Size    </span><p>{{product.size}} mm</p> </li> {% endcomment %}
                                 <li><span>Quantity    </span><p>{{product.quantity}}</p> </li>
                                 {% comment %} <li><span>Colour     </span><p>{{product.get_goldfilter.colour}}</p> </li>
