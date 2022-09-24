@@ -91,7 +91,7 @@ class wishlist(models.Model):
 class Index_image(models.Model):
     sustainable_ssentials_image = models.ImageField(upload_to = 'product')
     future_image = models.ImageField(upload_to = 'product')
-    # recycle_image = models.ImageField(upload_to = 'product')
+    bespoke_video = models.FileField(upload_to = 'product', null=True, blank=True)
     low_carbon_image = models.ImageField(upload_to = 'product')
     necklace_image = models.ImageField(upload_to = 'product')
     earring_image = models.ImageField(upload_to = 'product')
@@ -113,3 +113,12 @@ class SliderImages(models.Model):
 class LeposLondonUser(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to = 'product')
+
+class Quote(models.Model):
+    title1 = models.CharField(max_length=255)
+    title2 = models.CharField(max_length=255)
+    title3 = models.CharField(max_length=255)
+    text1 = models.CharField(max_length=255)
+    text2 = models.CharField(max_length=255, null=True, blank=True)
+    text3 = models.CharField(max_length=255, null=True, blank=True)
+    

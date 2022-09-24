@@ -55,7 +55,7 @@
                             <div class="cart-product-left">
                                 <h4>{{row.product.name}}</h4>
                                 <span>Size : {{row.product.size}} mm</span>
-                                <div class="tm-cart-price">Price : £ {{row.product.price}}</div>
+                                <div class="tm-cart-price">Price : £ {{row.unit_price}}</div>
                             </div>
                             <div class="cart-product-close">
                                 <a href="{% url 'remove_cart_item' row.product.id row.id %}" class="tm-cart-removeproduct"><i class="fa-solid fa-xmark"></i></a>
@@ -70,7 +70,7 @@
                                 {% comment %} <button><i class="fa-solid fa-plus"></i></button> {% endcomment %}
                             </div>
                             <td>
-                                <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">£ {% widthratio row.product.price 1 row.quantity %}</span>
+                                <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">£ {% widthratio row.unit_price 1 row.quantity %}</span>
                             </td>
                         </div>
                     </div>

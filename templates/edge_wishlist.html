@@ -27,7 +27,7 @@ video {
                         <img src="/media/{{row.product.image}}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{row.product.name}}</h5>
-                            <h5 class="tm-cart-price">£ {{row.product.price}}</h5>
+                            <h5 class="tm-cart-price">£ {{row.product.metal_14_price}}</h5>
                           {% comment %} <button href="#" class="btn-add-bag">Add to Bag</button> {% endcomment %}
                             <form action="{% url 'add_cart' row.product.pk %}" method="post">{% csrf_token %}
                                 {% if row.product.in_stock %}

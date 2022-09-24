@@ -13,15 +13,16 @@ def index(request):
     
     website_users = LeposLondonUser.objects.all()
     index_images = Index_image.objects.first()
+    qoute_data = Quote.objects.first()
     
-    return render(request,"edge_index.html",{"products":products,"last_products":last_products,"first_products":first_products, "website_users":website_users, "index_images":index_images})
+    return render(request,"edge_index.html",{"products":products,"last_products":last_products,"first_products":first_products, "website_users":website_users, "index_images":index_images, "qoute_data":qoute_data})
 
 def products(request):
     if 'category' in request.GET:
         category = request.GET['category']
         products = Product.objects.filter(category__title = category)
         category = Category.objects.get(title=category)
-        return render(request,"products.html",{"products":products, "category":category})
+        return render(request,"edge_shop.html",{"products":products, "category":category})
     
     products = Product.objects.all()
     # paginator = Paginator(products, 6)

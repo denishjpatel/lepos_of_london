@@ -81,7 +81,9 @@ video {
 
                         </div>
                         <div class="single-product-price">
-                            <h5>£ {{product.metal_14_price}}</h5>
+                            <div>
+                                 <h5>£</h5><h5 class="product_price">{{product.metal_14_price}}</h5>
+                            </div>
                             <div class="product-rate">
                                 <div class="rate-box">
                                     <a href="#"><i class="fa-solid fa-star"></i></a>
@@ -99,9 +101,9 @@ video {
                                 <li><span>Metal   </span>
                                 <p>
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>14</option>
-                                    <option value="1">16</option>
-                                    <option value="2">18</option>
+                                    <option id="price_option" selected>14</option>
+                                    <option id="price_option" value="1">16</option>
+                                    <option id="price_option" value="2">18</option>
                                 </select>
                                 </p> 
                                 </li>
@@ -111,9 +113,26 @@ video {
                                 <li><span>Purity      </span><p>{{product.get_goldfilter.purity}}</p> </li> {% endcomment %}
                                 <li><span>Available       </span><p>{% if product.in_stock %}In Stock{% else %}Out of Stock{% endif %}</p> </li>
                             </ul>
-                            <form action="{% url 'add_cart' product.pk %}" method="post">{% csrf_token %}
+                            <form action="" method="post">{% csrf_token %}
+                                <input type="hidden" name="hidden_price" value="{{product.metal_14_price}}" class="hidden_price">
+                                <input type="hidden" name="hidden_metal" value="14" class="hidden_metal">
                                 {% if product.in_stock %}
-                                <button type="submit" class="btn-outline">ADD TO BAG</button>
+                                <div class="bottom-add-to-cart">
+                                    <div class="quantity-selector" data-number-selector="">
+                                        <button class="minus_button" type="button" data-minus="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="1" fill="none" viewBox="0 0 12 1">
+                                                <path fill="#202020" d="M0 0H12V1H0z"></path>
+                                            </svg>
+                                        </button>
+                                        <input class="quantity_val" type="text" data-quantity="" data-input="" min="1" max="10" value="1" name="quantity">
+                                        <button class="plus_button" type="button" data-plus="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+                                                <path fill="#000" d="M6.4 0h-.847v5.6H0v.847h5.553V12H6.4V6.447H12V5.6H6.4V0z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <button type="submit" class="btn-outline">ADD TO BAG</button>
+                                </div>
                                 {% endif %}
                             </form>
                         </div>
@@ -195,10 +214,10 @@ video {
                         <div class="owl-carousel">
                             {% for row in similar_prods %}
                                 <div class="owl-carousel-product">
-                                    <img src="/media/{{row.image}}" alt="">
+                                    <a href="/product/{{row.pk}}"><img src="/media/{{row.image}}" alt=""></a>
                                     <div class="slider-text">
                                         <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                        <span class="product-price">£ {{row.price}}</span>
+                                        <span class="product-price">£ {{row.metal_14_price}}</span>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -246,4 +265,42 @@ video {
 {% block script %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="{% static 'js/wishlist.js' %}"></script>
+<script>
+    {% comment %} price chnage dropdown {% endcomment %}
+    $(function(){
+        $(".form-select").change(function(){
+            var status = $('option:selected', this).text();
+            if(status==14) {
+                $('.product_price').text({{product.metal_14_price}});
+                $('input[type="hidden"][class="hidden_price"]').val({{product.metal_14_price}})
+                $('input[type="hidden"][class="hidden_metal"]').val(14)
+
+            }else if(status==16){
+                $('.product_price').text({{product.metal_16_price}});
+                $('input[type="hidden"][class="hidden_price"]').val({{product.metal_16_price}})
+                $('input[type="hidden"][class="hidden_metal"]').val(16)
+            }else{
+                $('.product_price').text({{product.metal_18_price}});
+                $('input[type="hidden"][class="hidden_price"]').val({{product.metal_18_price}})
+                $('input[type="hidden"][class="hidden_metal"]').val(18)
+            } 
+        });
+    });
+
+    {% comment %} plus - minus quantity {% endcomment %}
+    var res=1;
+    $(".minus_button").click(function(){
+        if(res>1){
+            res = res - 1
+            $('input[type="text"][class="quantity_val"]').val(res)
+        }
+    });
+    $(".plus_button").click(function(){
+        if(res<10){
+            res = res + 1
+            $('input[type="text"][class="quantity_val"]').val(res)
+        }
+    });
+
+</script>
 {% endblock script %}

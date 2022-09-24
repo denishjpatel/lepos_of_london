@@ -52,10 +52,10 @@
                         <div class="owl-carousel">
                         {% for row in last_products %}
                             <div class="owl-carousel-product">
-                                <img src=/media/{{row.image}} alt="product image">
+                                <a href="/product/{{row.pk}}"><img src=/media/{{row.image}} alt="product image"></a>
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.metal_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -72,27 +72,26 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">Elle</button>
+                            type="button" role="tab" aria-controls="home" aria-selected="true">{{qoute_data.title1}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                            type="button" role="tab" aria-controls="profile" aria-selected="false">HARPERS</button>
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">{{qoute_data.title2}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                            type="button" role="tab" aria-controls="contact" aria-selected="false">Refinery29</button>
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">{{qoute_data.title3}}</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        Lepos London is the ethical jewellery brand on every
-                        fashion editor’s radar.
+                        {{qoute_data.text1}}
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        A little slice of affordable luxury.
+                        {{qoute_data.text2}}
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        We appreciate the company’s ethical and sustainable approach to everything.
+                        {{qoute_data.text3}}
                     </div>
                 </div>
             </div>
@@ -114,44 +113,40 @@
                             for your everyday.</p>
                         <ul>
                             <li>
-                                <i class="fa-regular fa-gem"></i>
-                                <p>LAB-GROWN
-                                    DIAMONDS</p>
+                                <p>> SOLID GOLD JEWELLERY</p>
                             </li>
                             <li>
-                                <i class="fa-solid fa-recycle"></i>
-                                <p>RECYCLED
-                                    METALS</p>
+                                <p>> MOISSANITE DIAMOND JEWELLERY</p>
                             </li>
                             <li>
-                                <i class="fa-solid fa-leaf"></i>
-                                <p>100% CARBON NEUTRAL</p>
+                                <p>> GEMSTONE JEWELLERY</p>
                             </li>
                         </ul>
                         <button class="btn-outline">READ OUR STORY</button>
                     </div>
                 </div>
                 
-                {% comment %} <div class="col-md-6 p-0 order-md-3 order-sm-3">
+                <div class="col-md-6 p-0 order-md-3 order-sm-3">
                     <div class="left-image-box">
-                        <img src="media/{{index_images.recycle_image}}" class="img-fluid" alt="">
+                        <video width="320" height="240" controls>
+                            <source src="media/{{index_images.bespoke_video}}" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-4 order-sm-4">
                     <div class="right-text-box">
-                        <h1>Re/Make Recycling
-                            Programme</h1>
-                        <p class="left-sub-text">Send your old sterling silver or solid gold jewellery to us. We get
-                            them recycled, and you get up to £30 credit to shop with us. Kind to the planet, nice to
-                            your wallet.</p>
-
-                        <button class="btn-light-outline">RECYCLE NOW</button>
+                        <h1>BESPOKE JEWELLERY - </h1>
+                        <h3>CREATE YOUR OWN JEWELLERY  AT LEPOS LONDON</h3>
+                        <p class="left-sub-text">If you require a bespoke piece, feel free to contact us.</p>
+                        <p class="left-sub-text">We offer a bespoke jewellery making service with computer aided design  technology. This enables you to visualise your Jewellery. Once approved your piece of jewellery will be created in the precious metal of your choice.</p>
+                        <p class="left-sub-text">We work in 10k 14k & 18k Yellow Gold , White Gold & Rose Gold . We work with all precious and semi-precious stones. </p>
+                        <button class="btn-light-outline">Contact Us</button>
                     </div>
-                </div> {% endcomment %}
+                </div>
             </div>
         </div>
     </section>
-    <section>
+    {% comment %} <section>
         <div class="product-slider-wrp">
             <div class="container-fluid">
                 <div class="row">
@@ -174,7 +169,7 @@
                                 <img src=/media/{{row.image}} alt="product image">
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.metal_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -183,7 +178,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     <section class="image-gallary">
         <div class="container-fluid">
             <h1 class="collection-title">COLLECTIONS</h1>

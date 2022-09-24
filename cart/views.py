@@ -44,19 +44,23 @@ def cart(request, total=0, quantity=0, cart_items=None):
 
 def add_cart(request,product_id):
     if request.method == "POST":
+        product_price = request.POST["hidden_price"]
+        metal_val = request.POST["hidden_metal"]
+        quantity = request.POST["quantity"]
+        
         if request.user.is_authenticated:
             product = Product.objects.get(id=product_id)
             try:
-                
-                cart_item = CartItem.objects.get(product=product,user = request.user, unit_price=product.price)
+                cart_item = CartItem.objects.get(product=product,user = request.user)
                 cart_item.quantity += 1
                 cart_item.save()
             except:
                 cart_item = CartItem.objects.create(
                     product = product,
-                    quantity = 1,
                     user = request.user,
-                    unit_price=product.price,
+                    unit_price=product_price,
+                    quantity=quantity,
+                    metal=metal_val
                 )
                 cart_item.save()
             
@@ -74,7 +78,7 @@ def add_cart(request,product_id):
             cart.save()
             
             try:
-                cart_item = CartItem.objects.get(product=product,cart=cart, unit_price=product.price)
+                cart_item = CartItem.objects.get(product=product,cart=cart, unit_price=product.metal_14_price)
                 cart_item.quantity += 1
                 cart_item.save()
             except:
@@ -82,7 +86,7 @@ def add_cart(request,product_id):
                     product = product,
                     quantity = 1,
                     cart = cart,
-                    unit_price=product.price,
+                    unit_price=product.metal_14_price,
                 )
                 cart_item.save()
             
