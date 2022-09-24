@@ -31,6 +31,7 @@ def products(request):
     return render(request,"edge_shop.html",{"products":products})
 
 def product_details(request,id):
+    index_images = Index_image.objects.first()
     product = Product.objects.get(id=id)
     if request.method=="POST":
         name = request.POST.get("name")
@@ -42,7 +43,7 @@ def product_details(request,id):
     
     similar_prods = Product.objects.filter(category=product.category)[:6]
     reviews = Review.objects.filter(product=product)
-    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews})
+    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews, "index_images":index_images})
 
 def about(request):
     return render(request,"edge_about.html")
