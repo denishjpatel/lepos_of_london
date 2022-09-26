@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Lepos London | Home {% endblock title %}
 {% block body %}
-    {% include "message.html" %}
+    {% comment %} {% include "message.html" %} {% endcomment %}
 
     <section class="hero-slider">
         <div class="container-fluid p-0">
@@ -39,12 +39,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="product-slider-main-image">
-                            <img src="media/{{index_images.sustainable_ssentials_image}}" class="img-fluid" alt="">
+                            <img src="{{sustainable_essentials.image.url}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-md-8 pe-0">
                         <div class="slider-title">
-                            <h3>Sustainable Essentials</h3>
+                            <h3>{{sustainable_essentials.title}}</h3>
                         </div>
                         <div class="control-products">
                             <a href="{% url 'products' %}">View All</a>
@@ -52,14 +52,60 @@
                         <div class="owl-carousel">
                         {% for row in last_products %}
                             <div class="owl-carousel-product">
-                                <img src=/media/{{row.image}} alt="product image">
+                                <a href="/product/{{row.pk}}"><img src=/media/{{row.image}} alt="product image"></a>
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.metal_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="image-text">
+        <div class="container-fluid">
+            <div class="row box-row">
+                <div class="col-md-6 p-0 order-md-1 order-sm-1">
+                    <div class="left-image-box">
+                        <video width="320" height="240" controls>
+                            <source src="media/{{bespoke_jewellery.bespoke_video}}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 order-md-2 order-sm-2">
+                    <div class="right-text-box">
+                        <h1>{{bespoke_jewellery.title}}</h1>
+                        <h3>{{bespoke_jewellery.sub_title}}</h3>
+                        <p class="left-sub-text">{{bespoke_jewellery.text1}}</p>
+                        <p class="left-sub-text">{{bespoke_jewellery.text2}}</p>
+                        <p class="left-sub-text">{{bespoke_jewellery.text3}}</p>
+                        <a href="mailto:{{contact_data.email}}">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 order-md-4 order-sm-3">
+                    <div class="right-image-box">
+                        <img src="media/{{future_section.image}}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 order-md-3 order-sm-4">
+                    <div class="left-text-box">
+                        <h1>{{future_section.title}}</h1>
+                        <p class="left-sub-text">{{future_section.sub_title}}</p>
+                        <ul>
+                            <li>
+                                <p>> {{future_section.text1}}</p>
+                            </li>
+                            <li>
+                                <p>> {{future_section.text2}}</p>
+                            </li>
+                            <li>
+                                <p>> {{future_section.text3}}</p>
+                            </li>
+                        </ul>
+                        <button class="btn-outline">READ OUR STORY</button>
                     </div>
                 </div>
             </div>
@@ -72,86 +118,32 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                            type="button" role="tab" aria-controls="home" aria-selected="true">Elle</button>
+                            type="button" role="tab" aria-controls="home" aria-selected="true">{{qoute_data.title1}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                            type="button" role="tab" aria-controls="profile" aria-selected="false">HARPERS</button>
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">{{qoute_data.title2}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                            type="button" role="tab" aria-controls="contact" aria-selected="false">Refinery29</button>
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">{{qoute_data.title3}}</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        Lepos London is the ethical jewellery brand on every
-                        fashion editor’s radar.
+                        {{qoute_data.text1}}
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        A little slice of affordable luxury.
+                        {{qoute_data.text2}}
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        We appreciate the company’s ethical and sustainable approach to everything.
+                        {{qoute_data.text3}}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="image-text">
-        <div class="container-fluid">
-            <div class="row box-row">
-                <div class="col-md-6 p-0 order-md-2 order-sm-1">
-                    <div class="right-image-box">
-                        <img src="media/{{index_images.future_image}}" class="img-fluid" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order-md-1 order-sm-2">
-                    <div class="left-text-box">
-                        <h1>The Future of Fine Jewellery</h1>
-                        <p class="left-sub-text">We are a luxury jewellery brand with a simple mission: to create
-                            timeless, personal pieces
-                            for your everyday.</p>
-                        <ul>
-                            <li>
-                                <i class="fa-regular fa-gem"></i>
-                                <p>LAB-GROWN
-                                    DIAMONDS</p>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-recycle"></i>
-                                <p>RECYCLED
-                                    METALS</p>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-leaf"></i>
-                                <p>100% CARBON NEUTRAL</p>
-                            </li>
-                        </ul>
-                        <button class="btn-outline">READ OUR STORY</button>
-                    </div>
-                </div>
-                
-                {% comment %} <div class="col-md-6 p-0 order-md-3 order-sm-3">
-                    <div class="left-image-box">
-                        <img src="media/{{index_images.recycle_image}}" class="img-fluid" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 order-md-4 order-sm-4">
-                    <div class="right-text-box">
-                        <h1>Re/Make Recycling
-                            Programme</h1>
-                        <p class="left-sub-text">Send your old sterling silver or solid gold jewellery to us. We get
-                            them recycled, and you get up to £30 credit to shop with us. Kind to the planet, nice to
-                            your wallet.</p>
-
-                        <button class="btn-light-outline">RECYCLE NOW</button>
-                    </div>
-                </div> {% endcomment %}
-            </div>
-        </div>
-    </section>
-    <section>
+    {% comment %} <section>
         <div class="product-slider-wrp">
             <div class="container-fluid">
                 <div class="row">
@@ -174,7 +166,7 @@
                                 <img src=/media/{{row.image}} alt="product image">
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.price}}</span>
+                                    <span class="product-price">£ {{row.metal_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -183,7 +175,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     <section class="image-gallary">
         <div class="container-fluid">
             <h1 class="collection-title">COLLECTIONS</h1>
@@ -223,23 +215,50 @@
     <section class="meet-our-team home-page">
         <div class="container-fluid">
             <div class="team-title">
-                <h1>Who’s Wearing <br>Lepos London</h1>
-                
+                <h1>{{website_users.title}}</h1>
             </div>
             <div class="team-members">
                 <div class="row">
-                {% for row in website_users %}
                     <div class="col-3">
                         <div class="member-box">
                             <div class="member-image">
-                                <img src="media/{{row.image}}" class="img-fluid" alt="">
+                                <img src="{{website_users.image1.url}}" class="img-fluid" alt="">
                             </div>
                             <div class="team-member-details">
-                                <h6>{{row.name}}</h6>
+                                <h6>{{website_users.name1}}</h6>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image2.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name2}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image3.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name3}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image4.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name4}}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -132,7 +132,7 @@ a.navbar-brand {
     font-weight: 600;
     margin: 0;
     font-size: 35px;
-    font-size: 35px;
+    padding-right: 50px;
 }
 
 .nav-down {
@@ -352,7 +352,7 @@ section.text-slider .tab-pane {
     background-color: #663419;
     color: #ede7da;
     height: 100%;
-    padding: 100px;
+    padding: 50px;
 }
 
 .left-text-box h1 {
@@ -366,6 +366,39 @@ section.text-slider .tab-pane {
     color: #ede7da;
     font-size: 64px;
     margin-bottom: 20px;
+}
+
+.image-text.image-text-top {
+    margin-top: 20px;
+}
+
+.image-text.image-text-top .right-text-box {
+    background-color: #fff;
+    color: #663419;
+}
+
+.image-text.image-text-top .right-text-box button.btn-light-outline:hover {
+    border-color: #c8946c;
+    color: #fff;
+    background-color: #c8946c;
+}
+
+.image-text.image-text-top .right-text-box button.btn-light-outline {
+    color: #663419;
+    border-color: #663419;
+}
+
+.image-text.image-text-top .right-text-box h1 {
+    font-size: 28px;
+    color: #663419;
+}
+
+.image-text.image-text-top .right-text-box h3 {
+    font-size: 16px;
+}
+
+.image-text.image-text-top .right-text-box p {
+    font-size: 14px;
 }
 
 .right-text-box p {
@@ -384,6 +417,7 @@ section.text-slider .tab-pane {
     margin-bottom: 10px;
     justify-content: space-between;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .left-text-box ul li i {
@@ -681,7 +715,7 @@ button.accordion-button:focus {
 .team-title h1 {
     font-family: 'Vidaloka', serif;
     font-size: 48px;
-    color: #663419;
+    color: #663419 !important;
 }
 
 .member-image img {
@@ -744,7 +778,7 @@ section.product-benefits ul {
 .single-product {
     margin-top: 115px;
     margin-bottom: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 
 .single-product-top {
@@ -1437,6 +1471,65 @@ div#navbarNavDropdown ul li a {
     display: none;
 }
 
+.single-product-text select {
+    color: #202020 !important;
+    font-size: 14px;
+    border-radius: 0;
+    border-color: #202020;
+}
+
+.single-product-text select:focus {
+    box-shadow: none;
+}
+
+.small-dropdown {
+    display: none;
+}
+
+.single-product-price div {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.quantity-selector button {
+    width: 29px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0 none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.quantity-selector input {
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    border: 0 none;
+    background: transparent;
+    font-size: 14px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(11, 51, 31, .1);
+    width: fit-content;
+}
+
+.bottom-add-to-cart {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.left-image-box video {
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-width: 1399px) {}
 
 @media (max-width: 1199px) {
@@ -1513,6 +1606,7 @@ div#navbarNavDropdown ul li a {
         margin: 0;
         margin-right: -35px;
         font-size: 20px;
+        padding-left: 90px;
     }
     .top-area-right,
     .top-area-left {
@@ -1611,6 +1705,9 @@ div#navbarNavDropdown ul li a {
 }
 
 @media (max-width: 575px) {
+    a.navbar-brand {
+        padding-left: 30px;
+    }
     .slider-text {
         text-align: center;
     }

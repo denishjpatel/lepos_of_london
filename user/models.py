@@ -29,3 +29,7 @@ class Address(models.Model):
     city = models.CharField(max_length=100, null=True, blank=True)
     state = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)   
+    
+    
+class Contact(models.Model):
+    email = models.CharField(max_length=255)

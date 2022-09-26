@@ -7,4 +7,5 @@ class AddressAdmin(admin.ModelAdmin):
     list_display_links = ('city', 'user')
 
 admin.site.register(Account)
+admin.site.register(Contact)
 admin.site.register(Address, AddressAdmin)

@@ -1,9 +1,12 @@
 from django.http import HttpResponse
 from .models import *
+from user.models import *
 
 def all_categories(request):
     categories = Category.objects.all()
-    return {'categories':categories}
+    contact_data = Contact.objects.first()
+
+    return {'categories':categories, "contact_data":contact_data}
 
 def wishlist_count(request):
     print("got it")

@@ -3,6 +3,17 @@
 {% block title %} Lepos London | Cart {% endblock title %}
 {% block css %}
 <style>
+.alert.alert-error.alert-dismissible.fade.show {
+    color: red;
+    border: 1px solid red;
+    background: #ff00002b;
+    margin-top: 105px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    float: right;
+    border: red;
+}
 </style>
 {% endblock css %}
 {% block body %}
@@ -65,3 +76,15 @@
     </main> 
 
 {% endblock body %}
+{% block script %}
+<script>
+{% comment %} button.close
+.alert.alert-error.alert-dismissible.fade.show {% endcomment %}
+
+$(document).ready(function () {
+    $("button.close").click(function () {
+        $(".alert.alert-error.alert-dismissible.fade.show").hide();
+    });
+});
+</script>
+{% endblock script %}

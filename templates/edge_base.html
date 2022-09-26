@@ -46,6 +46,48 @@
             background-color : #fe5643;
         }
         
+        .search-box{
+            position : absolute;
+            {% comment %} top : 50%;
+            left : 50%; {% endcomment %}
+            transform : translate(-50%,-50%);
+            background : #2F3640;
+            height : 40px;
+            border-radius : 40px;
+            padding : 10px;
+        }
+        .search-btn{
+            color : #4097FF;
+            float : right;
+            width : 40px;
+            height : 40px;
+            border-radius: 50%;
+            background : #2F3640;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition:0.4s;
+        }
+        .search-txt{
+            border:none;
+            background:none;
+            outline:none;
+            float:left;
+            padding:0;
+            color: #fff;
+            font-size:16px;
+            transition : 0.4s;
+            line-height: 40px;
+            width : 0px;
+        }
+        .search-box:hover > .search-txt{
+            width: 150px;
+            {% comment %} padding: 0 6px; {% endcomment %}
+        }
+        .search-box:hover > .search-btn{
+            background:white;
+        }
     </style>
     {% endblock css %}
 </head>
@@ -97,7 +139,7 @@
                                     <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                                 </li>
                                 <li class="nav-item tm-header-nav-dropdown">
-                                    <a class="nav-link" href="{% url 'products' %}">Shop</a>
+                                    <a class="nav-link active" href="{% url 'products' %}">Shop</a>
                                     {% comment %} <ul>
                                         {% for row in categories %}
                                         <li><a href="{% url 'products' %}?category={{row}}">{{row}}</a></li>
@@ -105,7 +147,7 @@
                                     </ul> {% endcomment %}
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                                    <a class="nav-link active" href="{% url 'about' %}">About</a>
                                 </li>
                                 {% comment %} <li class="nav-item">
                                     <a class="nav-link" href="#">About</a>
@@ -116,20 +158,48 @@
                             </ul>
                         
                         </div>
+                        <div>
                          <a class="navbar-brand" href="{% url 'index' %}">LEPOS LONDON</a>
+                        </div>
                         <div class="right-icons">
                             <ul>
-                                <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                <li><a href="{% url 'products' %}?search=ring"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                </li>
+                                <li>
+                                    <div class="search-box">
+                                        <input class="search-txt" type="text" name="" placeholder="Type to Search">
+                                        <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                                    </div>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i class="fa-regular fa-user"></i>
                                     </a>
+                                    <ul class="small-dropdown">
+                                        {% if request.user.is_authenticated %}
+                                        {% else %}
+                                        {% endif %}
+                                                    
+                                        <li class="flex f-a-center f-j-center">
+                                            <a href="/account/register">Sign up</a>
+                                            <span>/</span>
+                                            <a href="/account/login">Login</a>
+                                        </li>
+
+                                        <li class="icon-link">
+                                            <a href="#swym-wishlist" class="swym-wishlist flex f-a-center " data-swym-loaded="true">
+                                            <img src="//cdn.shopify.com/s/files/1/2623/8028/t/238/assets/icon-wishlist.svg?v=152471278608009952351662978219" alt="Wishlist" width="23" height="23">
+                                            <span>Wishlist</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
                                 </li>
+                                
                                 <li><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i><span class="cart_count">{{cart_count}}</span></a>
                                 </li>
-                                <li><a href={% url 'wishlist' %}><i
-                                                class="fa fa-heart-o"></i><span class="wishlist_count">{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li>
+                                {% comment %} <li><a href={% url 'wishlist' %}><i
+                                                class="fa fa-heart-o"></i><span class="wishlist_count">{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li> {% endcomment %}
                             </ul>
                         </div>
                     </div>
@@ -175,7 +245,7 @@
                             <li><a href="#">Privacy & Policy</a></li>
                             <li><a href="#">Returns & Refunds</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="{% url 'contact_form' %}">Contact Us</a></li>
+                            <li><a href="mailto:{{contact_data.email}}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -186,7 +256,7 @@
                     <div class="footer-links">
                         <ul>
                             {% if request.user.is_authenticated %}
-                            <li><a href="#">My Account</a></li>
+                            {% comment %} <li><a href="#">My Account</a></li> {% endcomment %}
                             {% else %}
                             <li><a href={% url 'loginview' %}>Login</a></li>
                             <li><a href={% url 'register' %}>Register</a></li>
