@@ -82,3 +82,12 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+$('.search-txt').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the enter key code
+    {
+        var val = $('.search-txt').val();
+       window.location.href=`http://127.0.0.1:8000/products?search=${val}`;
+    }
+});
