@@ -89,10 +89,6 @@ class wishlist(models.Model):
     # purity = models.CharField(choices=purity_choice,max_length=3,null=True,blank=True)
     
 class Index_image(models.Model):
-    sustainable_ssentials_image = models.ImageField(upload_to = 'product')
-    future_image = models.ImageField(upload_to = 'product')
-    bespoke_video = models.FileField(upload_to = 'product', null=True, blank=True)
-    low_carbon_image = models.ImageField(upload_to = 'product')
     necklace_image = models.ImageField(upload_to = 'product')
     earring_image = models.ImageField(upload_to = 'product')
     ring_image = models.ImageField(upload_to = 'product')
@@ -109,11 +105,8 @@ class Index_image(models.Model):
 class SliderImages(models.Model):
     index_img = models.ForeignKey(Index_image,on_delete=models.CASCADE)
     slider_image = models.ImageField(upload_to = 'product')
-
-class LeposLondonUser(models.Model):
-    name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to = 'product')
-
+    
+    
 class Quote(models.Model):
     title1 = models.CharField(max_length=255)
     title2 = models.CharField(max_length=255)
@@ -122,3 +115,37 @@ class Quote(models.Model):
     text2 = models.CharField(max_length=255, null=True, blank=True)
     text3 = models.CharField(max_length=255, null=True, blank=True)
     
+
+class BespokeJewellery(models.Model):
+    title = models.CharField(max_length=255)
+    sub_title = models.CharField(max_length=255)
+    text1 = models.CharField(max_length=255, null=True, blank=True)
+    text2 = models.CharField(max_length=255, null=True, blank=True)
+    text3 = models.CharField(max_length=255, null=True, blank=True)
+    bespoke_video = models.FileField(upload_to = 'product')
+    
+    
+class FutureSection(models.Model):
+    title = models.CharField(max_length=255)
+    sub_title = models.CharField(max_length=255)
+    text1 = models.CharField(max_length=255)
+    text2 = models.CharField(max_length=255)
+    text3 = models.CharField(max_length=255)
+    image = models.ImageField(max_length=255)
+    
+
+class WebsiteUser(models.Model):
+    title = models.CharField(max_length=255)
+    image1 = models.ImageField(upload_to = 'product')
+    name1 = models.CharField(max_length=255)
+    image2 = models.ImageField(upload_to = 'product')
+    name2 = models.CharField(max_length=255)
+    image3 = models.ImageField(upload_to = 'product')
+    name3 = models.CharField(max_length=255)
+    image4 = models.ImageField(upload_to = 'product')
+    name4 = models.CharField(max_length=255)
+    
+    
+class SustainableEssentials(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(max_length=255)

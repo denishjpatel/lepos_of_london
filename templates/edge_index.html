@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Lepos London | Home {% endblock title %}
 {% block body %}
-    {% include "message.html" %}
+    {% comment %} {% include "message.html" %} {% endcomment %}
 
     <section class="hero-slider">
         <div class="container-fluid p-0">
@@ -39,12 +39,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="product-slider-main-image">
-                            <img src="media/{{index_images.sustainable_ssentials_image}}" class="img-fluid" alt="">
+                            <img src="{{sustainable_essentials.image.url}}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <div class="col-md-8 pe-0">
                         <div class="slider-title">
-                            <h3>Sustainable Essentials</h3>
+                            <h3>{{sustainable_essentials.title}}</h3>
                         </div>
                         <div class="control-products">
                             <a href="{% url 'products' %}">View All</a>
@@ -71,40 +71,38 @@
                 <div class="col-md-6 p-0 order-md-1 order-sm-1">
                     <div class="left-image-box">
                         <video width="320" height="240" controls>
-                            <source src="media/{{index_images.bespoke_video}}" type="video/mp4">
+                            <source src="media/{{bespoke_jewellery.bespoke_video}}" type="video/mp4">
                         </video>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-2 order-sm-2">
                     <div class="right-text-box">
-                        <h1>BESPOKE JEWELLERY - </h1>
-                        <h3>CREATE YOUR OWN JEWELLERY  AT LEPOS LONDON</h3>
-                        <p class="left-sub-text">If you require a bespoke piece, feel free to contact us.</p>
-                        <p class="left-sub-text">We offer a bespoke jewellery making service with computer aided design  technology. This enables you to visualise your Jewellery. Once approved your piece of jewellery will be created in the precious metal of your choice.</p>
-                        <p class="left-sub-text">We work in 10k 14k & 18k Yellow Gold , White Gold & Rose Gold . We work with all precious and semi-precious stones. </p>
-                        <button class="btn-light-outline">Contact Us</button>
+                        <h1>{{bespoke_jewellery.title}}</h1>
+                        <h3>{{bespoke_jewellery.sub_title}}</h3>
+                        <p class="left-sub-text">{{bespoke_jewellery.text1}}</p>
+                        <p class="left-sub-text">{{bespoke_jewellery.text2}}</p>
+                        <p class="left-sub-text">{{bespoke_jewellery.text3}}</p>
+                        <a href="mailto:{{contact_data.email}}">Contact Us</a>
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-4 order-sm-3">
                     <div class="right-image-box">
-                        <img src="media/{{index_images.future_image}}" class="img-fluid" alt="">
+                        <img src="media/{{future_section.image}}" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 p-0 order-md-3 order-sm-4">
                     <div class="left-text-box">
-                        <h1>The Future of Fine Jewellery</h1>
-                        <p class="left-sub-text">We are a luxury jewellery brand with a simple mission: to create
-                            timeless, personal pieces
-                            for your everyday.</p>
+                        <h1>{{future_section.title}}</h1>
+                        <p class="left-sub-text">{{future_section.sub_title}}</p>
                         <ul>
                             <li>
-                                <p>> SOLID GOLD JEWELLERY</p>
+                                <p>> {{future_section.text1}}</p>
                             </li>
                             <li>
-                                <p>> MOISSANITE DIAMOND JEWELLERY</p>
+                                <p>> {{future_section.text2}}</p>
                             </li>
                             <li>
-                                <p>> GEMSTONE JEWELLERY</p>
+                                <p>> {{future_section.text3}}</p>
                             </li>
                         </ul>
                         <button class="btn-outline">READ OUR STORY</button>
@@ -217,23 +215,50 @@
     <section class="meet-our-team home-page">
         <div class="container-fluid">
             <div class="team-title">
-                <h1>Who’s Wearing <br>Lepos London</h1>
-                
+                <h1>{{website_users.title}}</h1>
             </div>
             <div class="team-members">
                 <div class="row">
-                {% for row in website_users %}
                     <div class="col-3">
                         <div class="member-box">
                             <div class="member-image">
-                                <img src="media/{{row.image}}" class="img-fluid" alt="">
+                                <img src="{{website_users.image1.url}}" class="img-fluid" alt="">
                             </div>
                             <div class="team-member-details">
-                                <h6>{{row.name}}</h6>
+                                <h6>{{website_users.name1}}</h6>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image2.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name2}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image3.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name3}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="member-box">
+                            <div class="member-image">
+                                <img src="{{website_users.image4.url}}" class="img-fluid" alt="">
+                            </div>
+                            <div class="team-member-details">
+                                <h6>{{website_users.name4}}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

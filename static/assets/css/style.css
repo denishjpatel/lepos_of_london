@@ -368,6 +368,39 @@ section.text-slider .tab-pane {
     margin-bottom: 20px;
 }
 
+.image-text.image-text-top {
+    margin-top: 20px;
+}
+
+.image-text.image-text-top .right-text-box {
+    background-color: #fff;
+    color: #663419;
+}
+
+.image-text.image-text-top .right-text-box button.btn-light-outline:hover {
+    border-color: #c8946c;
+    color: #fff;
+    background-color: #c8946c;
+}
+
+.image-text.image-text-top .right-text-box button.btn-light-outline {
+    color: #663419;
+    border-color: #663419;
+}
+
+.image-text.image-text-top .right-text-box h1 {
+    font-size: 28px;
+    color: #663419;
+}
+
+.image-text.image-text-top .right-text-box h3 {
+    font-size: 16px;
+}
+
+.image-text.image-text-top .right-text-box p {
+    font-size: 14px;
+}
+
 .right-text-box p {
     font-size: 16px;
     margin: 10px 0;
@@ -745,7 +778,7 @@ section.product-benefits ul {
 .single-product {
     margin-top: 115px;
     margin-bottom: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 
 .single-product-top {

@@ -94,7 +94,7 @@ def add_cart(request,product_id):
     
     else:
         messages.error(request,"Not Valid Method")
-        return redirect('buyProduct')
+        return redirect('products')
 
 def IncQuntity(request,val,id):
     try:       
