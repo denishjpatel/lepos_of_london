@@ -499,6 +499,71 @@ a.user-icon-box:hover .user-dropdown {
     transform: translate(-50%);
 }
 
+div.btn-outline {
+    width: fit-content;
+}
+
+div.btn-outline a {
+    text-decoration: none;
+    color: #663419;
+}
+
+.user-icon-box {
+    position: relative;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateY(-10px) translate(-50%);
+    padding: 15px 25px;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .35s ease;
+    box-shadow: 0 4px 4px #0000000d;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.right-icons>ul {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar-box input.search-txt:focus {
+    outline: none;
+}
+
+.search-bar-box input.search-txt {
+    position: absolute;
+    right: 35px;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #c8946c;
+    transition: 0.5s ease-in-out all;
+    opacity: 0;
+    border-radius: 100px;
+}
+
+.search-bar-box:hover input.search-txt {
+    opacity: 1;
+}
+
+a.user-icon-box:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%);
+}
+
 .btn-outline:hover {
     border-color: #c8946c;
     color: #fff;
