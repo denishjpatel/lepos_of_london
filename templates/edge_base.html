@@ -45,17 +45,7 @@
             color: white;
             background-color : #fe5643;
         }
-        
-        .search-box{
-            position : absolute;
-            {% comment %} top : 50%;
-            left : 50%; {% endcomment %}
-            transform : translate(-50%,-50%);
-            background : #2F3640;
-            height : 40px;
-            border-radius : 40px;
-            padding : 10px;
-        }
+ 
         .search-btn{
             color : #4097FF;
             float : right;
@@ -69,25 +59,9 @@
             text-decoration: none;
             transition:0.4s;
         }
-        .search-txt{
-            border:none;
-            background:none;
-            outline:none;
-            float:left;
-            padding:0;
-            color: #fff;
-            font-size:16px;
-            transition : 0.4s;
-            line-height: 40px;
-            width : 0px;
-        }
-        .search-box:hover > .search-txt{
-            width: 150px;
-            {% comment %} padding: 0 6px; {% endcomment %}
-        }
-        .search-box:hover > .search-btn{
-            background:white;
-        }
+
+        
+ 
     </style>
     {% endblock css %}
 </head>
@@ -163,19 +137,39 @@
                         </div>
                         <div class="right-icons">
                             <ul>
-                                <li><a href="{% url 'products' %}?search=ring"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                </li>
                                 <li>
-                                    <div class="search-box">
-                                        <input class="search-txt" type="text" name="" placeholder="Type to Search">
-                                        <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                                    {% comment %} <a href="{% url 'products' %}?search=ring"><i class="fa-solid fa-magnifying-glass"></i>
+                                    </a> {% endcomment %}
+                                    <div class="search-bar-box">
+                                        <input class="search-txt" type="text" name="" value='{% if request.GET.search %}{{request.GET.search}}{% endif %}' placeholder="Type to Search ...">
+                                        <a class="search-icon"><i class="fas fa-search"></i></a>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa-regular fa-user"></i>
-                                    </a>
-                                    <ul class="small-dropdown">
+                             
+                                <li class="user-icon-box">
+                                    {% comment %} <a class="smit" href="#" > {% endcomment %}
+                                        <i class="fa-regular fa-user temp-dropbtn">
+                                            <div class="temp-dropdown-content">
+                                                {% if request.user.is_authenticated %}
+                                                    <a href="{% url 'wishlist' %}"><span>Wishlist</span></a>
+                                                    <a href="{% url 'logoutview' %}"><span>Logout</span></a>
+                                                {% else %}
+                                                    <a href="{% url 'loginview' %}"><span>Login</span></a>
+                                                    <a href="{% url 'register' %}"><span>Register</span></a>
+                                                {% endif %}
+                                            </div>
+                                        </i>
+                                        {% comment %} <div class="user-dropdown">
+                                            <ul>
+                                                <li> <a href="#">Lorem</a> </li>
+                                                <li> <a href="#">Lorem</a> </li>
+                                                <li> <a href="#">Lorem</a> </li>
+                                            </ul> 
+                                        </div> {% endcomment %}
+                                        
+
+                                    {% comment %} </a> {% endcomment %}
+                                    {% comment %} <ul class="small-dropdown">
                                         {% if request.user.is_authenticated %}
                                         {% else %}
                                         {% endif %}
@@ -193,7 +187,7 @@
                                             </a>
                                         </li>
 
-                                    </ul>
+                                    </ul> {% endcomment %}
                                 </li>
                                 
                                 <li><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i><span class="cart_count">{{cart_count}}</span></a>
@@ -245,7 +239,9 @@
                             <li><a href="#">Privacy & Policy</a></li>
                             <li><a href="#">Returns & Refunds</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="mailto:{{contact_data.email}}">Contact Us</a></li>
+                            <li>
+                                <a href="mailto:{{contact_data.email}}" >Contact Us</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
