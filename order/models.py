@@ -30,8 +30,8 @@ class Order(models.Model):
 
     def get_order_items(self):
         items = OrderItem.objects.filter(order=self)
-        print(items)
         return items
+
     def get_order_item_count(self):
         count = OrderItem.objects.filter(order=self).count()
         return count
@@ -46,9 +46,6 @@ class OrderItem(models.Model):
         max_digits=20, decimal_places=2, null=True, blank=True)
     sub_total = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
     # id = models.AutoField(primary_key=True, editable=False)
-
-    def __str__(self):
-        return str(self.product.name)
 
 class OrderAddress(models.Model):
     order = models.OneToOneField(Order,on_delete=models.CASCADE,related_name='orderaddress')

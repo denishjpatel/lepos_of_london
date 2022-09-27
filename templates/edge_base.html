@@ -147,47 +147,20 @@
                                 </li>
                              
                                 <li class="user-icon-box">
-                                    {% comment %} <a class="smit" href="#" > {% endcomment %}
-                                        <i class="fa-regular fa-user temp-dropbtn">
-                                            <div class="temp-dropdown-content">
-                                                {% if request.user.is_authenticated %}
-                                                    <a href="{% url 'wishlist' %}"><span>Wishlist</span></a>
-                                                    <a href="{% url 'logoutview' %}"><span>Logout</span></a>
-                                                {% else %}
-                                                    <a href="{% url 'loginview' %}"><span>Login</span></a>
-                                                    <a href="{% url 'register' %}"><span>Register</span></a>
-                                                {% endif %}
-                                            </div>
-                                        </i>
-                                        {% comment %} <div class="user-dropdown">
-                                            <ul>
-                                                <li> <a href="#">Lorem</a> </li>
-                                                <li> <a href="#">Lorem</a> </li>
-                                                <li> <a href="#">Lorem</a> </li>
-                                            </ul> 
-                                        </div> {% endcomment %}
-                                        
-
-                                    {% comment %} </a> {% endcomment %}
-                                    {% comment %} <ul class="small-dropdown">
-                                        {% if request.user.is_authenticated %}
-                                        {% else %}
-                                        {% endif %}
-                                                    
-                                        <li class="flex f-a-center f-j-center">
-                                            <a href="/account/register">Sign up</a>
-                                            <span>/</span>
-                                            <a href="/account/login">Login</a>
-                                        </li>
-
-                                        <li class="icon-link">
-                                            <a href="#swym-wishlist" class="swym-wishlist flex f-a-center " data-swym-loaded="true">
-                                            <img src="//cdn.shopify.com/s/files/1/2623/8028/t/238/assets/icon-wishlist.svg?v=152471278608009952351662978219" alt="Wishlist" width="23" height="23">
-                                            <span>Wishlist</span>
-                                            </a>
-                                        </li>
-
-                                    </ul> {% endcomment %}
+                                    <i class="fa-regular fa-user temp-dropbtn">
+                                        <div class="temp-dropdown-content">
+                                            {% if request.user.is_authenticated %}
+                                                <a class="username"><span>{{request.user.username}}</span></a>
+                                                <a href="{% url 'cart' %}"><span>Cart</span></a>
+                                                <a href="{% url 'my_orders' %}"><span>My order</span></a>
+                                                <a href="{% url 'wishlist' %}"><span>Wishlist</span></a>
+                                                <a href="{% url 'logoutview' %}"><span>Logout</span></a>
+                                            {% else %}
+                                                <a href="{% url 'loginview' %}"><span>Login</span></a>
+                                                <a href="{% url 'register' %}"><span>Register</span></a>
+                                            {% endif %}
+                                        </div>
+                                    </i>
                                 </li>
                                 
                                 <li><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i><span class="cart_count">{{cart_count}}</span></a>
@@ -209,7 +182,7 @@
                 <div class="col-md-3">
                     <div class="footer-contact">
                         <div class="logo-box">
-                            Logo
+                            Lepos London
                         </div>
                         <p class="footer-sub-text">Lorem ipsum dolor sit amet, consect etur adipiscing elit.</p>
                         <ul>
@@ -235,7 +208,6 @@
                     <div class="footer-links">
                         <ul>
                             <li><a href="{% url 'about' %}">About Us</a></li>
-                            <li><a href="#">Delivery Info</a></li>
                             <li><a href="#">Privacy & Policy</a></li>
                             <li><a href="#">Returns & Refunds</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
@@ -275,8 +247,8 @@
                                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email Adderess" aria-describedby="emailHelp">
                             </div>
                             <button class="btn-outline btn-outline-light">Subscribe Now</button>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>

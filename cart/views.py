@@ -46,6 +46,7 @@ def add_cart(request,product_id):
     if request.method == "POST":
         product_price = request.POST["hidden_price"]
         metal_val = request.POST["hidden_metal"]
+        size_val = request.POST["hidden_size"]
         quantity = request.POST["quantity"]
         
         if request.user.is_authenticated:
@@ -60,7 +61,8 @@ def add_cart(request,product_id):
                     user = request.user,
                     unit_price=product_price,
                     quantity=quantity,
-                    metal=metal_val
+                    metal=metal_val,
+                    size=size_val
                 )
                 cart_item.save()
             

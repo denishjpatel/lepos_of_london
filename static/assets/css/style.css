@@ -487,10 +487,12 @@ div.btn-outline a {
     transition: 0.5s ease-in-out all;
     opacity: 0;
     border-radius: 100px;
+    display: none;
 }
 
 .search-bar-box:hover input.search-txt {
     opacity: 1;
+    display: block;
 }
 
 a.user-icon-box:hover .user-dropdown {
@@ -1327,15 +1329,11 @@ button.payment-btn:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 80px 0;
+    margin: 40px 0;
 }
 
 .collection-block .collection-item:nth-child(2n+3) {
     margin-bottom: 30px;
-}
-
-.card-right {
-    margin-top: 100px;
 }
 
 .collection-item {
@@ -1581,6 +1579,7 @@ div#navbarNavDropdown ul li a {
 .temp-dropdown-content {
     position: absolute;
     display: none;
+    top: 35px;
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -1599,7 +1598,6 @@ div#navbarNavDropdown ul li a {
 
 .user-icon-box:hover .temp-dropdown-content {
     display: block;
-    margin-top: 100px;
     margin-left: 5px;
 }
 
@@ -1612,7 +1610,71 @@ div#navbarNavDropdown ul li a {
     font-size: large;
 }
 
-.user-icon-box i div a span:hover {}
+.user-icon-box i div .username {
+    color: #663419;
+    background-color: #DAB895;
+}
+
+.logo-box {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.option-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.size_dropdown {
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 30px 8px 16px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0 none;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    cursor: pointer;
+    letter-spacing: .3px;
+    background-image: url(//cdn.shopify.com/s/files/1/2623/8028/t/240/assets/icon-arrow-down.svg?v=9479145…);
+    background-size: 9px 5px;
+    background-position: right 13px center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.testing {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-option {
+    margin-bottom: 24px;
+}
+
+a.size-guide {
+    text-decoration: none;
+    color: #c8946c;
+}
+
+a.size-guide:hover {
+    color: #663419;
+    cursor: pointer;
+}
 
 @keyframes slide {
     0% {
@@ -1771,6 +1833,33 @@ a.btn-outline {
     border-color: #c8946c;
     color: #fff;
     background-color: #c8946c;
+}
+
+.modal.show .modal-dialog {
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.modal-dialog-scrollable {
+    height: 410px;
+    padding: 15px;
+    overflow: hidden;
+    width: 100%;
+    min-width: 100%;
+    overflow-y: scroll;
+}
+
+.modal-dialog-scrollable h5 {
+    margin: 10px 0;
+}
+
+.modal-dialog-scrollable p {
+    margin-bottom: 5px;
+}
+
+.model-box {
+    min-width: 80%;
 }
 
 @media (max-width: 1399px) {}
@@ -2045,5 +2134,13 @@ a.btn-outline {
     }
     .card-right {
         margin-top: 0;
+    }
+    .fa-user,
+    .temp-dropbtn {
+        font-size: inherit;
+    }
+    .temp-dropdown-content {
+        right: -25px;
+        min-width: 89px;
     }
 }
