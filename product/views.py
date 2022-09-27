@@ -25,21 +25,31 @@ def index(request):
 
 def products(request):
     products = Product.objects.all()
+    categories = Category.objects.all()
     
     if 'category' in request.GET:
         category = request.GET['category']
         products = Product.objects.filter(category__title = category)
         category = Category.objects.get(title=category)
-        return render(request,"edge_shop.html",{"products":products, "category":category})
+        return render(request,"edge_shop.html",{"products":products, "category":category, "categories":categories})
     
     if 'search' in request.GET:
         searchvalue = request.GET['search']
         products = Product.objects.filter(Q(name__icontains=searchvalue) | Q(sub_title__icontains=searchvalue))
+
+    if 'filter' in request.GET:
+        filtervalue = request.GET['filter']
+        if filtervalue:
+            products = Product.objects.filter(category__title__in=filtervalue.split(","))
+        else:
+            products = Product.objects.all() 
+        from django.core import serializers
+        return HttpResponse(serializers.serialize(queryset = products, format="json"))
     
     # paginator = Paginator(products, 6)
     # page = request.GET.get('page')
     # products = paginator.get_page(page)
-    return render(request,"edge_shop.html",{"products":products})
+    return render(request,"edge_shop.html",{"products":products, "categories":categories})
 
 def product_details(request,id):
     

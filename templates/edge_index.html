@@ -181,15 +181,15 @@
             <h1 class="collection-title">COLLECTIONS</h1>
             <div class="collection-block">
                 <div class="card-left">
-                    <div class="collection-item ">
+                    <div class="collection-item">
                         <div class="collection-image">
-                            <img src="media/{{index_images.necklace_image}}" alt="">
+                            <a href="{% url 'products' %}?category=Necklace"><img src="media/{{index_images.necklace_image}}" alt=""></a>
                         </div>
                         <a href="{% url 'products' %}?category=Necklace"><h1>NECKLACES</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="media/{{index_images.bracelet_image}}" alt="">
+                            <a href="{% url 'products' %}?category=Bracelet"><img src="media/{{index_images.bracelet_image}}" alt=""></a>
                         </div>
                         <a href="{% url 'products' %}?category=Bracelet"><h1>BRACELETES</h1></a>
                     </div>
@@ -198,13 +198,13 @@
                 <div class="card-right">
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="media/{{index_images.earring_image}}" alt="">
+                            <a href="{% url 'products' %}?category=Earring"><img src="media/{{index_images.earring_image}}" alt=""></a>
                         </div>
                         <a href="{% url 'products' %}?category=Earring"><h1>EARRINGS</h1></a>
                     </div>
                     <div class="collection-item">
                         <div class="collection-image">
-                            <img src="media/{{index_images.ring_image}}" alt="">
+                            <a href="{% url 'products' %}?category=Ring"><img src="media/{{index_images.ring_image}}" alt=""></a>
                         </div>
                         <a href="{% url 'products' %}?category=Ring"><h1>RINGS</h1></a>
                     </div>
