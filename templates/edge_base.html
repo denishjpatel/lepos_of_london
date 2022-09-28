@@ -162,9 +162,12 @@
                                         </div>
                                     </i>
                                 </li>
+
+                                {% if request.user.is_authenticated %}{% else %}
                                 
                                 <li><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i><span class="cart_count">{{cart_count}}</span></a>
                                 </li>
+                                {% endif %}
                                 {% comment %} <li><a href={% url 'wishlist' %}><i
                                                 class="fa fa-heart-o"></i><span class="wishlist_count">{% if wishlist_count.count %} {{wishlist_count.count}} {% else %} 0 {% endif %}</span></a></li> {% endcomment %}
                             </ul>
