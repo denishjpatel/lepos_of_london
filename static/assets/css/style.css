@@ -1884,8 +1884,8 @@ a.btn-outline {
 
 @media (max-width: 1199px) {
     .collection-image {
-        max-height: 300px;
-        max-width: 300px;
+        min-width: 350px;
+        object-fit: cover;
     }
 }
 
@@ -2002,6 +2002,12 @@ a.btn-outline {
 }
 
 @media (max-width: 767px) {
+    .collection-image img {
+        max-width: 458px;
+        min-width: 458px;
+        height: 458px;
+        object-fit: cover;
+    }
     .footer-links {
         margin-bottom: 20px;
     }
@@ -2055,8 +2061,14 @@ a.btn-outline {
 }
 
 @media (max-width: 575px) {
+    .collection-image img {
+        max-width: 358px;
+        min-width: 358px;
+        height: 358px;
+        object-fit: cover;
+    }
     a.navbar-brand {
-        padding-left: 30px;
+        padding-left: 30px !important;
     }
     .slider-text {
         text-align: center;
