@@ -3,10 +3,36 @@
 {% block title %} Lepos London | Cart {% endblock title %}
 {% block css %}
 <style>
+.alert.alert-error.alert-dismissible.fade.show {
+    color: red;
+    border: 1px solid red;
+    background: #ff00002b;
+    margin-top: 105px;
+}
+
+.alert.alert-success.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
+.alert.alert-info.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    float: right;
+    border: red;
+}
 </style>
 {% endblock css %}
 {% block body %}
-    {% comment %} {% include "message.html" %} {% endcomment %}
+    {% include "message.html" %}
 <!-- Page Content -->
 <main class="page-content">
     <!-- Shopping Cart Area -->
@@ -22,6 +48,7 @@
                             <th class="tm-cart-col-productname" scope="col">Product</th>
                             <th class="tm-cart-col-price" scope="col">Price</th>
                             <th class="tm-cart-col-quantity" scope="col">Quantity</th>
+                            <th class="tm-cart-col-size" scope="col">Size</th>
                             <th class="tm-cart-col-total" scope="col">Total</th>
                             <th class="tm-cart-col-date" scope="col">Date</th>
                         </tr>
@@ -39,14 +66,19 @@
                                 <td style="text-align:center">
                                     <a href="/product/{{row.product.pk}}" class="tm-cart-productname">{{row.product.name}}</a>
                                 </td>
-                                <td style="text-align:center" class="tm-cart-price">&#x20b9;{{row.product.metal_14_price}}</td>
+                                <td style="text-align:center" class="tm-cart-price">&#x20b9;{{row.product.material_14_price}}</td>
                                 <td style="text-align:center">
                                     <div class="">
                                         <p class="prod_quantity" id="qty_{{row.pk}}">{{row.qty}}</p>
                                     </div>
                                 </td>
                                 <td style="text-align:center">
-                                    <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">&#x20b9;{% widthratio row.product.metal_14_price 1 row.qty %}</span>
+                                    <div class="">
+                                        <p class="prod_size" id="qty_{{row.pk}}">{{row.size}}</p>
+                                    </div>
+                                </td>
+                                <td style="text-align:center">
+                                    <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">&#x20b9;{% widthratio row.product.material_14_price 1 row.qty %}</span>
                                 </td>
                                 <td style="text-align:center" class="tm-cart-price">{{row.order.created_at}}</td>
                             </tr>
@@ -60,3 +92,14 @@
 </main>
 
 {% endblock body %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $("button.close").click(function() {
+        $(".alert.alert-error.alert-dismissible.fade.show").hide();
+        $(".alert.alert-success.alert-dismissible.fade.show").hide();
+        $(".alert.alert-info.alert-dismissible.fade.show").hide();
+    });
+});
+</script>
+{% endblock script %}

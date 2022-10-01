@@ -3,10 +3,29 @@
 {% block title %} Lepos London | Cart {% endblock title %}
 {% block css %}
 <style>
+.alert.alert-error.alert-dismissible.fade.show {
+    color: red;
+    border: 1px solid red;
+    background: #ff00002b;
+    margin-top: 105px;
+}
+
+.alert.alert-success.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    float: right;
+    border: red;
+}
 </style>
 {% endblock css %}
 {% block body %}
-    {% comment %} {% include "message.html" %} {% endcomment %}
+    {% include "message.html" %}
     <section class="about-page">
         <img src="../static/assets/images/about.jpg" class="img-fluid" alt="">
         <div class="about-text">

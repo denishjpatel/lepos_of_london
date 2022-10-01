@@ -33,3 +33,14 @@ class Address(models.Model):
     
 class Contact(models.Model):
     email = models.CharField(max_length=255)
+    
+    
+class terms_conditions(models.Model):
+    title = models.CharField(max_length = 50)
+    sub_title = models.CharField(max_length = 50)
+    text1 = models.CharField(max_length = 50)
+    text2 = models.CharField(max_length = 50)
+    text3 = models.CharField(max_length = 50)
+    text4 = models.CharField(max_length = 50)
+    text5 = models.CharField(max_length = 50)
+    

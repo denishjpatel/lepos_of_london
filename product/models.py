@@ -19,7 +19,7 @@ class Product(models.Model):
     #     ('Platinum','Platinum'),
     # ]
     
-    metal_choice = [
+    material_choice = [
         ('14','14'),
         ('16','16'),
         ('18','18')
@@ -27,16 +27,17 @@ class Product(models.Model):
     
     name = models.CharField(max_length=200,unique=True)
     sub_title = models.CharField(max_length=100, blank=True, null=True)
-    metal_14_price = models.IntegerField(null=True, blank=True)
-    metal_16_price = models.IntegerField(null=True, blank=True)
-    metal_18_price = models.IntegerField(null=True, blank=True)
+    material_14_price = models.IntegerField(null=True, blank=True)
+    material_16_price = models.IntegerField(null=True, blank=True)
+    material_18_price = models.IntegerField(null=True, blank=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     image = models.ImageField(upload_to="product")
     # video = models.FileField(upload_to="product", null=True, blank=True)
-    metal = models.CharField(choices=metal_choice,max_length=9,null=True,blank=True, default=metal_choice[1][1])
+    material = models.CharField(choices=material_choice,max_length=9,null=True,blank=True, default=material_choice[1][1])
     # size = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(4)],null=True,blank=True)
     quantity = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(4)],null=True,blank=True)
     in_stock = models.BooleanField(default=True)
+    is_size = models.BooleanField(default=False)
     product_description = models.TextField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -47,12 +48,19 @@ class Product(models.Model):
     def get_images(self):
         return ProductImages.objects.filter(product=self)
     
+    def get_sizes(self):
+        return ProductSize.objects.filter(p_size=self)
+    
     # def get_goldfilter(self):
     #     return GoldFilter.objects.get(product=self)
         
 class ProductImages(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'product')
+    
+class ProductSize(models.Model):
+    p_size = models.ForeignKey(Product,on_delete=models.CASCADE)
+    size = models.IntegerField(default=1)
 
 class Review(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
@@ -147,5 +155,10 @@ class WebsiteUser(models.Model):
     
     
 class SustainableEssentials(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(max_length=255)
+    
+
+class ProductSustainableEssentials(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(max_length=255)

@@ -52,13 +52,10 @@ def products(request):
     return render(request,"edge_shop.html",{"products":products, "categories":categories})
 
 def product_details(request,id):
-    
-        
     bespoke_jewellery = BespokeJewellery.objects.first()
-
+    product_sustainable_essentials = ProductSustainableEssentials.objects.first()
     product = Product.objects.get(id=int(id))
     contact_data = Contact.objects.first()
-
 
     if request.method=="POST":
         name = request.POST.get("name")
@@ -70,7 +67,7 @@ def product_details(request,id):
 
     similar_prods = Product.objects.filter(category=product.category)[:6]
     reviews = Review.objects.filter(product=product)
-    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews, "bespoke_jewellery":bespoke_jewellery, "contact_data":contact_data})
+    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews, "bespoke_jewellery":bespoke_jewellery, "contact_data":contact_data, "product_sustainable_essentials":product_sustainable_essentials})
 
 def about(request):
     return render(request,"edge_about.html")

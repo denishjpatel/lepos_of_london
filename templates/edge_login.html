@@ -3,10 +3,35 @@
 {% block title %} Lepos London | Cart {% endblock title %}
 {% block css %}
 <style>
+.alert.alert-error.alert-dismissible.fade.show {
+    color: red;
+    border: 1px solid red;
+    background: #ff00002b;
+    margin-top: 105px;
+}
+
+.alert.alert-success.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+.alert.alert-info.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    float: right;
+    border: red;
+}
 </style>
 {% endblock css %}
 {% block body %}
-    {% comment %} {% include "message.html" %} {% endcomment %}
+    {% include "message.html" %}
     <!-- Page Content -->
     <main class="page-content">
 
@@ -32,7 +57,7 @@
                                         <input type="checkbox" name="login-remember" id="login-remember">
                                     <label for="login-remember">Remember Me</label>
                                     </div>
-                                    <p class="mb-0"><a href="#" class="forgot-pass">Forgot your password?</a></p>
+                                    <p class="mb-0"><a href={% url 'forgot_password' %} class="forgot-pass">Forgot your password?</a></p>
                                 </div>
                                 <input type="hidden" name="next" value="{{ request.path }}">
                                 <div class="mb-3">
@@ -55,3 +80,14 @@
         </div>
     </main>    
 {% endblock body %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $("button.close").click(function() {
+        $(".alert.alert-error.alert-dismissible.fade.show").hide();
+        $(".alert.alert-success.alert-dismissible.fade.show").hide();
+        $(".alert.alert-info.alert-dismissible.fade.show").hide();
+    });
+});
+</script>
+{% endblock script %}

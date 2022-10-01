@@ -8,4 +8,5 @@ class AddressAdmin(admin.ModelAdmin):
 
 admin.site.register(Account)
 admin.site.register(Contact)
+admin.site.register(terms_conditions)
 admin.site.register(Address, AddressAdmin)

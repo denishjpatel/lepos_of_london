@@ -83,11 +83,11 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
-$('.search-txt').keypress(function (e) {
+$('.search-txt').keypress(function(e) {
     var key = e.which;
-    if(key == 13)  // the enter key code
+    if (key == 13) // the enter key code
     {
         var val = $('.search-txt').val();
-        window.location.href=`https://leposoflondon.herokuapp.com/products?search=${val}`;
+        window.location.href = `https://leposoflondon.herokuapp.com/products?search=${val}`;
     }
 });

@@ -77,6 +77,7 @@ def order(request):
             sub_total = request.POST.get('sub_total')
             prods = request.POST.getlist('ids[]')
             qtys = request.POST.getlist('qty[]')
+            size = request.POST.getlist('size[]')
             unit_prices = request.POST.getlist('unit_price[]')
             
             for i in range(len(prods)):
@@ -85,6 +86,7 @@ def order(request):
                     product = prod_obj,
                     order = order_obj,
                     qty = qtys[i],
+                    size = size[i],
                     unit_price = unit_prices[i],
                     sub_total = sub_total,
                 )
@@ -184,6 +186,7 @@ def order(request):
             sub_total = request.POST.get('sub_total')
             prods = request.POST.getlist('ids[]')
             qtys = request.POST.getlist('qty[]')
+            size = request.POST.getlist('size[]')
             unit_prices = request.POST.getlist('unit_price[]')
             
             for i in range(len(prods)):
@@ -192,6 +195,7 @@ def order(request):
                     product = prod_obj,
                     order = order_obj,
                     qty = qtys[i],
+                    size = size[i],
                     unit_price = unit_prices[i],
                     sub_total = sub_total,
                 )

@@ -42,6 +42,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True,related_name='orderitem')
     # name = models.CharField(max_length=200, null=True, blank=True)
     qty = models.IntegerField(null=True, blank=True, default=0)
+    size = models.IntegerField(null=True, blank=True)
     unit_price = models.DecimalField(
         max_digits=20, decimal_places=2, null=True, blank=True)
     sub_total = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)

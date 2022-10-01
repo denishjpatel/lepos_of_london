@@ -6,12 +6,17 @@ class ImageInliner(admin.TabularInline):
     model = ProductImages
     extra = 1
     
+    
+class SizeInliner(admin.TabularInline):
+    model = ProductSize
+    extra = 1
+    
 class ImageInliner1(admin.TabularInline):
     model = SliderImages
     extra = 1
     
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (ImageInliner,)
+    inlines = (ImageInliner,SizeInliner)
     
 class IndexImageAdmin(admin.ModelAdmin):
     inlines = (ImageInliner1,)
@@ -35,3 +40,4 @@ admin.site.register(BespokeJewellery)
 admin.site.register(FutureSection)
 admin.site.register(WebsiteUser)
 admin.site.register(SustainableEssentials)
+admin.site.register(ProductSustainableEssentials)

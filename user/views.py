@@ -53,6 +53,8 @@ def register(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
             username = request.POST['username']
+            last_name = request.POST('last_name')
+            first_name = request.POST('first_name')
             email = request.POST['email']
             contact = request.POST['contact']
             password = request.POST['password']
@@ -66,7 +68,7 @@ def register(request):
                     messages.error(request, 'Email already exists!!!')
                     return redirect('register')
                 user = User.objects.create_user(
-                    username=username, email=email, contact_number=contact, password=password)
+                    username=username, last_name=last_name, first_name=first_name, email=email, contact_number=contact, password=password)
                 user.save()
                 login(request, user)
                 messages.success(request, 'Successfully Registered')
@@ -162,16 +164,61 @@ def update_profile(request):
     else:
         return redirect("loginview")
 
-
-def send_link(request):
-    pass
-
-
 def forgot_password(request):
-    pass
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST.get('email')
+        contact = request.POST.get('contact')
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        
+        if email or contact:
+            if User.objects.filter(username = username).exists():
+                user_obj = User.objects.get(username = username)
 
+                if user_obj.email!=email or user_obj.contact_number!=contact:
+                    if password==confirm_password:
+                        user_obj.set_password(password)
+                        user_obj.save()
+                        login(request, user_obj)
+                        return redirect('index')
+                    else:
+                        messages.error(request, "password and confirm password doesnot matched!")
+                        return redirect('forgot_password')
+                else:
+                    messages.error(request, "Neither your email nor contact matched with saved data!")
+                    return redirect('forgot_password')
+                
+            else:
+                messages.error(request, "User not found with this username!")
+                return redirect('forgot_password')
+        else:
+            messages.error(request, "contact or email is required!")
+            return redirect('forgot_password')
+
+        # if check_password(old_password, request.user.password):
+        #     if confirm_password == new_password:
+        #         request.user.password = make_password(new_password)
+        #         request.user.save()
+        #         login(request, request.user)
+        #         messages.success(request, 'Password Updated Successfully')
+        #         return redirect('index')
+        #     else:
+        #         messages.error(
+        #             request, "Confirm Password didn't matched with New Password!!!")
+        #         return redirect('change_password')
+        # else:
+        #     messages.error(request, "You have entered wrong password!!!")
+        #     return redirect('change_password')
+
+    return render(request, "edge_forgot_password.html")
 
 def logoutview(request):
     if request.user.is_authenticated:
         logout(request)
+        return redirect('loginview')
     return redirect('index')
+
+def terms_condition(request):
+    terms = terms_conditions.objects.first()
+    return render(request, 'edge_terms_conditions.html', {"terms":terms})

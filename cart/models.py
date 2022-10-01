@@ -17,7 +17,7 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField()
-    metal = models.IntegerField(null=True, blank=True)
+    material = models.IntegerField(null=True, blank=True)
     size = models.IntegerField(null=True, blank=True)
     unit_price = models.DecimalField(max_digits=20,decimal_places=2)
     is_active = models.BooleanField(default=True)

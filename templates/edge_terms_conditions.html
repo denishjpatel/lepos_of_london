@@ -1,0 +1,24 @@
+{% extends "edge_base.html" %}
+{% load static %}
+{% block title %} Lepos London | Terms and Conditions {% endblock title %}
+{% block css %}
+<style>
+</style>
+{% endblock css %}
+{% block body %}
+<!-- Page Content -->
+<main class="page-content">
+    <section class="terms">
+        <h2 class="terms_title">{{terms.title}}</h2>
+        <h4 class="terms_subtitle"><i class="fas fa-caret-right"></i> {{terms.sub_title}}</h4>
+        <ul class="terms_texts">
+            <li class="terms_text_list">{{terms.text1}}</li>
+            <li class="terms_text_list">{{terms.text2}}</li>
+            <li class="terms_text_list">{{terms.text3}}</li>
+            <li class="terms_text_list">{{terms.text4}}</li>
+            <li class="terms_text_list">{{terms.text5}}</li>
+        </ul>
+
+    </section>
+</main>
+{% endblock body %}

@@ -6,7 +6,7 @@
 </style>
 {% endblock css %}
 {% block body %}
-    {% comment %} {% include "message.html" %} {% endcomment %}
+    
     <section class="about-page">
         <img src="../static/assets/images/about.jpg" class="img-fluid" alt="">
         <div class="about-text">The future of fine jewellery in a conscious world</div>
@@ -22,9 +22,9 @@
                             laboris nisi ut aliquip ex ea com modo consequat. Duis aute irure dolor in reprehenderit in
                             voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                         <P>- Lynette Ong, Founder</P>
-                        <button class="btn-outline">
+                        {% comment %} <button class="btn-outline">
                             THE FULL STORY
-                        </button>
+                        </button> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-lg-6">

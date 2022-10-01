@@ -1,5 +1,33 @@
 {% extends "edge_base.html" %}
 {% load static %}
+<style>
+.alert.alert-error.alert-dismissible.fade.show {
+    color: red;
+    border: 1px solid red;
+    background: #ff00002b;
+    margin-top: 105px;
+}
+
+.alert.alert-success.alert-dismissible.fade.show {
+    color: #0f5132 !important;
+    border: 1px solid #67f5b3 !important;
+    background: #67f5b3 !important;
+    margin-top: 105px !important;
+}
+
+.alert.alert-info.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    float: right;
+    border: red;
+}
+</style>
 {% block title %} Lepos London | Home {% endblock title %}
 {% block body %}
     {% comment %} {% include "message.html" %} {% endcomment %}
@@ -55,7 +83,7 @@
                                 <a href="/product/{{row.pk}}"><img src=/media/{{row.image}} alt="product image"></a>
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.metal_14_price}}</span>
+                                    <span class="product-price">£ {{row.material_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -105,7 +133,7 @@
                                 <p>> {{future_section.text3}}</p>
                             </li>
                         </ul>
-                        <button class="btn-outline">READ OUR STORY</button>
+                        <a href="{% url 'about' %}"><button class="btn-outline">READ OUR STORY</button></a>
                     </div>
                 </div>
             </div>
@@ -166,7 +194,7 @@
                                 <img src=/media/{{row.image}} alt="product image">
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.metal_14_price}}</span>
+                                    <span class="product-price">£ {{row.material_14_price}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -212,6 +240,7 @@
             </div>
         </div>
     </section>
+
     <section class="meet-our-team home-page">
         <div class="container-fluid">
             <div class="team-title">
@@ -264,3 +293,14 @@
         </div>
     </section>
 {% endblock body %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    $("button.close").click(function() {
+        $(".alert.alert-error.alert-dismissible.fade.show").hide();
+        $(".alert.alert-success.alert-dismissible.fade.show").hide();
+        $(".alert.alert-info.alert-dismissible.fade.show").hide();
+    });
+});
+</script>
+{% endblock script %}

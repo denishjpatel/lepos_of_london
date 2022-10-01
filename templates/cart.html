@@ -32,7 +32,7 @@
 </style>
 {% endblock css %}
 {% block body %}
-    {% comment %} {% include "message.html" %} {% endcomment %}
+    
     
     <section class="about-page">
         <img src="{% static 'assets/images/about.jpg' %}" class="img-fluid" alt="">
@@ -54,7 +54,9 @@
                         <div class="cart-product-detail">
                             <div class="cart-product-left">
                                 <h4>{{row.product.name}}</h4>
-                                <span>Size : {{row.product.size}} mm</span>
+                                {% if row.size %}
+                                <span>Size : {{row.size}} mm</span>
+                                {% endif %}
                                 <div class="tm-cart-price">Price : £ {{row.unit_price}}</div>
                             </div>
                             <div class="cart-product-close">

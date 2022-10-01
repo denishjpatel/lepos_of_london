@@ -1320,8 +1320,9 @@ button.payment-btn:hover {
 }
 
 .collection-image img {
-    height: 100%;
-    width: 100%;
+    max-width: 558px;
+    min-width: 558px;
+    height: 558px;
     object-fit: cover;
 }
 
@@ -1674,6 +1675,23 @@ a.size-guide {
 a.size-guide:hover {
     color: #663419;
     cursor: pointer;
+}
+
+h2.terms_title {
+    color: #663419;
+}
+
+section.terms {
+    margin: 20px 0px 0px 75px !important;
+}
+
+.terms_texts>li {
+    list-style-type: circle;
+    margin-left: 4%
+}
+
+h4.terms_subtitle {
+    margin-left: 2%;
 }
 
 @keyframes slide {

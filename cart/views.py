@@ -45,15 +45,15 @@ def cart(request, total=0, quantity=0, cart_items=None):
 def add_cart(request,product_id):
     if request.method == "POST":
         product_price = request.POST["hidden_price"]
-        metal_val = request.POST["hidden_metal"]
-        size_val = request.POST["hidden_size"]
+        material_val = request.POST["hidden_material"]
+        size_val = request.POST.get("hidden_size")
         quantity = request.POST["quantity"]
         
         if request.user.is_authenticated:
             product = Product.objects.get(id=product_id)
             try:
                 cart_item = CartItem.objects.get(product=product,user = request.user)
-                cart_item.quantity += 1
+                cart_item.quantity += quantity
                 cart_item.save()
             except:
                 cart_item = CartItem.objects.create(
@@ -61,7 +61,7 @@ def add_cart(request,product_id):
                     user = request.user,
                     unit_price=product_price,
                     quantity=quantity,
-                    metal=metal_val,
+                    material=material_val,
                     size=size_val
                 )
                 cart_item.save()
@@ -80,18 +80,18 @@ def add_cart(request,product_id):
             cart.save()
             
             try:
-                cart_item = CartItem.objects.get(product=product,cart=cart, unit_price=product.metal_14_price)
-                cart_item.quantity += 1
+                cart_item = CartItem.objects.get(product=product,cart=cart, unit_price=product_price)
+                cart_item.quantity += quantity
                 cart_item.save()
             except:
                 cart_item = CartItem.objects.create(
                     product = product,
-                    quantity = 1,
+                    quantity = quantity,
                     cart = cart,
-                    unit_price=product.metal_14_price,
+                    unit_price=product_price,
                 )
                 cart_item.save()
-            
+
             return redirect('cart')
     
     else:

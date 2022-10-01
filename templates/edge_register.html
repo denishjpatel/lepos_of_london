@@ -9,6 +9,20 @@
     background: #ff00002b;
     margin-top: 105px;
 }
+
+.alert.alert-success.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+.alert.alert-info.alert-dismissible.fade.show {
+    color: #0f5132;
+    border: 1px solid #67f5b3;
+    background: #67f5b3;
+    margin-top: 105px;
+}
+
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
     cursor: pointer;
     float: right;
@@ -37,6 +51,14 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="register-email">Email address</label>
                                     <input class="form-control" type="email" id="register-email" name="email" required="required">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">First name</label>
+                                    <input name="first_name" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{user_data.first_name}}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Last name</label>
+                                    <input name="last_name" type="" class="form-control" id="" placeholder="" aria-describedby="" value="{{user_data.last_name}}">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="contact-no">Contact Number</label>
@@ -84,6 +106,9 @@
 $(document).ready(function () {
     $("button.close").click(function () {
         $(".alert.alert-error.alert-dismissible.fade.show").hide();
+        $(".alert.alert-info.alert-dismissible.fade.show").hide();
+        $(".alert.alert-success.alert-dismissible.fade.show").hide();
+        
     });
 });
 </script>
