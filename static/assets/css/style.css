@@ -1446,8 +1446,8 @@ form.tm-form p {
     margin-top: 20px;
 }
 
-.forgot-pass,
-.terms_conditions {
+.login-remember-box>p,
+.my_terms_conditions {
     font-size: 12px;
     text-transform: none;
     letter-spacing: .25px;
@@ -1456,7 +1456,7 @@ form.tm-form p {
     color: #202020;
 }
 
-.terms_conditions,
+.my_terms_conditions,
 .register-terms {
     font-size: 16px;
     font-weight: 500;
@@ -1619,6 +1619,8 @@ div#navbarNavDropdown ul li a {
 .logo-box {
     font-weight: 600;
     font-size: 20px;
+    text-decoration: none !important;
+    color: white !important;
 }
 
 .option-title {

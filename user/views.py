@@ -53,8 +53,8 @@ def register(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
             username = request.POST['username']
-            last_name = request.POST('last_name')
-            first_name = request.POST('first_name')
+            last_name = request.POST.get('last_name')
+            first_name = request.POST.get('first_name')
             email = request.POST['email']
             contact = request.POST['contact']
             password = request.POST['password']

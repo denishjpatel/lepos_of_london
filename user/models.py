@@ -43,4 +43,3 @@ class terms_conditions(models.Model):
     text3 = models.CharField(max_length = 50)
     text4 = models.CharField(max_length = 50)
     text5 = models.CharField(max_length = 50)
-    

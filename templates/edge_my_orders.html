@@ -66,7 +66,7 @@
                                 <td style="text-align:center">
                                     <a href="/product/{{row.product.pk}}" class="tm-cart-productname">{{row.product.name}}</a>
                                 </td>
-                                <td style="text-align:center" class="tm-cart-price">&#x20b9;{{row.product.material_14_price}}</td>
+                                <td style="text-align:center" class="tm-cart-price">&#x20b9;{{row.product.material_10_price}}</td>
                                 <td style="text-align:center">
                                     <div class="">
                                         <p class="prod_quantity" id="qty_{{row.pk}}">{{row.qty}}</p>
@@ -78,7 +78,7 @@
                                     </div>
                                 </td>
                                 <td style="text-align:center">
-                                    <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">&#x20b9;{% widthratio row.product.material_14_price 1 row.qty %}</span>
+                                    <span class="tm-cart-totalprice" id="stotal_{{ row.pk }}">&#x20b9;{% widthratio row.product.material_10_price 1 row.qty %}</span>
                                 </td>
                                 <td style="text-align:center" class="tm-cart-price">{{row.order.created_at}}</td>
                             </tr>

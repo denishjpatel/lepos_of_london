@@ -85,8 +85,8 @@
                     <div class="top-area-center">
                         <div class="animate-contain">
                             <div class="animated-text">
-                                <span><a class="top_slide" href="#">FREE UK SHIPPING OVER £75</a></span>
-                                <span><a class="top_slide" href="#">GET 10% OFF YOUR FIRST ORDER (ABOVE £100)</a></span>
+                                <span><a class="top_slide">{{header_slider_text_data.text1}}</a></span>
+                                <span><a class="top_slide">{{header_slider_text_data.text2}}</a></span>
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                             <li><a href="{% url 'about' %}">About Us</a></li>
                             <li><a href="#">Privacy & Policy</a></li>
                             <li><a href="#">Returns & Refunds</a></li>
-                            <li><a href={% url 'terms_conditions' %}>Terms & Conditions</a></li>
+                            <li><a href="{% url 'terms_conditions' %}">Terms & Conditions</a></li>
                             <li>
                                 <a href="mailto:{{contact_data.email}}" >Contact Us</a>
                             </li>

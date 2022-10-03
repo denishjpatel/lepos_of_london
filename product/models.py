@@ -20,15 +20,15 @@ class Product(models.Model):
     # ]
     
     material_choice = [
+        ('10','10'),
         ('14','14'),
-        ('16','16'),
         ('18','18')
     ]
     
     name = models.CharField(max_length=200,unique=True)
     sub_title = models.CharField(max_length=100, blank=True, null=True)
+    material_10_price = models.IntegerField(null=True, blank=True)
     material_14_price = models.IntegerField(null=True, blank=True)
-    material_16_price = models.IntegerField(null=True, blank=True)
     material_18_price = models.IntegerField(null=True, blank=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     image = models.ImageField(upload_to="product")
@@ -162,3 +162,8 @@ class SustainableEssentials(models.Model):
 class ProductSustainableEssentials(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(max_length=255)
+    
+        
+class HeaderSliderText(models.Model):
+    text1 = models.CharField(max_length = 50)
+    text2 = models.CharField(max_length = 50)
