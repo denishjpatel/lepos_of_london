@@ -23,7 +23,7 @@ class Account(AbstractUser):
 
 
 class Address(models.Model):
-    user = models.ForeignKey(Account,on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(Account,on_delete=models.CASCADE, null=True, blank=True, unique=True)
     address = models.TextField(null=True, blank=True)
     pincode = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)

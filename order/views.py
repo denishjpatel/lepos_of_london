@@ -280,13 +280,22 @@ def pay_razorpay(request):
             user_obj.contact_number = contact_number
             user_obj.save()
             
-            add_obj = Address.objects.get(user=user_obj)
-            add_obj.address = address
-            add_obj.city = city
-            add_obj.pincode = pincode
-            add_obj.state = state
-            add_obj.country = country
-            add_obj.save()
+            if Address.objects.filter(user=user_obj).exists():
+                add_obj = Address.objects.get(user=user_obj)
+                add_obj.address = address
+                add_obj.city = city
+                add_obj.pincode = pincode
+                add_obj.state = state
+                add_obj.country = country
+                add_obj.save()
+                
+            add_obj = Address.objects.create(user=user_obj,
+                                                address = address,
+                                                city = city,
+                                                pincode = pincode,
+                                                state = state,
+                                                country = country
+                                            )
             
             payment_method=request.POST.get('payment_mode')
             order_id=request.POST.get('order_id')
