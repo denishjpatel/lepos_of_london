@@ -132,40 +132,4 @@
 {% block script %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="{% static 'js/pay.js' %}"></script>
-{% comment %} <script>
-$(document).ready(function (e) {
-    $(".order-form").validate({
-            rules: {
-                first_name: {
-                    required: true
-                },
-                last_name: {
-                    required: true,
-                    email: true
-                },
-                exampleInputEmail1: {
-                    required: true
-                },
-                contact_number: {
-                    required: true,
-                },
-                address: {
-                    required: true,
-                },
-                city: {
-                    required: true,
-                },
-                pincode: {
-                    required: true,
-                },
-                state: {
-                    required: true,
-                },
-                country: {
-                    required: true,
-                }
-            }
-        });
-});
-</script> {% endcomment %}
 {% endblock script %}

@@ -1,8 +1,37 @@
 $(document).ready(function() {
 
     $('.razorpay').click(function(e) {
+        if ($('#first_name').val().length == 0){
+            alert("Please fill first name!");
+            return false;
+        } else if ($('#last_name').val().length == 0){
+            alert("Please fill last name!");
+            return false;
+        } else if ($('#exampleInputEmail1').val().length == 0){
+            alert("Please fill email!");
+            return false;
+        } else if ($('#contact_number').val().length == 0){
+            alert("Please fill contact number!");
+            return false;
+        } else if ($('#address').val().length == 0){
+            alert("Please fill address!");
+            return false;
+        } else if ($('#city').val().length == 0){
+            alert("Please fill city!");
+            return false;
+        } else if ($('#pincode').val().length == 0){
+            alert("Please fill pincode!");
+            return false;
+        } else if ($('#state').val().length == 0){
+            alert("Please fill state!");
+            return false;
+        } else if ($('#country').val().length == 0){
+            alert("Please fill country!");
+            return false;
+        }
 
         if ($('#exampleCheck1').is(':checked')) {
+            
             // return true;
 
             e.preventDefault();
