@@ -15,11 +15,13 @@ def loginview(request):
         if request.method == "POST":
             username = request.POST['username']
             password = request.POST['password']
+            print(username, password)
 
             if User.objects.filter(username=username).exists():
                 if authenticate(username=username, password=password):
                     user = authenticate(username=username, password=password)
                     login(request, user)
+                    print(user)
                     
                     if 'url' in request.GET:
                         url_data = request.GET['url']
