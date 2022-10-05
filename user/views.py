@@ -177,8 +177,11 @@ def forgot_password(request):
         if email or contact:
             if User.objects.filter(username = username).exists():
                 user_obj = User.objects.get(username = username)
+                print(user_obj)
+                print(user_obj.email, user_obj.contact_number)
+                print(email, contact)
 
-                if user_obj.email!=email or user_obj.contact_number!=contact:
+                if user_obj.email==email or user_obj.contact_number==contact:
                     if password==confirm_password:
                         user_obj.set_password(password)
                         user_obj.save()
