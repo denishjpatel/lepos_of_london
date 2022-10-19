@@ -118,7 +118,8 @@
                         </div>
                         <div class="payment-button">
                             {% comment %} <button type="submit" class="payment-btn">COD (Cash On Delivery)</button> {% endcomment %}
-                            <button type="submit" name="razorpay" class="payment-btn razorpay">Pay</button>
+                            {% comment %} <button type="submit" name="razorpay" class="payment-btn razorpay">Pay</button> {% endcomment %}
+                            <div id="paypal-button-container"></div>
                         </div>
                     </div>
                 </div>
@@ -131,5 +132,44 @@
 
 {% block script %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AdMyHawyFjmfOKQSWnYre4S6QnaVQ77rdXIi5pbTXSSP0cn6g7x5dwENGtiHfnsTh9f1NswJ_-nHfIV9&currency=USD"></script>
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '88.44'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+                    // Replace the above to show a success message within this page, e.g.
+                    // const element = document.getElementById('paypal-button-container');
+                    // element.innerHTML = '';
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+    </script>
 <script src="{% static 'js/pay.js' %}"></script>
+
 {% endblock script %}
