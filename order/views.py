@@ -13,6 +13,12 @@ from datetime import datetime, timedelta, date
 import razorpay
 from django.core.exceptions import ObjectDoesNotExist
 
+
+#Smit Stripe 
+import stripe
+from django.conf import settings
+# This is your test secret API key.
+stripe.api_key =  settings.STRIPE_SECRET_KEY
 # Create your views here.
 User = get_user_model()
 
@@ -51,8 +57,12 @@ def order(request):
             user_obj.email = email
             user_obj.contact_number = contact_number
             user_obj.save()
-            
-            add_obj = Address.objects.create(user=user_obj)
+
+            act_obj = Account.objects.get(username=user_obj)
+            print("Account User Objects :",act_obj)
+            print("User Objects :",user_obj)
+            add_obj = Address.objects.get(user=user_obj)
+            # add_obj = Address.objects.create(user=user_obj)
             add_obj.address = address
             add_obj.city = city
             add_obj.pincode = pincode
@@ -60,49 +70,75 @@ def order(request):
             add_obj.country = country
             add_obj.save()
             
-            payment_method="COD"
+            payment_method="stripe"
             order_id=f'order_cod_{random_with_N_digits(6)}'
             total_price=request.POST.get('total_price')
+            print(total_price)
             
-            order_obj = Order.objects.create(
-                user = request.user,
-                payment_method = payment_method,
-                order_id = order_id,
-                shipping_price = 0,
-                total_price = total_price,
-                status = "Pending For Payment",
-                delivered_at = date.today() + timedelta(days=10)
-            )
-            
-            sub_total = request.POST.get('sub_total')
-            prods = request.POST.getlist('ids[]')
-            qtys = request.POST.getlist('qty[]')
-            size = request.POST.getlist('size[]')
-            unit_prices = request.POST.getlist('unit_price[]')
-            
-            for i in range(len(prods)):
-                prod_obj = Product.objects.get(id=prods[i])
-                order_item_obj = OrderItem.objects.create(
-                    product = prod_obj,
-                    order = order_obj,
-                    qty = qtys[i],
-                    size = size[i],
-                    unit_price = unit_prices[i],
-                    sub_total = sub_total,
+            try:
+                print("inside try")
+                checkout_session = stripe.checkout.Session.create(
+                    line_items=[
+                        {
+                           'price_data': {
+                            'currency': 'USD',
+                            'product_data': {
+                                'name': "Payment to The Men's Wall",
+                            },
+                            'unit_amount': int(float(total_price) * 100),
+                        },
+                        'quantity': 1,
+                        }
+                    ],
+                    mode='payment',
+                    success_url='http://127.0.0.1:8000/' + '/order/my-orders/',
+                    cancel_url='http://127.0.0.1:8000/' + '/cart/my-cart/',
                 )
-            
-            cart_add = OrderAddress.objects.create(
-                order=order_obj,
-                address = address,
-                city = city,
-                pincode = pincode,
-                state = state,
-                country = country
-            )
-            
-            cartitem_obj = CartItem.objects.filter(user=request.user)
-            cartitem_obj.delete()
-            return redirect('my_orders')
+                    #new code
+                order_obj = Order.objects.create(
+                    user = request.user,
+                    payment_method = payment_method,
+                    order_id = order_id,
+                    shipping_price = 0,
+                    total_price = total_price,
+                    status = "Confirmed",
+                    delivered_at = date.today() + timedelta(days=10)
+                )
+                    
+                sub_total = request.POST.get('sub_total')
+                prods = request.POST.getlist('ids[]')
+                qtys = request.POST.getlist('qty[]')
+                size = request.POST.getlist('size[]')
+                unit_prices = request.POST.getlist('unit_price[]')
+                    
+                for i in range(len(prods)):
+                    prod_obj = Product.objects.get(id=prods[i])
+                    order_item_obj = OrderItem.objects.create(
+                        product = prod_obj,
+                        order = order_obj,
+                        qty = qtys[i],
+                        size = size[i],
+                        unit_price = unit_prices[i],
+                        sub_total = sub_total,
+                    )
+                    
+                cart_add = OrderAddress.objects.create(
+                    order=order_obj,
+                    address = address,
+                    city = city,
+                    pincode = pincode,
+                    state = state,
+                    country = country
+                )
+                    
+                cartitem_obj = CartItem.objects.filter(user=request.user)
+                cartitem_obj.delete()
+                return redirect(checkout_session.url, code=303)
+                #end of new code
+                
+            except Exception as e:
+                print("inside except", e)
+                return redirect('cart')
         
         elif request.method == "GET":
             user_obj = User.objects.get(username=request.user)
@@ -133,7 +169,7 @@ def order(request):
                 "total":total,
                 'grand_total':grand_total
             }
-                
+              
             return render(request, "edge_order.html", context)
         
         else:
@@ -158,54 +194,87 @@ def order(request):
             payment_method="COD"
             order_id=f'order_cod_{random_with_N_digits(6)}'
             total_price=request.POST.get('total_price')
-            
-            order_obj = Order.objects.create(
-                # user = request.user,
-                payment_method = payment_method,
-                order_id = order_id,
-                shipping_price = 0,
-                total_price = total_price,
-                status = "Pending For Payment",
-                delivered_at = date.today() + timedelta(days=10)
-            )
-            print("order object==>", order_obj)
-            
-            guest_user_obj = guest_user.objects.create(
-                first_name = first_name,
-                last_name = last_name,
-                email = email,
-                contact_number = contact_number,
-                address = address,
-                city = city,
-                pincode = pincode,
-                state = state,
-                country = country,
-                order = order_obj
-            )
-            
-            sub_total = request.POST.get('sub_total')
-            prods = request.POST.getlist('ids[]')
-            qtys = request.POST.getlist('qty[]')
-            size = request.POST.getlist('size[]')
-            unit_prices = request.POST.getlist('unit_price[]')
-            
-            for i in range(len(prods)):
-                prod_obj = Product.objects.get(id=prods[i])
-                order_item_obj = OrderItem.objects.create(
-                    product = prod_obj,
-                    order = order_obj,
-                    qty = qtys[i],
-                    size = size[i],
-                    unit_price = unit_prices[i],
-                    sub_total = sub_total,
+
+            try:
+                print("inside try")
+                checkout_session = stripe.checkout.Session.create(
+                    line_items=[
+                        {
+                           'price_data': {
+                            'currency': 'USD',
+                            'product_data': {
+                                'name': "Payment to The Men's Wall",
+                            },
+                            'unit_amount': int(float(total_price) * 100),
+                        },
+                        'quantity': 1,
+                        }
+                    ],
+                    mode='payment',
+                    success_url='http://127.0.0.1:8000/' + '/order/my-orders/',
+                    cancel_url='http://127.0.0.1:8000/' + '/cart/my-cart/',
                 )
             
-            
-            cart = Cart.objects.get(cart_id=_cart_id(request))
-            cartitem_obj = CartItem.objects.filter(cart=cart, is_active=True)
-            cartitem_obj.delete()
-            messages.info(request,"Your order is placed.")
-            return redirect('index')
+                order_obj = Order.objects.create(
+                    # user = request.user,
+                    payment_method = payment_method,
+                    order_id = order_id,
+                    shipping_price = 0,
+                    total_price = total_price,
+                    status = "Confirmed",
+                    delivered_at = date.today() + timedelta(days=10)
+                )
+                print("order object==>", order_obj)
+                
+                guest_user_obj = guest_user.objects.create(
+                    first_name = first_name,
+                    last_name = last_name,
+                    email = email,
+                    contact_number = contact_number,
+                    address = address,
+                    city = city,
+                    pincode = pincode,
+                    state = state,
+                    country = country,
+                    order = order_obj
+                )
+                
+                sub_total = request.POST.get('sub_total')
+                prods = request.POST.getlist('ids[]')
+                qtys = request.POST.getlist('qty[]')
+                size = request.POST.getlist('size[]')
+                unit_prices = request.POST.getlist('unit_price[]')
+                
+                for i in range(len(prods)):
+                    prod_obj = Product.objects.get(id=prods[i])
+                    if size[i]=='None':
+                        order_item_obj = OrderItem.objects.create(
+                            product = prod_obj,
+                            order = order_obj,
+                            qty = qtys[i],
+                            unit_price = unit_prices[i],
+                            sub_total = sub_total,
+                        )
+                    else:
+                        order_item_obj = OrderItem.objects.create(
+                            product = prod_obj,
+                            order = order_obj,
+                            size = size[i],
+                            qty = qtys[i],
+                            unit_price = unit_prices[i],
+                            sub_total = sub_total,
+                        )
+                
+                
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                cartitem_obj = CartItem.objects.filter(cart=cart, is_active=True)
+                cartitem_obj.delete()
+                messages.info(request,"Your order is placed.")
+                return redirect('index')
+
+            except Exception as e:
+                print("inside except", e)
+                return redirect('cart')
         
         if request.method == "GET":
             print("inside get")
@@ -424,3 +493,7 @@ def my_orders(request):
     else:
         messages.info(request,"Please Make Login First to See Your Orders!")
         return redirect(reverse("loginview") + "?url=my_orders")
+
+
+
+    

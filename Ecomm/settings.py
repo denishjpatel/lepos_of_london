@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+# STRIPE_SECRET_KEY = 'sk_test_51LpHltLt1hQE9zdsShL8pBIniGeybOgrNkONhlm1MjgaZUF9B5Mfsz173AyWkaZny3SUc2zXQPc2sNVdEyktI3AV00u5fqCXrj'
+STRIPE_SECRET_KEY = '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'
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',    
+    # 'order.apps.OrderConfig',
     "product",
     "user",
     "cart",
