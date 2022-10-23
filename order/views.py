@@ -83,7 +83,7 @@ def order(request):
                            'price_data': {
                             'currency': 'USD',
                             'product_data': {
-                                'name': "Payment to The Men's Wall",
+                                'name': "Payment to The Lepos London",
                             },
                             'unit_amount': int(float(total_price) * 100),
                         },
@@ -203,7 +203,7 @@ def order(request):
                            'price_data': {
                             'currency': 'USD',
                             'product_data': {
-                                'name': "Payment to The Men's Wall",
+                                'name': "Payment to The Lepos London",
                             },
                             'unit_amount': int(float(total_price) * 100),
                         },
