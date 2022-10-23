@@ -155,14 +155,14 @@ def order(request):
             except Exception as e:
                 cartitem_obj = None
             
-            client = razorpay.Client(auth=("rzp_test_nGsms8YvPMJW4g", "DJqTA9Sr17mpAMg8ZiO28i8l"))
-            para = {
-                "amount": int(grand_total),
-                "currency": "INR"
-            }
-            order_id = client.order.create(data=para)
+            # client = razorpay.Client(auth=("rzp_test_nGsms8YvPMJW4g", "DJqTA9Sr17mpAMg8ZiO28i8l"))
+            # para = {
+            #     "amount": int(grand_total),
+            #     "currency": "INR"
+            # }
+            # order_id = client.order.create(data=para)
             context = {
-                "order_id" : order_id,
+                # "order_id" : order_id,
                 "user_data": user_obj,
                 "add_data": add_obj,
                 "cartitem_data":cartitem_obj,
@@ -296,12 +296,12 @@ def order(request):
             except ObjectDoesNotExist:
                 pass #just ignore
             
-            client = razorpay.Client(auth=("rzp_test_T15HUukxUCbpYR", "trw9b5ZJ8zXZIdpQgrBB42cE"))
-            para = {
-                "amount": int(grand_total),
-                "currency": "INR"
-            }
-            order_id = client.order.create(data=para)
+            # client = razorpay.Client(auth=("rzp_test_T15HUukxUCbpYR", "trw9b5ZJ8zXZIdpQgrBB42cE"))
+            # para = {
+            #     "amount": int(grand_total),
+            #     "currency": "INR"
+            # }
+            # order_id = client.order.create(data=para)
 
             # context = {
             #     'total': total,
@@ -312,7 +312,7 @@ def order(request):
             # }
             
             context = {
-                "order_id" : order_id,
+                # "order_id" : order_id,
                 "cartitem_data":cartitem_obj,
                 "total":total,
                 'grand_total':grand_total
