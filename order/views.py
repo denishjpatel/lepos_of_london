@@ -91,8 +91,10 @@ def order(request):
                         }
                     ],
                     mode='payment',
+                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
                     success_url='https://leposlondon.co.uk' + '/order/my-orders/',
-                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',    
                 )
                     #new code
                 order_obj = Order.objects.create(
@@ -210,9 +212,11 @@ def order(request):
                         'quantity': 1,
                         }
                     ],
-                    mode='payment',
+                    mode='payment'
+                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
                     success_url='https://leposlondon.co.uk' + '/order/my-orders/',
-                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',  
                 )
             
                 order_obj = Order.objects.create(
