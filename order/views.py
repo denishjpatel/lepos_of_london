@@ -91,8 +91,10 @@ def order(request):
                         }
                     ],
                     mode='payment',
-                    success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
-                    cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
+                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
+                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',    
                 )
                     #new code
                 order_obj = Order.objects.create(
@@ -211,8 +213,10 @@ def order(request):
                         }
                     ],
                     mode='payment',
-                    success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
-                    cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
+                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
+                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',  
                 )
             
                 order_obj = Order.objects.create(
@@ -270,7 +274,6 @@ def order(request):
                 cartitem_obj = CartItem.objects.filter(cart=cart, is_active=True)
                 cartitem_obj.delete()
                 messages.info(request,"Your order is placed.")
-                print("completed without login===>")
                 return redirect(checkout_session.url, code=303)
 
             except Exception as e:
