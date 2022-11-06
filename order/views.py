@@ -81,7 +81,7 @@ def order(request):
                     line_items=[
                         {
                            'price_data': {
-                            'currency': 'USD',
+                            'currency': 'gbp',
                             'product_data': {
                                 'name': "Payment to The Lepos London",
                             },
@@ -91,8 +91,8 @@ def order(request):
                         }
                     ],
                     mode='payment',
-                    success_url='http://leposlondon.co.uk/' + '/order/my-orders/',
-                    cancel_url='http://leposlondon.co.uk/' + '/cart/my-cart/',
+                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',
                 )
                     #new code
                 order_obj = Order.objects.create(
@@ -201,7 +201,7 @@ def order(request):
                     line_items=[
                         {
                            'price_data': {
-                            'currency': 'USD',
+                            'currency': 'gbp',
                             'product_data': {
                                 'name': "Payment to The Lepos London",
                             },
@@ -211,8 +211,8 @@ def order(request):
                         }
                     ],
                     mode='payment',
-                    success_url='http://leposlondon.co.uk/' + '/order/my-orders/',
-                    cancel_url='http://leposlondon.co.uk/' + '/cart/my-cart/',
+                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
+                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',
                 )
             
                 order_obj = Order.objects.create(
@@ -270,7 +270,7 @@ def order(request):
                 cartitem_obj = CartItem.objects.filter(cart=cart, is_active=True)
                 cartitem_obj.delete()
                 messages.info(request,"Your order is placed.")
-                return redirect('index')
+                return redirect(checkout_session.url, code=303)
 
             except Exception as e:
                 print("inside except", e)
