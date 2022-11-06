@@ -107,9 +107,12 @@
                     <div class="right-text-box">
                         <h1>{{bespoke_jewellery.title}}</h1>
                         <h3>{{bespoke_jewellery.sub_title}}</h3>
-                        <p class="left-sub-text">{{bespoke_jewellery.text1}}</p>
+                        {% for row in bespoke_jewellery.get_texts %}
+                            <p class="left-sub-text">{{row.text}}</p>
+                        {% endfor %}
+                        {% comment %} <p class="left-sub-text">{{bespoke_jewellery.text1}}</p>
                         <p class="left-sub-text">{{bespoke_jewellery.text2}}</p>
-                        <p class="left-sub-text">{{bespoke_jewellery.text3}}</p>
+                        <p class="left-sub-text">{{bespoke_jewellery.text3}}</p> {% endcomment %}
                         <a href="mailto:{{contact_data.email}}" class="btn-outline">Contact Us</a>
                     </div>
                 </div>

@@ -127,10 +127,17 @@ class Quote(models.Model):
 class BespokeJewellery(models.Model):
     title = models.CharField(max_length=255)
     sub_title = models.CharField(max_length=255)
-    text1 = models.CharField(max_length=255, null=True, blank=True)
-    text2 = models.CharField(max_length=255, null=True, blank=True)
-    text3 = models.CharField(max_length=255, null=True, blank=True)
+    # text1 = models.CharField(max_length=255, null=True, blank=True)
+    # text2 = models.CharField(max_length=255, null=True, blank=True)
+    # text3 = models.CharField(max_length=255, null=True, blank=True)
     bespoke_video = models.FileField(upload_to = 'product')
+    
+    def get_texts(self):
+        return BespokeText.objects.filter(bespoke=self)
+    
+class BespokeText(models.Model):
+    bespoke = models.ForeignKey(BespokeJewellery,on_delete=models.CASCADE)
+    text = models.CharField(max_length=255, null=True, blank=True)
     
     
 class FutureSection(models.Model):
@@ -167,3 +174,14 @@ class ProductSustainableEssentials(models.Model):
 class HeaderSliderText(models.Model):
     text1 = models.CharField(max_length = 50)
     text2 = models.CharField(max_length = 50)
+    
+    
+class FreeShipping(models.Model):
+    title = models.CharField(max_length=255)
+    
+    def get_points(self):
+        return FreeShippingText.objects.filter(free_shipping=self)
+    
+class FreeShippingText(models.Model):
+    free_shipping = models.ForeignKey(FreeShipping,on_delete=models.CASCADE)
+    text = models.CharField(max_length=255, null=True, blank=True)

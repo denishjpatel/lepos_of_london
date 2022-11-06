@@ -20,6 +20,8 @@ def index(request):
     bespoke_jewellery = BespokeJewellery.objects.first()
     sustainable_essentials = SustainableEssentials.objects.first()
     contact_data = Contact.objects.first()
+    print(bespoke_jewellery)
+    print(bespoke_jewellery.get_texts())
     
     return render(request,"edge_index.html",{"products":products,"last_products":last_products,"first_products":first_products, "website_users":website_users, "index_images":index_images, "qoute_data":qoute_data, "future_section":future_section, "bespoke_jewellery":bespoke_jewellery, "sustainable_essentials":sustainable_essentials, "contact_data":contact_data})
 
@@ -56,6 +58,13 @@ def product_details(request,id):
     product_sustainable_essentials = ProductSustainableEssentials.objects.first()
     product = Product.objects.get(id=int(id))
     contact_data = Contact.objects.first()
+    shipping_data = FreeShipping.objects.first()
+    
+    print(shipping_data)
+    print(shipping_data.get_points())
+    
+    print(product)
+    print(product.get_images())
 
     if request.method=="POST":
         name = request.POST.get("name")
@@ -67,7 +76,7 @@ def product_details(request,id):
 
     similar_prods = Product.objects.filter(category=product.category)[:6]
     reviews = Review.objects.filter(product=product)
-    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews, "bespoke_jewellery":bespoke_jewellery, "contact_data":contact_data, "product_sustainable_essentials":product_sustainable_essentials})
+    return render(request,"edge_product.html",{"product":product, "similar_prods":similar_prods, "reviews":reviews, "bespoke_jewellery":bespoke_jewellery, "contact_data":contact_data, "product_sustainable_essentials":product_sustainable_essentials, "shipping_data": shipping_data})
 
 def about(request):
     return render(request,"edge_about.html")
