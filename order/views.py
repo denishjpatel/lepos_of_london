@@ -83,7 +83,7 @@ def order(request):
                            'price_data': {
                             'currency': 'gbp',
                             'product_data': {
-                                'name': "Payment to The Lepos London",
+                                'name': "Payment to The Lepos London0",
                             },
                             'unit_amount': int(float(total_price) * 100),
                         },
@@ -203,7 +203,7 @@ def order(request):
                            'price_data': {
                             'currency': 'gbp',
                             'product_data': {
-                                'name': "Payment to The Lepos London",
+                                'name': "Payment to The Lepos London1",
                             },
                             'unit_amount': int(float(total_price) * 100),
                         },
