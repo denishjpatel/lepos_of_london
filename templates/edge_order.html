@@ -120,7 +120,7 @@
                             {% comment %} <button class="button is-primary" id="submitBtn">Purchase!</button> {% endcomment %}
                             <button type="submit" class="payment-btn">Pay</button>
                             {% comment %} <button type="submit" name="razorpay" class="payment-btn razorpay">Pay</button> {% endcomment %}
-                            {% comment %} <div id="paypal-button-container"></div> {% endcomment %}
+                            <div id="paypal-button-container"></div>
                         </div>
                     </div>
                 </div>
@@ -135,10 +135,20 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=AdMyHawyFjmfOKQSWnYre4S6QnaVQ77rdXIi5pbTXSSP0cn6g7x5dwENGtiHfnsTh9f1NswJ_-nHfIV9&currency=USD"></script>
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    {% comment %} <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script> {% endcomment %}
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=GBP&disable-funding=card"></script>
 
     <script>
         // Render the PayPal button into #paypal-button-container
+        var temp
+        $(document).ready(function(){
+            temp = $('.price').html();
+            temp = temp.split(" ");
+            temp = temp[1]
+            console.log('price',temp)
+        });
+          
+
         paypal.Buttons({
 
             // Set up the transaction
@@ -146,7 +156,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '88.44'
+                            value: `${temp}`
                         }
                     }]
                 });
