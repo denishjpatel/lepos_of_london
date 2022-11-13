@@ -269,7 +269,7 @@ video {
                                     <a href="/product/{{row.pk}}"><img src="/media/{{row.image}}" alt=""></a>
                                     <div class="slider-text">
                                         <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                        <span class="product-price">£ {{row.material_10_price}}</span>
+                                        <span class="product-price">£ {% if product.material_10_price %}{{product.material_10_price}} {% elif product.material_14_price %}{{product.material_14_price}}{% else %}{{ product.material_18_price}}{% endif %}</span>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -428,7 +428,6 @@ video {
 
     {% comment %} size value {% endcomment %}
     $('.size_dropdown').on('change', function() {
-        alert(this.value)
         $('input[type="hidden"][class="hidden_size"]').val(this.value)
     });
 
