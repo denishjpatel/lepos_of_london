@@ -81,7 +81,7 @@ video {
                         </div>
                         <div class="single-product-price">
                             <div>
-                                 <h5>£</h5><h5 class="product_price">{% if product.material_10_price %}{{product.material_10_price}} {% elif product.material_14_price %}{{product.material_14_price}}{% else %}{{ product.material_18_price}}{% endif %}</h5>
+                                <h5>£</h5><h5 class="product_price">{% if product.material_10_price %}{{product.material_10_price}} {% elif product.material_14_price %}{{product.material_14_price}}{% else %}{{ product.material_18_price}}{% endif %}</h5>
                             </div>
                             <div class="product-rate">
                                 <div class="rate-box">
@@ -375,7 +375,7 @@ video {
 
     {% comment %} price chnage dropdown {% endcomment %}
     $(function(){
-        var status = $('option:selected', this).text();
+        var status = $('#price_option:selected', this).text();
         console.log("selected ::: ",status)
         if(status=="10K") {
             $('.product_price').text({{product.material_10_price}});
@@ -392,7 +392,7 @@ video {
             $('input[type="hidden"][class="hidden_material"]').val(18)
         } 
         $(".form-select").change(function(){
-            var status = $('option:selected', this).text();
+            var status = $('#price_option:selected', this).text();
             console.log("status :: ",status)
             if(status=="10K") {
                 $('.product_price').text({{product.material_10_price}});
