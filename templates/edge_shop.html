@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="product-details">
                                         <a href="/product/{{row.id}}" class="product-list-title">{{row.name}}</a>
-                                        <span class="product-price">£ {% if product.material_10_price %}{{product.material_10_price}}{% elif product.material_14_price %}{{product.material_14_price}}{% else %}{{ product.material_18_price}}{% endif %}</span>
+                                        <span class="product-price">£ {% if row.material_10_price %}{{row.material_10_price}}{% elif row.material_14_price %}{{row.material_14_price}}{% else %}{{ row.material_18_price}}{% endif %}</span>
                                     </div>
                                 </div>
                             </div>

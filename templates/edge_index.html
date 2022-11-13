@@ -83,7 +83,7 @@
                                 <a href="/product/{{row.pk}}"><img src=/media/{{row.image}} alt="product image"></a>
                                 <div class="slider-text">
                                     <a href="/product/{{row.pk}}">{{row.name}}</a>
-                                    <span class="product-price">£ {{row.material_10_price}}</span>
+                                    <span class="product-price">£ {% if row.material_10_price %}{{row.material_10_price}} {% elif row.material_14_price %}{{row.material_14_price}}{% else %}{{ row.material_18_price}}{% endif %}</span>
                                 </div>
                             </div>
                         {% endfor %}
