@@ -88,6 +88,6 @@ $('.search-txt').keypress(function(e) {
     if (key == 13) // the enter key code
     {
         var val = $('.search-txt').val();
-        window.location.href = `https://leposoflondon.herokuapp.com/products?search=${val}`;
+        window.location.href = `https://leposlondon.co.uk/products?search=${val}`;
     }
 });
