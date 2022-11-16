@@ -125,6 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
