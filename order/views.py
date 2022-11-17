@@ -83,7 +83,7 @@ def order(request):
                            'price_data': {
                             'currency': 'gbp',
                             'product_data': {
-                                'name': "Payment to The Lepos London0",
+                                'name': "Payment to The Lepos London",
                             },
                             'unit_amount': int(float(total_price) * 100),
                         },
@@ -228,7 +228,6 @@ def order(request):
                     status = "Confirmed",
                     delivered_at = date.today() + timedelta(days=10)
                 )
-                print("order object==>", order_obj)
                 
                 guest_user_obj = guest_user.objects.create(
                     first_name = first_name,
@@ -277,11 +276,9 @@ def order(request):
                 return redirect(checkout_session.url, code=303)
 
             except Exception as e:
-                print("inside except", e)
                 return redirect('cart')
         
         if request.method == "GET":
-            print("inside get")
             total = 0
             quantity = 0
             try:
@@ -327,7 +324,13 @@ def order(request):
     # else:
     #     messages.info(request,"Please Make Login First to Procced Order!")
     #     return redirect(reverse("loginview") + "?url=order" + f"?request_data={cart}")
-    
+
+def invoice(request, id):
+    pass
+
+def paymentFail(request, id):
+    pass
+
 def pay_razorpay(request):
     print("inside razorpay")
     # try:
