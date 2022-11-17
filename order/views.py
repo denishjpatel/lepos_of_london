@@ -75,6 +75,16 @@ def order(request):
             payment_method="stripe"
             order_id=f'order_cod_{random_with_N_digits(6)}'
             total_price=request.POST.get('total_price')
+
+            order_obj = Order.objects.create(
+                user = request.user,
+                payment_method = payment_method,
+                order_id = order_id,
+                shipping_price = 0,
+                total_price = total_price,
+                status = "Confirmed",
+                delivered_at = date.today() + timedelta(days=10)
+            )
             
             try:
                 checkout_session = stripe.checkout.Session.create(
@@ -91,21 +101,12 @@ def order(request):
                         }
                     ],
                     mode='payment',
-                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
-                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
-                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
-                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',    
+                    # success_url='http://127.0.0.1:8000/' + 'order/invoice/success/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'order/paymentFail/{}'.format(order_obj.pk)
+                    success_url='https://leposlondon.co.uk' + 'order/invoice/',
+                    cancel_url='https://leposlondon.co.uk' + 'order/paymentFail/{}'.format(order_obj.pk) 
                 )
                     #new code
-                order_obj = Order.objects.create(
-                    user = request.user,
-                    payment_method = payment_method,
-                    order_id = order_id,
-                    shipping_price = 0,
-                    total_price = total_price,
-                    status = "Confirmed",
-                    delivered_at = date.today() + timedelta(days=10)
-                )
                     
                 sub_total = request.POST.get('sub_total')
                 prods = request.POST.getlist('ids[]')
@@ -132,9 +133,6 @@ def order(request):
                     state = state,
                     country = country
                 )
-                    
-                cartitem_obj = CartItem.objects.filter(user=request.user)
-                cartitem_obj.delete()
                 return redirect(checkout_session.url, code=303)
                 #end of new code
                 
@@ -182,7 +180,6 @@ def order(request):
         grand_total = 0
         
         if request.method=="POST":
-            print("got it")
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
@@ -197,28 +194,7 @@ def order(request):
             order_id=f'order_cod_{random_with_N_digits(6)}'
             total_price=request.POST.get('total_price')
 
-            try:
-                print("inside try")
-                checkout_session = stripe.checkout.Session.create(
-                    line_items=[
-                        {
-                           'price_data': {
-                            'currency': 'gbp',
-                            'product_data': {
-                                'name': "Payment to The Lepos London1",
-                            },
-                            'unit_amount': int(float(total_price) * 100),
-                        },
-                        'quantity': 1,
-                        }
-                    ],
-                    mode='payment',
-                    # success_url='http://127.0.0.1:8000/' + 'order/my-orders/',
-                    # cancel_url='http://127.0.0.1:8000/' + 'cart/my-cart/',
-                    success_url='https://leposlondon.co.uk' + '/order/my-orders/',
-                    cancel_url='https://leposlondon.co.uk' + '/cart/my-cart/',  
-                )
-            
+            try:            
                 order_obj = Order.objects.create(
                     # user = request.user,
                     payment_method = payment_method,
@@ -267,11 +243,28 @@ def order(request):
                             unit_price = unit_prices[i],
                             sub_total = sub_total,
                         )
-                
-                
+
                 cart = Cart.objects.get(cart_id=_cart_id(request))
-                cartitem_obj = CartItem.objects.filter(cart=cart, is_active=True)
-                cartitem_obj.delete()
+                checkout_session = stripe.checkout.Session.create(
+                    line_items=[
+                        {
+                           'price_data': {
+                            'currency': 'gbp',
+                            'product_data': {
+                                'name': "Payment to The Lepos London",
+                            },
+                            'unit_amount': int(float(total_price) * 100),
+                        },
+                        'quantity': 1,
+                        }
+                    ],
+                    mode='payment',
+                    # success_url='http://127.0.0.1:8000/' + 'order/invoice/success/',
+                    # cancel_url='http://127.0.0.1:8000/' + 'order/paymentFail/{}'.format(order_obj.pk)
+                    success_url='https://leposlondon.co.uk' + 'order/invoice/{}'.format(cart.pk),
+                    cancel_url='https://leposlondon.co.uk' + 'order/paymentFail/{}'.format(order_obj.pk)
+                )
+
                 messages.info(request,"Your order is placed.")
                 return redirect(checkout_session.url, code=303)
 
@@ -325,11 +318,21 @@ def order(request):
     #     messages.info(request,"Please Make Login First to Procced Order!")
     #     return redirect(reverse("loginview") + "?url=order" + f"?request_data={cart}")
 
-def invoice(request, id):
-    pass
+def invoice(request,data):
+    if request.user.is_authenticated:
+        cartitem_obj = CartItem.objects.filter(user=request.user)
+        cartitem_obj.delete()
+        return redirect('my_orders')
+    else:
+        cartitem_obj = CartItem.objects.filter(cart=data, is_active=True)
+        cartitem_obj.delete()
+        return redirect('index')
+    
 
 def paymentFail(request, id):
-    pass
+    Order.objects.get(id=id).delete()
+    return redirect('cart')
+
 
 def pay_razorpay(request):
     print("inside razorpay")

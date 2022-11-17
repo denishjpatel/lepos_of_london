@@ -116,12 +116,15 @@
                                                 href="{% url 'terms_conditions' %}">terms and
                                                 conditions</a></label>
                         </div>
+                        {% if grand_total != 0 %}
                         <div class="payment-button">
                             {% comment %} <button class="button is-primary" id="submitBtn">Purchase!</button> {% endcomment %}
                             <button type="submit" class="payment-btn">Pay</button>
                             {% comment %} <button type="submit" name="razorpay" class="payment-btn razorpay">Pay</button> {% endcomment %}
                             <div id="paypal-button-container"></div>
                         </div>
+                        
+                        {% endif %}
                     </div>
                 </div>
             </form>
