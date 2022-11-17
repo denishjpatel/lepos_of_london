@@ -153,7 +153,7 @@
                                         </div>
                                         <div class="product-details">
                                             <a href="/product/${item.pk}" class="product-list-title">${item.fields.name}</a>
-                                            <span class="product-price">£ ${item.fields.material_10_price}</span>
+                                            <span class="product-price">£ ${item.fields.material_10_price ? item.fields.material_10_price : item.fields.material_14_price ? item.fields.material_14_price : item.fields.material_18_price}</span>
                                         </div>
                                     </div>
                                 </div>`
