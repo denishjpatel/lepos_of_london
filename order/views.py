@@ -59,9 +59,11 @@ def order(request):
             user_obj.save()
 
             act_obj = Account.objects.get(username=user_obj)
-            print("Account User Objects :",act_obj)
-            print("User Objects :",user_obj)
-            add_obj = Address.objects.get(user=user_obj)
+
+            if Address.objects.filter(user=user_obj).exists():
+                add_obj = Address.objects.get(user=user_obj)
+            else:
+                add_obj = Address.objects.create(user=user_obj)
             # add_obj = Address.objects.create(user=user_obj)
             add_obj.address = address
             add_obj.city = city
@@ -73,10 +75,8 @@ def order(request):
             payment_method="stripe"
             order_id=f'order_cod_{random_with_N_digits(6)}'
             total_price=request.POST.get('total_price')
-            print(total_price)
             
             try:
-                print("inside try")
                 checkout_session = stripe.checkout.Session.create(
                     line_items=[
                         {
